@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Feeling</string>
+    <string name="continue_with_email">Continue with Email</string>
+    <string name="continue_with_facebook">Continue with Facebook</string>
+    <string name="sign_up_disclaimer">By signing up, you understand that you must be 13 or older and agree to out Terms
+        and Conditions and our Privacy Policy
+    </string>
+</resources>
