@@ -3,18 +3,15 @@
               xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent" tools:background="@tools:sample/backgrounds/scenic[1]">
+              android:layout_height="match_parent">
 
-    <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-        <size android:height="221dp" android:width="316dp"/>
-    </shape>
     <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" app:srcCompat="@drawable/ic_launcher_background"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/ic_logo"
             android:id="@+id/logo_image" android:contentDescription="TODO"/>
     <TextView android:gravity="center" android:height="56dp" android:layout_height="wrap_content"
               android:layout_width="fill_parent" android:lineSpacingMultiplier="1.56"
-              android:style="@style/HeyNiceToMeetYo"
+              style="@style/HeyNiceToMeetYo"
               android:text="Hey, nice to meet you! Choose one of the options below to get started."
               android:width="316dp"/>
     <Button
@@ -27,9 +24,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:id="@+id/email_login_button"
             style="@style/Widget.AppCompat.Button"/>
-    <TextView
+
+    <TextView android:gravity="center" android:height="32dp" android:layout_height="wrap_content"
+              android:layout_width="fill_parent" android:lineSpacingMultiplier="1.33"
+              style="@style/BySigningUpYouU"
+              android:text="By signing up, you understand that you must be 13 or older and agree to our Terms and Conditions and our Privacy Policy."
+              android:width="349dp"/>
+    <!--<TextView
             android:text="@string/sign_up_disclaimer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/textView"/>
+            android:layout_height="wrap_content" android:id="@+id/textView"/>-->
 
 </LinearLayout>

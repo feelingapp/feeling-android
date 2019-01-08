@@ -2,16 +2,16 @@
 <font-family xmlns:android="http://schemas.android.com/apk/res/android">
     <font android:fontStyle="normal"
           android:fontWeight="400"
-          android:font="@font/Roboto-Regular"/>
+          android:font="@font/roboto_regular"/>
     <font android:fontStyle="italic"
           android:fontWeight="400"
-          android:font="@font/Roboto-Italic"/>
-    <font android:fontStyle="bold"
+          android:font="@font/roboto_italic"/>
+    <!--<font android:fontStyle="bold"
           android:fontWeight="400"
-          android:font="@font/Roboto-Bold"/>
+          android:font="@font/roboto_bold"/>
 
     <font android:fontStyle="boldItalic"
           android:fontWeight="400"
-          android:font="@font/Roboto-BoldItalic"/>
+          android:font="@font/roboto_bold_italic"/>-->
 
 </font-family>

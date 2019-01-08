@@ -8,10 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="HeyNiceToMeetYo" parent="@style/Text">
-        <item name="android:fontFamily">Roboto</item>
+    <style name="HeyNiceToMeetYo">
+        <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textColor">#FF1B1B1B</item>
         <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="BySigningUpYouU">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">#FF1B1B1B</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
 </resources>
