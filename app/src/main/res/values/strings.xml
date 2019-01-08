@@ -5,4 +5,5 @@
     <string name="sign_up_disclaimer">By signing up, you understand that you must be 13 or older and agree to out Terms
         and Conditions and our Privacy Policy
     </string>
+    <string name="login_message_text">Hey, nice to meet you! Choose one of the options below to get started.</string>
 </resources>
