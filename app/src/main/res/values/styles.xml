@@ -6,6 +6,16 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!-- Default font styling. -->
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">#FF1B1B1B</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="StandardText">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">#FF1B1B1B</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="HeyNiceToMeetYo">
@@ -16,11 +26,10 @@
         <item name="android:layout_marginRight">48dp</item>
     </style>
 
-    <style name="BySigningUpYouU" parent="HeyNiceToMeetYo">
-        <item name="android:textSize">12sp</item>
-        <item name="android:layout_marginLeft">32dp</item>
-        <item name="android:layout_marginRight">32dp</item>
-        <item name="android:layout_marginBottom">24dp</item>
+    <style name="SignInButton" parent="@style/Widget.AppCompat.Button.Colored">
+        <item name="android:width">316dp</item>
+        <item name="android:height">56dp</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
 </resources>

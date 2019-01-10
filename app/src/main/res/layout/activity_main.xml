@@ -1,71 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:orientation="vertical"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             android:id="@+id/linearLayout">
 
     <!-- Radius of background circle is 228 if width is 412 -->
 
     <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_logo"
-            android:id="@+id/logo_image"
-            android:contentDescription="Logo image"
-            android:layout_marginLeft="105dp"
-            android:layout_marginRight="105dp"
-            android:layout_marginTop="175dp"
-            android:layout_marginBottom="40dp"
+            android:layout_width="720dp"
+            android:layout_height="720dp"
+            app:srcCompat="@drawable/blue_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/background_circle_image"
+            android:contentDescription="Blue Circle in the background of the sign in screen 1"
+            android:layout_marginBottom="255dp"
+            android:adjustViewBounds="false"
             android:cropToPadding="false"
-            android:adjustViewBounds="true"/>
+            android:baselineAlignBottom="false"/>
 
     <TextView
             android:gravity="center"
             android:height="56dp"
             android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:lineHeight="28sp"
             style="@style/HeyNiceToMeetYo"
             android:text="@string/login_message_text"
             android:width="316dp"
-            android:layout_marginLeft="48dp"
-            android:layout_marginRight="48dp"
-            android:layout_marginBottom="112dp"/>
+            android:id="@+id/login_message_text"
+            app:layout_constraintTop_toBottomOf="@+id/logo_image"
+            android:layout_marginTop="40dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="48dp"/>
 
     <Button
             android:text="@string/continue_with_facebook"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/facebook_login_button"
-            style="@style/Widget.AppCompat.Button.Colored"
+            style="@style/SignInButton"
+            android:textColor="#FFFFFFFF"
+            app:layout_constraintTop_toBottomOf="@+id/login_message_text"
+            android:layout_marginTop="112dp"
+            app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="48dp"
-            android:layout_marginRight="48dp"
-            android:layout_marginBottom="16dp"/>
+            />
 
     <Button
             android:text="@string/continue_with_email"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/email_login_button"
-            style="@style/Widget.AppCompat.Button"
+            style="@style/SignInButton"
+            app:layout_constraintTop_toBottomOf="@+id/facebook_login_button"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="48dp"
-            android:layout_marginRight="48dp"
-            android:layout_marginBottom="40dp"/>
+            />
 
     <TextView
             android:gravity="center"
             android:height="32dp"
             android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            style="@style/BySigningUpYouU"
+            android:layout_width="wrap_content"
+            android:textSize="12sp"
             android:text="By signing up, you understand that you must be 13 or older and agree to our Terms and Conditions and our Privacy Policy."
             android:width="349dp"
-            />
-    <!--<TextView
-            android:text="@string/sign_up_disclaimer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/textView"/>-->
+            android:id="@+id/sign_in_disclaimer_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="32dp"/>
 
-</LinearLayout>
+    <ImageView
+            android:layout_width="202dp"
+            android:layout_height="125dp"
+            app:srcCompat="@drawable/ic_logo"
+            android:id="@+id/logo_image"
+            android:contentDescription="Logo image"
+            android:cropToPadding="false"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="175dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="105dp"/>
+
+</android.support.constraint.ConstraintLayout>
