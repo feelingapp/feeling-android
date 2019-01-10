@@ -17,7 +17,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/background_circle_image"
-            android:contentDescription="Blue Circle in the background of the sign in screen 1"
+            android:contentDescription="@string/blue_circle_description_text"
             android:layout_marginBottom="255dp"
             android:adjustViewBounds="false"
             android:cropToPadding="false"
@@ -35,8 +35,9 @@
             android:id="@+id/login_message_text"
             app:layout_constraintTop_toBottomOf="@+id/logo_image"
             android:layout_marginTop="40dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="48dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="48dp"
+            tools:ignore="UnusedAttribute"/>
 
     <Button
             android:text="@string/continue_with_facebook"
@@ -47,8 +48,8 @@
             android:textColor="#FFFFFFFF"
             app:layout_constraintTop_toBottomOf="@+id/login_message_text"
             android:layout_marginTop="112dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="48dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="48dp"
             />
 
     <Button
@@ -59,8 +60,8 @@
             style="@style/SignInButton"
             app:layout_constraintTop_toBottomOf="@+id/facebook_login_button"
             android:layout_marginTop="16dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="48dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="48dp"
             />
 
     <TextView
@@ -69,24 +70,24 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textSize="12sp"
-            android:text="By signing up, you understand that you must be 13 or older and agree to our Terms and Conditions and our Privacy Policy."
+            android:text="@string/sign_in_disclaimer_text"
             android:width="349dp"
             android:id="@+id/sign_in_disclaimer_text"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="24dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="32dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="32dp"/>
 
     <ImageView
             android:layout_width="202dp"
             android:layout_height="125dp"
             app:srcCompat="@drawable/ic_logo"
             android:id="@+id/logo_image"
-            android:contentDescription="Logo image"
+            android:contentDescription="@string/logo_image_description_text"
             android:cropToPadding="false"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="175dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="105dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="105dp"/>
 
 </android.support.constraint.ConstraintLayout>

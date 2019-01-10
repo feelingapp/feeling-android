@@ -6,4 +6,7 @@
         and Conditions and our Privacy Policy
     </string>
     <string name="login_message_text">Hey, nice to meet you! Choose one of the options below to get started.</string>
+    <string name="sign_in_disclaimer_text">By signing up, you understand that you must be 13 or older and agree to our Terms and Conditions and our Privacy Policy.</string>
+    <string name="logo_image_description_text">Logo image</string>
+    <string name="blue_circle_description_text">Blue Circle in the background of the sign in screen 1</string>
 </resources>
