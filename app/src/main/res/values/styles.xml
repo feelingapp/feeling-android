@@ -12,12 +12,15 @@
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textColor">#FF1B1B1B</item>
         <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginLeft">48dp</item>
+        <item name="android:layout_marginRight">48dp</item>
     </style>
 
-    <style name="BySigningUpYouU">
-        <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:textColor">#FF1B1B1B</item>
+    <style name="BySigningUpYouU" parent="HeyNiceToMeetYo">
         <item name="android:textSize">12sp</item>
+        <item name="android:layout_marginLeft">32dp</item>
+        <item name="android:layout_marginRight">32dp</item>
+        <item name="android:layout_marginBottom">24dp</item>
     </style>
 
 </resources>

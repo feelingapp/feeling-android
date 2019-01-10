@@ -6,48 +6,63 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <!-- Radius of background circle is 228 if width is 412 -->
+
     <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_logo"
             android:id="@+id/logo_image"
             android:contentDescription="Logo image"
-            android:layout_marginHorizontal="105dp"
-            android:layout_marginTop="175dp"/>
+            android:layout_marginLeft="105dp"
+            android:layout_marginRight="105dp"
+            android:layout_marginTop="175dp"
+            android:layout_marginBottom="40dp"
+            android:cropToPadding="false"
+            android:adjustViewBounds="true"/>
 
     <TextView
             android:gravity="center"
             android:height="56dp"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
-            android:lineSpacingMultiplier="1.56"
+            android:lineHeight="28sp"
             style="@style/HeyNiceToMeetYo"
             android:text="@string/login_message_text"
-            android:width="316dp"/>
+            android:width="316dp"
+            android:layout_marginLeft="48dp"
+            android:layout_marginRight="48dp"
+            android:layout_marginBottom="112dp"/>
 
     <Button
             android:text="@string/continue_with_facebook"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/facebook_login_button"
-            style="@style/Widget.AppCompat.Button.Colored"/>
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_marginLeft="48dp"
+            android:layout_marginRight="48dp"
+            android:layout_marginBottom="16dp"/>
 
     <Button
             android:text="@string/continue_with_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/email_login_button"
-            style="@style/Widget.AppCompat.Button"/>
+            style="@style/Widget.AppCompat.Button"
+            android:layout_marginLeft="48dp"
+            android:layout_marginRight="48dp"
+            android:layout_marginBottom="40dp"/>
 
     <TextView
             android:gravity="center"
             android:height="32dp"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
-            android:lineSpacingMultiplier="1.33"
             style="@style/BySigningUpYouU"
             android:text="By signing up, you understand that you must be 13 or older and agree to our Terms and Conditions and our Privacy Policy."
-            android:width="349dp"/>
+            android:width="349dp"
+            />
     <!--<TextView
             android:text="@string/sign_up_disclaimer"
             android:layout_width="match_parent"
