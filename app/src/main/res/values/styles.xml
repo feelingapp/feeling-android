@@ -26,10 +26,49 @@
         <item name="android:layout_marginRight">48dp</item>
     </style>
 
-    <style name="SignInButton" parent="@style/Widget.AppCompat.Button.Colored">
+    <!--<style name="SignInButton" parent="@style/Widget.AppCompat.Button.Colored">
         <item name="android:width">316dp</item>
         <item name="android:height">56dp</item>
         <item name="android:textAllCaps">false</item>
+    </style>-->
+    
+    <style name="FacebookSignInButton">
+        <item name="android:background">@drawable/facebook_sign_in_button</item>
+        <item name="android:width">316dp</item>
+        <item name="android:height">56dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">#FFFFFFFF</item>
+        <item name="android:textSize">18sp</item>
     </style>
+    
+    <style name="EmailSignInButton">
+        <item name="android:background">@drawable/email_sign_in_button</item>
+        <item name="android:width">316dp</item>
+        <item name="android:height">56dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">#FF1B1B1B</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+    
+    <style name="BasicButton">
+        <item name="android:background">@drawable/basic_button</item>
+        <item name="android:width">372dp</item>
+        <item name="android:height">56dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">#FF1B1B1B</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
 </resources>

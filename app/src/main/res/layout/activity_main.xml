@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools"
-                                             android:orientation="vertical"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent"
-                                             android:id="@+id/linearLayout">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:orientation="vertical"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:id="@+id/linearLayout"
+                                                   android:fitsSystemWindows="true">
 
     <!-- Radius of background circle is 228 if width is 412 -->
 
     <ImageView
-            android:layout_width="720dp"
-            android:layout_height="720dp"
+            android:layout_width="750dp"
+            android:layout_height="750dp"
             app:srcCompat="@drawable/blue_circle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/background_circle_image"
             android:contentDescription="@string/blue_circle_description_text"
-            android:layout_marginBottom="255dp"
-            android:adjustViewBounds="false"
-            android:cropToPadding="false"
+            android:layout_marginBottom="245dp"
             android:baselineAlignBottom="false"/>
 
     <TextView
@@ -34,7 +33,7 @@
             android:width="316dp"
             android:id="@+id/login_message_text"
             app:layout_constraintTop_toBottomOf="@+id/logo_image"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="48dp"
             tools:ignore="UnusedAttribute"/>
@@ -44,25 +43,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/facebook_login_button"
-            style="@style/SignInButton"
-            android:textColor="#FFFFFFFF"
+            style="@style/FacebookSignInButton"
             app:layout_constraintTop_toBottomOf="@+id/login_message_text"
-            android:layout_marginTop="112dp"
+            android:layout_marginTop="70dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="48dp"
-            />
+            android:layout_marginStart="48dp"/>
 
     <Button
             android:text="@string/continue_with_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/email_login_button"
-            style="@style/SignInButton"
+            style="@style/EmailSignInButton"
             app:layout_constraintTop_toBottomOf="@+id/facebook_login_button"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="48dp"
-            />
+            android:elevation="@dimen/fab_margin"/>
 
     <TextView
             android:gravity="center"
@@ -76,7 +73,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="24dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="32dp"/>
+            android:layout_marginStart="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/email_login_button"
+            android:layout_marginTop="57dp"/>
 
     <ImageView
             android:layout_width="202dp"
@@ -86,8 +85,15 @@
             android:contentDescription="@string/logo_image_description_text"
             android:cropToPadding="false"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="175dp"
+            android:layout_marginTop="165dp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="105dp"/>
 
-</android.support.constraint.ConstraintLayout>
+    <androidx.constraintlayout.widget.Barrier
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/barrier2"
+            app:barrierDirection="top"
+            tools:layout_editor_absoluteX="411dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

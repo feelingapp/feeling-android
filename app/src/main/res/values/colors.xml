@@ -3,4 +3,9 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="mainBlue">#FFCAEAF8</color>
+    <color name="mainGreen">#FFCEF8CA</color>
+    <color name="mainYellow">#FFF8EDCA</color>
+    <color name="mainPurple">#FFE4D0F2</color>
+    <color name="facebookBlue">#FF4267B2</color>
 </resources>
