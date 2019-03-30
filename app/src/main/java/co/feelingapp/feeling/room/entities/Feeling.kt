@@ -1,7 +1,7 @@
 package co.feelingapp.feeling.room.entities
 
 import androidx.room.*
-import java.time.OffsetDateTime
+import org.threeten.bp.OffsetDateTime
 
 @Entity(
     tableName = "feelings",
