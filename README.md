@@ -1,3 +1,3 @@
-# Feeling for Android
+# Feeling App
 
 > ❤️ Smart mood tracking app for Android
