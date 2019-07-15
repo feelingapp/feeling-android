@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.Application
 import androidx.fragment.app.Fragment
 import co.feelingapp.feeling.injection.DaggerAppComponent
-import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import dagger.android.support.HasSupportFragmentInjector
@@ -27,7 +26,7 @@ class FeelingApplication : Application(), HasActivityInjector, HasSupportFragmen
         return activityInjector
     }
 
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
+    override fun supportFragmentInjector(): DispatchingAndroidInjector<Fragment> {
         return fragmentInjector
     }
 }
