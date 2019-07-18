@@ -13,7 +13,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     defaultConfig {
-        applicationId "co.feelingapp.feeling"
+        applicationId "app.getfeeling.feeling"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1

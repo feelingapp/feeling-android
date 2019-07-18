@@ -1,0 +1,19 @@
+package app.getfeeling.feeling.room.dao
+
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Query
+import app.getfeeling.feeling.room.entities.User
+
+@Dao
+interface UserDao {
+    @Insert
+    fun insert(user: User)
+
+    @Delete
+    fun delete(user: User)
+
+    @Query("SELECT * FROM users WHERE id = :id LIMIT 1")
+    fun get(id: Int): User
+}
