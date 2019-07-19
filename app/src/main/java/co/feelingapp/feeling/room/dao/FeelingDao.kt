@@ -1,5 +1,6 @@
 package co.feelingapp.feeling.room.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -14,6 +15,6 @@ interface FeelingDao {
     @Delete
     fun delete(feeling: Feeling)
 
-    @Query("SELECT * FROM feelings")
-    fun getAll(): List<Feeling>
+    @Query("SELECT * FROM feelings ORDER BY datetime(created_at) DESC ")
+    fun feelingsByDate(): LiveData<List<Feeling>>
 }

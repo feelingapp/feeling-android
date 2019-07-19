@@ -15,7 +15,8 @@ import co.feelingapp.feeling.room.entities.Quote
 import co.feelingapp.feeling.room.entities.Setting
 import co.feelingapp.feeling.room.entities.User
 
-@Database(entities = [User::class, Feeling::class, Setting::class, Quote::class], version = 1)
+// TODO Remove exportSchema once we have settled on db design
+@Database(entities = [User::class, Feeling::class, Setting::class, Quote::class], version = 1, exportSchema = false)
 @TypeConverters(OffsetDateTimeConverter::class)
 abstract class FeelingDatabase : RoomDatabase() {
     abstract fun feelingDao(): FeelingDao
