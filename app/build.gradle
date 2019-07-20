@@ -14,7 +14,7 @@ android {
     }
     defaultConfig {
         applicationId "app.getfeeling.feeling"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
