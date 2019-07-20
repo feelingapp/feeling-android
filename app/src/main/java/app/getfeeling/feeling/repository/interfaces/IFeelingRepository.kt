@@ -1,4 +1,4 @@
-package app.getfeeling.feeling.repo.interfaces
+package app.getfeeling.feeling.repository.interfaces
 
 import androidx.lifecycle.LiveData
 import app.getfeeling.feeling.room.entities.Feeling

@@ -1,11 +1,11 @@
-package app.getfeeling.feeling.injection.dagger
+package app.getfeeling.feeling.injection.module
 
 import app.getfeeling.feeling.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-abstract class ActivityModule {
+abstract class MainActivityModule {
     @ContributesAndroidInjector
-    abstract fun contributeMainActivityInjector(): MainActivity
+    abstract fun contributeMainActivity(): MainActivity
 }

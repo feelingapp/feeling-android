@@ -1,11 +1,11 @@
-package app.getfeeling.feeling.repo
+package app.getfeeling.feeling.repository
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
-import app.getfeeling.feeling.repo.interfaces.IFeelingRepository
+import app.getfeeling.feeling.repository.interfaces.IFeelingRepository
 import app.getfeeling.feeling.room.dao.FeelingDao
 import app.getfeeling.feeling.room.entities.Feeling
-import app.getfeeling.feeling.api.FeelingAPI
+import app.getfeeling.feeling.api.FeelingService
 import java.util.concurrent.Executor
 import javax.inject.Inject
 
@@ -18,15 +18,12 @@ class FeelingRepository : IFeelingRepository {
     lateinit var feelingDao: FeelingDao
 
     @Inject
-    lateinit var feelingAPI: FeelingAPI
+    lateinit var feelingService: FeelingService
 
     @Inject
     lateinit var executor: Executor
 
     override fun insert(feeling: Feeling) {
-//        var user : Deferred<Response<User>>
-//        executor.execute { user = feelingAPI.getUserAsync(feeling.id) }
-
         feelingDao.insert(feeling)
     }
 

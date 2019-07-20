@@ -15,4 +15,16 @@ class AppModule {
         return Room.databaseBuilder(app, FeelingDatabase::class.java, "FeelingDatabase.db")
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun provideFeelingService(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.FEELING_API_URL)
+            .addConverterFactory(MoshiConverterFactory.create())
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .client(OkHttpClient().newBuilder().build())
+            .build()
+            .create(FeelingService::class.java)
+    }
 }
