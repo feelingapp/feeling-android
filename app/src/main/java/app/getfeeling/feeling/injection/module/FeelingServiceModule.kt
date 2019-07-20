@@ -1,7 +1,7 @@
 package app.getfeeling.feeling.injection.module
 
 import app.getfeeling.feeling.BuildConfig
-import app.getfeeling.feeling.web.FeelingAPI
+import app.getfeeling.feeling.api.FeelingService
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -11,7 +11,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
-class FeelingAPIModule {
+class FeelingServiceModule {
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit {
@@ -25,7 +25,7 @@ class FeelingAPIModule {
 
     @Provides
     @Singleton
-    fun provideFeelingAPI(retrofit: Retrofit): FeelingAPI {
-        return retrofit.create(FeelingAPI::class.java)
+    fun provideFeelingService(retrofit: Retrofit): FeelingService {
+        return retrofit.create(FeelingService::class.java)
     }
 }

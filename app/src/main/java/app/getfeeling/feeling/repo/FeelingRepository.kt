@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import app.getfeeling.feeling.repo.interfaces.IFeelingRepository
 import app.getfeeling.feeling.room.dao.FeelingDao
 import app.getfeeling.feeling.room.entities.Feeling
-import app.getfeeling.feeling.web.FeelingAPI
+import app.getfeeling.feeling.api.FeelingAPI
 import java.util.concurrent.Executor
 import javax.inject.Inject
 
