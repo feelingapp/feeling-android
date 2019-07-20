@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import androidx.fragment.app.Fragment
 import app.getfeeling.feeling.injection.DaggerAppComponent
+import com.jakewharton.threetenabp.AndroidThreeTen
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -20,6 +21,7 @@ class FeelingApplication : Application(), HasActivityInjector, HasSupportFragmen
 
     override fun onCreate() {
         super.onCreate()
+        AndroidThreeTen.init(this)
         DaggerAppComponent.create().inject(this)
     }
 
