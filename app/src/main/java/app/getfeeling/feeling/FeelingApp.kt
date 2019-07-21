@@ -1,4 +1,4 @@
-package app.getfeeling.feeling.application
+package app.getfeeling.feeling
 
 import android.app.Activity
 import android.app.Application
@@ -11,7 +11,7 @@ import dagger.android.HasActivityInjector
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
-class FeelingApplication : Application(), HasActivityInjector, HasSupportFragmentInjector {
+class FeelingApp : Application(), HasActivityInjector, HasSupportFragmentInjector {
 
     @Inject
     lateinit var activityInjector: DispatchingAndroidInjector<Activity>

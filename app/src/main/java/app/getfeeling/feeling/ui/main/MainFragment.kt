@@ -20,9 +20,6 @@ class MainFragment : Fragment() {
 //    @Inject
 //    lateinit var viewModel: MainViewModel
 
-    @Inject
-    lateinit var injectedText: String
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,7 +30,6 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        message.text = injectedText
 //        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 //        viewModel.feelings.observe(this, Observer<List<Feeling>> { adapter.submitList(it) })
     }
