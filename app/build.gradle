@@ -46,6 +46,10 @@ android {
         pickFirst 'META-INF/atomicfu.kotlin_module'
         pickFirst 'META-INF/kotlinx-coroutines-io.kotlin_module'
     }
+
+    dataBinding {
+        enabled = true 
+    }
 }
 
 dependencies {
