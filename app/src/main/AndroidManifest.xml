@@ -12,6 +12,11 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+
+        <meta-data
+                android:name="asset_statements"
+                android:resource="@string/asset_statements"/>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -19,6 +24,25 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity
+                android:name="android.support.customtabs.trusted.LauncherActivity"
+                android:label="${launcherName}">
+
+            <meta-data
+                    android:name="android.support.customtabs.trusted.DEFAULT_URL"
+                    android:value="${defaultUrl}"/>
+
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                        android:scheme="https"
+                        android:host="${hostName}"/>
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

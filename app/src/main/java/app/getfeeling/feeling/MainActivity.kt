@@ -2,7 +2,7 @@ package app.getfeeling.feeling
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import app.getfeeling.feeling.ui.main.MainFragment
+import app.getfeeling.feeling.ui.signin.SignInFragment
 import dagger.android.AndroidInjection
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
+                .replace(R.id.container, SignInFragment.newInstance())
                 .commitNow()
         }
     }

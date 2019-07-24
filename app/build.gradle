@@ -19,6 +19,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [
+            hostName: "getfeeling.app",
+            defaultUrl: "https://getfeeling.app",
+            launcherName: "Feeling"
+        ]
     }
     buildTypes {
         Properties properties = new Properties()
@@ -115,8 +121,12 @@ dependencies {
     implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
 
-    //Kotlin Coroutines
+    // Kotlin Coroutines
     def coroutine_version = "1.2.0-alpha"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
+
+    // Chrome Custom Tabs
+    def chrome_custom_tabs_version = "a0f7418972"
+    implementation "com.github.GoogleChrome:custom-tabs-client:$chrome_custom_tabs_version"
 }

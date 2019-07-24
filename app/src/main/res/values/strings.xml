@@ -1,5 +1,14 @@
 <resources>
+    <!-- General -->
     <string name="app_name">Feeling</string>
+    <string name="asset_statements">
+        [{
+            \"relation\": [\"delegate_permission/common.handle_all_urls\"],
+            \"target\": {\"namespace\": \"web\", \"site\": \"https://getfeeling.app\"}
+        }]
+    </string>
+
+    <!-- Sign In -->
     <string name="sign_in_description">Hey, nice to meet you! Choose one of the options below to get started.</string>
     <string name="sign_in_google">Continue with Google</string>
     <string name="sign_in_email">Continue with Email</string>
