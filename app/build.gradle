@@ -30,16 +30,19 @@ android {
         Properties properties = new Properties()
         properties.load(project.rootProject.file("local.properties").newDataInputStream())
         def feelingApiUrl = properties.getProperty("feelingApiUrl")
-        def feelingApiKey = properties.getProperty("feelingApiKey")
+        def feelingApiClientId = properties.getProperty("feelingApiClientId")
+        def feelingApiRedirectUri = properties.getProperty("feelingApiRedirectUri")
 
         debug {
             buildConfigField 'String', "FEELING_API_URL", feelingApiUrl
-            buildConfigField 'String', "FEELING_API_KEY", feelingApiKey
+            buildConfigField 'String', "FEELING_API_CLIENT_ID", feelingApiClientId
+            buildConfigField 'String', "FEELING_API_REDIRECT_URI", feelingApiRedirectUri
         }
 
         release {
             buildConfigField 'String', "FEELING_API_URL", feelingApiUrl
-            buildConfigField 'String', "FEELING_API_KEY", feelingApiKey
+            buildConfigField 'String', "FEELING_API_CLIENT_ID", feelingApiClientId
+            buildConfigField 'String', "FEELING_API_REDIRECT_URI", feelingApiRedirectUri
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
