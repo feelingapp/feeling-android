@@ -21,23 +21,25 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
-        Properties properties = new Properties()
-        properties.load(project.rootProject.file("local.properties").newDataInputStream())
-        def feelingApiUrl = properties.getProperty("feelingApiUrl")
-        def feelingApiKey = properties.getProperty("feelingApiKey")
-
-        debug {
-            buildConfigField 'String', "FEELING_API_URL", feelingApiUrl
-            buildConfigField 'String', "FEELING_API_KEY", feelingApiKey
-        }
-
         release {
-            buildConfigField 'String', "FEELING_API_URL", feelingApiUrl
-            buildConfigField 'String', "FEELING_API_KEY", feelingApiKey
-
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    buildTypes.each {
+        Properties properties = new Properties()
+
+        if (it.name == 'release') {
+            properties.load(project.rootProject.file("gradle.properties").newDataInputStream())
+        } else {
+            properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        }
+        def feelingApiUrl = properties.getProperty("feelingApiUrl")
+        def feelingApiKey = properties.getProperty("feelingApiKey")
+
+        it.buildConfigField 'String', "FEELING_API_URL", feelingApiUrl
+        it.buildConfigField 'String', "FEELING_API_KEY", feelingApiKey
     }
 
     // Fixes duplicate META-INF/atomicfu.kotlin_module
