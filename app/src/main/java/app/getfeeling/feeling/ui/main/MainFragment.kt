@@ -46,15 +46,14 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel.updateStatus()
         viewModel.isApiOnline.observe(this, Observer(::updateApiOnline))
-        button.setOnClickListener { viewModel.updateStatus() }
+        button.setOnClickListener { viewModel.setInput() }
     }
 
-    private fun updateApiOnline(isApiOnline: Boolean) {
-        textView.text = isApiOnline.toString()
+    private fun updateApiOnline(isApiOnline: String) {
+        textView.text = isApiOnline
 
-        if (isApiOnline) {
+        if (isApiOnline == "Online") {
             textView.setTextColor(Color.GREEN)
         } else {
             textView.setTextColor(Color.RED)

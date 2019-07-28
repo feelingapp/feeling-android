@@ -49,9 +49,10 @@ class AppModule {
     @Provides
     fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient().newBuilder()
-            .callTimeout(35, TimeUnit.SECONDS)
-            .readTimeout(35, TimeUnit.SECONDS)
             .addInterceptor(loggingInterceptor)
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(30, TimeUnit.SECONDS)
             .build()
     }
 

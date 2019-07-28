@@ -4,5 +4,5 @@ import androidx.lifecycle.LiveData
 
 interface IFeelingRepository {
 
-    fun getStatus(): LiveData<Boolean>
+    fun getStatus(): LiveData<String>
 }
