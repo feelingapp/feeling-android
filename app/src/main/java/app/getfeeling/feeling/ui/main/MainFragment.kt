@@ -1,11 +1,13 @@
 package app.getfeeling.feeling.ui.main
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import app.getfeeling.feeling.R
 import dagger.android.support.AndroidSupportInjection
@@ -44,7 +46,18 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        viewModel.updateStatus()
+        viewModel.isApiOnline.observe(this, Observer(::updateApiOnline))
+        button.setOnClickListener { viewModel.updateStatus() }
     }
 
+    private fun updateApiOnline(isApiOnline: Boolean) {
+        textView.text = isApiOnline.toString()
+
+        if (isApiOnline) {
+            textView.setTextColor(Color.GREEN)
+        } else {
+            textView.setTextColor(Color.RED)
+        }
     }
 }
