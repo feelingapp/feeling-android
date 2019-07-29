@@ -36,10 +36,8 @@ android {
             properties.load(project.rootProject.file("local.properties").newDataInputStream())
         }
         def feelingApiUrl = properties.getProperty("feelingApiUrl")
-        def feelingApiKey = properties.getProperty("feelingApiKey")
 
         it.buildConfigField 'String', "FEELING_API_URL", feelingApiUrl
-        it.buildConfigField 'String', "FEELING_API_KEY", feelingApiKey
     }
 
     // Fixes duplicate META-INF/atomicfu.kotlin_module
