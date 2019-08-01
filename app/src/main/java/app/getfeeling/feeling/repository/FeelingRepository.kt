@@ -18,7 +18,7 @@ class FeelingRepository @Inject constructor(
         try {
             val response = feelingService.getStatus()
             if (response.isSuccessful) {
-                emit(response.body()!!.status)
+                emit("Online")
             } else {
                 emit("Offline")
             }
