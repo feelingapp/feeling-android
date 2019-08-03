@@ -1,6 +1,6 @@
 package app.getfeeling.feeling.api.models
 
-data class FeelingModel (
+data class FeelingModel(
     val emotion: String,
     val description: String,
     val hashtags: Array<String>,
