@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import app.getfeeling.feeling.BuildConfig
 import app.getfeeling.feeling.api.FeelingService
+import app.getfeeling.feeling.api.models.ErrorsModel
 import app.getfeeling.feeling.repository.FeelingRepository
 import app.getfeeling.feeling.repository.interfaces.IFeelingRepository
 import app.getfeeling.feeling.room.FeelingDatabase
@@ -11,6 +12,7 @@ import app.getfeeling.feeling.room.dao.FeelingDao
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
 import retrofit2.Retrofit
@@ -58,18 +60,33 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideFeelingService(converterFactory: Converter.Factory, okHttpClient: OkHttpClient): FeelingService {
+    fun provideRetrofit(converterFactory: Converter.Factory, okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.FEELING_API_URL)
             .addConverterFactory(converterFactory)
             .client(okHttpClient)
             .build()
-            .create(FeelingService::class.java)
     }
 
     @Singleton
     @Provides
-    fun provideFeelingRepository(feelingDao: FeelingDao, feelingService: FeelingService): IFeelingRepository {
-        return FeelingRepository(feelingDao, feelingService)
+    fun provideFeelingService(retrofit: Retrofit): FeelingService {
+        return retrofit.create(FeelingService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideErrorConverter(retrofit: Retrofit): Converter<ResponseBody, ErrorsModel> {
+        return retrofit.responseBodyConverter(ErrorsModel::class.java, arrayOfNulls(0))
+    }
+
+    @Singleton
+    @Provides
+    fun provideFeelingRepository(
+        feelingDao: FeelingDao,
+        feelingService: FeelingService,
+        errorConverter: Converter<ResponseBody, ErrorsModel>
+    ): IFeelingRepository {
+        return FeelingRepository(feelingDao, feelingService, errorConverter)
     }
 }
