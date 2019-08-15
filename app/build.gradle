@@ -21,29 +21,13 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         manifestPlaceholders = [
-            hostName: "getfeeling.app",
-            defaultUrl: "https://getfeeling.app",
-            launcherName: "Feeling"
+                hostName    : "getfeeling.app",
+                defaultUrl  : "https://getfeeling.app",
+                launcherName: "Feeling"
         ]
     }
     buildTypes {
-        Properties properties = new Properties()
-        properties.load(project.rootProject.file("local.properties").newDataInputStream())
-        def feelingApiUrl = properties.getProperty("feelingApiUrl")
-        def feelingApiClientId = properties.getProperty("feelingApiClientId")
-        def feelingApiRedirectUri = properties.getProperty("feelingApiRedirectUri")
-
-        debug {
-            buildConfigField 'String', "FEELING_API_URL", feelingApiUrl
-            buildConfigField 'String', "FEELING_API_CLIENT_ID", feelingApiClientId
-            buildConfigField 'String', "FEELING_API_REDIRECT_URI", feelingApiRedirectUri
-        }
-
         release {
-            buildConfigField 'String', "FEELING_API_URL", feelingApiUrl
-            buildConfigField 'String', "FEELING_API_CLIENT_ID", feelingApiClientId
-            buildConfigField 'String', "FEELING_API_REDIRECT_URI", feelingApiRedirectUri
-
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -57,9 +41,16 @@ android {
         } else {
             properties.load(project.rootProject.file("local.properties").newDataInputStream())
         }
+
         def feelingApiUrl = properties.getProperty("feelingApiUrl")
+        def feelingApiClientId = properties.getProperty("feelingApiClientId")
+        def feelingApiRedirectUri = properties.getProperty("feelingApiRedirectUri")
+        def feelingWebsiteUrl = properties.getProperty("feelingWebsiteUrl")
 
         it.buildConfigField 'String', "FEELING_API_URL", feelingApiUrl
+        it.buildConfigField 'String', "FEELING_API_CLIENT_ID", feelingApiClientId
+        it.buildConfigField 'String', "FEELING_API_REDIRECT_URI", feelingApiRedirectUri
+        it.buildConfigField 'String', "FEELING_WEBSITE_URL", feelingWebsiteUrl
     }
 
     // Fixes duplicate META-INF/atomicfu.kotlin_module
@@ -70,7 +61,7 @@ android {
     }
 
     dataBinding {
-        enabled = true 
+        enabled = true
     }
 }
 
