@@ -15,7 +15,7 @@ class SignInFragment : Fragment() {
         fun newInstance() = SignInFragment()
     }
 
-    private val viewModel by lazy { ViewModelProviders.of(this).get(SignInViewModel::class.java) }
+    private val viewModel by lazy { activity?.run { ViewModelProviders.of(this).get(SignInViewModel::class.java) } }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

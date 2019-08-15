@@ -10,6 +10,8 @@ import app.getfeeling.feeling.BuildConfig
 import app.getfeeling.feeling.util.PKCE
 
 class SignInViewModel(application: Application) : AndroidViewModel(application) {
+    private var state: String? = null
+
     fun continueWithEmail() {
         val context = getApplication<Application>().applicationContext
 
@@ -20,7 +22,7 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
         val pkce = PKCE()
         val codeVerifier = pkce.generateCodeVerifier()
         val codeChallenge = pkce.generateCodeChallenge(codeVerifier)
-        val state = generateState()
+        state = generateState()
 
         val uri = Uri.Builder()
             .scheme("http")
@@ -44,5 +46,9 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
     private fun generateState(): String {
         val stateCharacters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".toList().toTypedArray()
         return (1..32).map { stateCharacters.random() }.joinToString("")
+    }
+
+    fun callback(authorizationCode: String, receivedState: String) {
+        if (state != receivedState) return
     }
 }

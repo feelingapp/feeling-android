@@ -18,18 +18,25 @@
                 android:name="asset_statements"
                 android:resource="@string/asset_statements"/>
 
-        <activity android:name=".MainActivity">
+        <activity
+                android:name=".MainActivity"
+                android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="feeling" android:host="callback"/>
             </intent-filter>
         </activity>
 
         <activity
                 android:name="android.support.customtabs.trusted.LauncherActivity"
                 android:label="${launcherName}">
-
             <meta-data
                     android:name="android.support.customtabs.trusted.DEFAULT_URL"
                     android:value="${defaultUrl}"/>
@@ -42,6 +49,7 @@
                         android:scheme="https"
                         android:host="${hostName}"/>
             </intent-filter>
+
         </activity>
 
     </application>
