@@ -1,19 +1,20 @@
 package app.getfeeling.feeling.ui.main
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import app.getfeeling.feeling.repository.interfaces.IFeelingRepository
-import app.getfeeling.feeling.room.entities.Feeling
 import javax.inject.Inject
 
-class MainViewModel : ViewModel() {
+class MainViewModel @Inject constructor(private val repository: IFeelingRepository) : ViewModel() {
 
-    @Inject
-    lateinit var repository: IFeelingRepository
+    private val input = MutableLiveData<Boolean>()
+    var isApiOnline: LiveData<String> = Transformations.switchMap(input) {
+        repository.getStatus()
+    }
 
-    val feelings: LiveData<List<Feeling>>
-
-    init {
-        feelings = repository.feelings
+    fun setInput() {
+        input.value = input.value?.not()
     }
 }

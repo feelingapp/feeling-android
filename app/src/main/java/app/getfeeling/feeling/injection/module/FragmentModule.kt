@@ -4,6 +4,7 @@ import app.getfeeling.feeling.ui.main.MainFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
+@Suppress("unused")
 @Module
 abstract class FragmentModule {
     @ContributesAndroidInjector

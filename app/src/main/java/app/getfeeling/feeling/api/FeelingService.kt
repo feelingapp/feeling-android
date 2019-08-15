@@ -1,12 +1,45 @@
 package app.getfeeling.feeling.api
 
-import app.getfeeling.feeling.room.entities.User
-import kotlinx.coroutines.Deferred
+import app.getfeeling.feeling.api.models.AccountModel
+import app.getfeeling.feeling.api.models.FeelingModel
+import app.getfeeling.feeling.api.models.QuoteModel
+import app.getfeeling.feeling.api.models.SettingsModel
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface FeelingService {
-    @GET("user")
-    fun getUserAsync(@Path("id") id: Int): Deferred<Response<User>>
+
+    @GET("status")
+    suspend fun getStatus(): Response<Unit>
+
+    // Account endpoints
+    @GET("account/exists")
+    suspend fun checkIfAccountExists(@Query("email") email: String): Response<AccountModel>
+
+    // Feeling endpoints
+    @GET("feeling")
+    suspend fun getFeelings(): Response<List<FeelingModel>>
+
+    @GET("feeling/:{id}")
+    suspend fun getFeeling(@Path("id") id: Int): Response<FeelingModel>
+
+    @POST("feeling")
+    suspend fun createFeeling(@Body feelingModel: FeelingModel): Response<Unit>
+
+    @PUT("feeling/:{id}")
+    suspend fun updateFeeling(@Path("id") id: Int, @Body feelingModel: FeelingModel): Response<Unit>
+
+    @DELETE("feeling/:{id}")
+    suspend fun deleteFeeling(@Path("id") id: Int): Response<Unit>
+
+    // Quote endpoints
+    @GET("quote/:{emotion}")
+    suspend fun getQuote(@Path("emotion") emotion: String): Response<QuoteModel>
+
+    // Settings endpoints
+    @GET("settings")
+    suspend fun getSettings(): Response<SettingsModel>
+
+    @POST("settings")
+    suspend fun updateSettings(@Body settingsModel: SettingsModel): Response<Unit>
 }

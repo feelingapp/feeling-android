@@ -22,7 +22,7 @@ class FeelingApp : Application(), HasActivityInjector, HasSupportFragmentInjecto
     override fun onCreate() {
         super.onCreate()
         AndroidThreeTen.init(this)
-        DaggerAppComponent.create().inject(this)
+        DaggerAppComponent.builder().application(this).build().inject(this)
     }
 
     override fun activityInjector(): AndroidInjector<Activity> {
