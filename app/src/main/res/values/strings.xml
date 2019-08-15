@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Feeling</string>
+    <string name="bottom_navigation_me">Me</string>
+    <string name="bottom_navigation_settings">Settings</string>
 </resources>
