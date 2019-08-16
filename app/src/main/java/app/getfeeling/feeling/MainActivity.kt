@@ -6,10 +6,12 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.android.AndroidInjection
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
     private lateinit var navController: NavController
 
@@ -31,6 +33,13 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+    }
+
+    override fun onPreferenceStartFragment(caller: PreferenceFragmentCompat?, pref: Preference?): Boolean {
+        when (pref?.fragment) {
+            "app.getfeeling.feeling.ui.settings.DailyReminderFragment" -> navigate(R.id.action_settings_fragment_to_dailyReminderFragment)
+        }
+        return true
     }
 
     override fun onSupportNavigateUp(): Boolean {

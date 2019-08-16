@@ -22,5 +22,11 @@
         <action
                 android:id="@+id/action_settings_fragment_to_main_fragment"
                 app:destination="@id/main_fragment"/>
+        <action android:id="@+id/action_settings_fragment_to_dailyReminderFragment"
+                app:destination="@id/dailyReminderFragment"/>
+    </fragment>
+    <fragment android:id="@+id/dailyReminderFragment"
+              android:name="app.getfeeling.feeling.ui.settings.DailyReminderFragment"
+              android:label="DailyReminderFragment">
     </fragment>
 </navigation>

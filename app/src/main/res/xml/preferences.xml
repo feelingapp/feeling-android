@@ -6,6 +6,7 @@
             android:key="daily_reminder"
             android:title="Daily Reminder"
             android:summary="Be reminded everyday to log how you're feeling"
+            android:fragment="app.getfeeling.feeling.ui.settings.DailyReminderFragment"
             app:iconSpaceReserved="false"
             app:allowDividerBelow="true"/>
 
