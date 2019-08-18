@@ -47,14 +47,10 @@ android {
         def feelingApiRedirectUri = properties.getProperty("feelingApiRedirectUri")
         def feelingWebsiteUrl = properties.getProperty("feelingWebsiteUrl")
 
-<<<<<<< HEAD
         it.buildConfigField 'String', "FEELING_API_URL", feelingApiUrl
         it.buildConfigField 'String', "FEELING_API_CLIENT_ID", feelingApiClientId
         it.buildConfigField 'String', "FEELING_API_REDIRECT_URI", feelingApiRedirectUri
         it.buildConfigField 'String', "FEELING_WEBSITE_URL", feelingWebsiteUrl
-=======
-        it.buildConfigField "String", "FEELING_API_URL", feelingApiUrl
->>>>>>> master
     }
 
     // Fixes duplicate META-INF/atomicfu.kotlin_module
@@ -142,7 +138,7 @@ dependencies {
     // Chrome Custom Tabs
     def chrome_custom_tabs_version = "a0f7418972"
     implementation "com.github.GoogleChrome:custom-tabs-client:$chrome_custom_tabs_version"
-    
+
     // Preferences
     implementation "androidx.preference:preference:1.1.0-rc01"
 }
