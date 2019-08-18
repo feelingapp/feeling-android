@@ -1,5 +1,8 @@
 package app.getfeeling.feeling.api.models
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class FeelingModel(
     val emotion: String,
     val description: String,

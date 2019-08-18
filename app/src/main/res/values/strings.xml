@@ -14,4 +14,7 @@
     <string name="sign_in_email">Continue with Email</string>
     <string name="sign_in_terms">By signing up, you understand that you must be 13 or older and agree to our agree to our Terms and Conditions and our Privacy Policy.</string>
     <string name="sign_in_logo_alt">Logo</string>
+
+    <string name="bottom_navigation_me">Me</string>
+    <string name="bottom_navigation_settings">Settings</string>
 </resources>

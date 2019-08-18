@@ -1,0 +1,30 @@
+{
+  "feelings": [
+    {
+      "emotion": "Amazing",
+      "description": "Best day of my life!!!",
+      "hashtags": [
+        "#love",
+        "#life"
+      ],
+      "date": "2019-01-04T00:02:51"
+    },
+    {
+      "emotion": "Sad",
+      "description": "Life sucks... I hate JS",
+      "hashtags": [
+        "#depressed",
+        "#sadlyf"
+      ],
+      "date": "2019-01-03T00:02:51"
+    },
+    {
+      "emotion": "Great",
+      "description": "Kotlin is a pleasure to code with",
+      "hashtags": [
+        "#coding"
+      ],
+      "date": "2019-01-02T00:02:51"
+    }
+  ]
+}

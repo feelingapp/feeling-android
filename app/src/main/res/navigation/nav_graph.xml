@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/nav_graph"
+        app:startDestination="@id/main_fragment">
+    <fragment
+            android:id="@+id/main_fragment"
+            android:name="app.getfeeling.feeling.ui.main.MainFragment"
+            android:label="Main Fragment"
+            tools:layout="@layout/main_fragment">
+        <action
+                android:id="@+id/action_main_fragment_to_settings_fragment"
+                app:destination="@id/settings_fragment"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/settings_fragment"
+            android:name="app.getfeeling.feeling.ui.settings.SettingsFragment"
+            android:label="Settings Fragment">
+        <action
+                android:id="@+id/action_settings_fragment_to_main_fragment"
+                app:destination="@id/main_fragment"/>
+    </fragment>
+</navigation>

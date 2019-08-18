@@ -19,7 +19,7 @@ interface FeelingService {
 
     // Feeling endpoints
     @GET("feeling")
-    suspend fun getFeelings(): Response<List<FeelingModel>>
+    suspend fun getFeelings(): Response<FeelingsModel>
 
     @GET("feeling/:{id}")
     suspend fun getFeeling(@Path("id") id: Int): Response<FeelingModel>

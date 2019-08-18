@@ -1,35 +1,19 @@
 package app.getfeeling.feeling
 
-import android.app.Activity
-import android.app.Application
-import androidx.fragment.app.Fragment
 import app.getfeeling.feeling.injection.DaggerAppComponent
 import com.jakewharton.threetenabp.AndroidThreeTen
 import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
-import dagger.android.support.HasSupportFragmentInjector
-import javax.inject.Inject
+import dagger.android.support.DaggerApplication
 
-class FeelingApp : Application(), HasActivityInjector, HasSupportFragmentInjector {
+class FeelingApp : DaggerApplication() {
 
-    @Inject
-    lateinit var activityInjector: DispatchingAndroidInjector<Activity>
+    private lateinit var injector: AndroidInjector<out DaggerApplication>
 
-    @Inject
-    lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication>? = injector
 
     override fun onCreate() {
+        injector = DaggerAppComponent.builder().application(this).build()
         super.onCreate()
         AndroidThreeTen.init(this)
-        DaggerAppComponent.builder().application(this).build().inject(this)
-    }
-
-    override fun activityInjector(): AndroidInjector<Activity> {
-        return activityInjector
-    }
-
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
-        return fragmentInjector
     }
 }
