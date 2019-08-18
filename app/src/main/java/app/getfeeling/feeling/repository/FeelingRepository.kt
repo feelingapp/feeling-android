@@ -11,7 +11,6 @@ import okhttp3.ResponseBody
 import retrofit2.Converter
 import javax.inject.Inject
 
-
 @WorkerThread
 class FeelingRepository @Inject constructor(
     private val feelingDao: FeelingDao,
