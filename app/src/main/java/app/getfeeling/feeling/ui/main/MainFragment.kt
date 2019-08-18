@@ -20,11 +20,7 @@ class MainFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    lateinit var viewModel: MainViewModel
-
-    companion object {
-        fun newInstance() = MainFragment()
-    }
+    private lateinit var viewModel: MainViewModel
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)

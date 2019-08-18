@@ -7,7 +7,7 @@ import dagger.android.support.DaggerApplication
 
 class FeelingApp : DaggerApplication() {
 
-    lateinit var injector: AndroidInjector<out DaggerApplication>
+    private lateinit var injector: AndroidInjector<out DaggerApplication>
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication>? = injector
 
