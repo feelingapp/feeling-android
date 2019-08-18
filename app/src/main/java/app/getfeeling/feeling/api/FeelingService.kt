@@ -1,9 +1,6 @@
 package app.getfeeling.feeling.api
 
-import app.getfeeling.feeling.api.models.AccountModel
-import app.getfeeling.feeling.api.models.FeelingModel
-import app.getfeeling.feeling.api.models.QuoteModel
-import app.getfeeling.feeling.api.models.SettingsModel
+import app.getfeeling.feeling.api.models.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -18,7 +15,7 @@ interface FeelingService {
 
     // Feeling endpoints
     @GET("feeling")
-    suspend fun getFeelings(): Response<List<FeelingModel>>
+    suspend fun getFeelings(): Response<FeelingsModel>
 
     @GET("feeling/:{id}")
     suspend fun getFeeling(@Path("id") id: Int): Response<FeelingModel>
