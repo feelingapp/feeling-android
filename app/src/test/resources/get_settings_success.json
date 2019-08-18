@@ -1,0 +1,7 @@
+{
+  "daily_reminder": {
+    "enabled": true,
+    "hour": 20,
+    "minute": 0
+  }
+}
