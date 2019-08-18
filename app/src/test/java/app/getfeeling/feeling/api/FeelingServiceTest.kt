@@ -136,11 +136,6 @@ class FeelingServiceTest {
     }
 
     @Test
-    fun getFeelings_failure() {
-        // endpoint hasn't been made yet so idk
-    }
-
-    @Test
     fun getFeeling_success() {
         // arrange
         val expectedResponseBody = TestHelper.getJson("get_feeling_success.json")
