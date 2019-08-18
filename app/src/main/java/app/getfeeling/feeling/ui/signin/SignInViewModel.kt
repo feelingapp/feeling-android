@@ -1,54 +1,41 @@
 package app.getfeeling.feeling.ui.signin
 
-import android.app.Application
-import android.content.Intent
-import android.net.Uri
-import androidx.browser.customtabs.CustomTabsIntent
-import androidx.browser.customtabs.TrustedWebUtils
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import app.getfeeling.feeling.BuildConfig
+import app.getfeeling.feeling.api.models.GetTokenModel
+import app.getfeeling.feeling.repository.interfaces.IFeelingRepository
 import app.getfeeling.feeling.util.PKCE
+import javax.inject.Inject
 
-class SignInViewModel(application: Application) : AndroidViewModel(application) {
+class SignInViewModel @Inject constructor(private val repository: IFeelingRepository) :
+    ViewModel() {
+
     private var state: String? = null
+    private var codeVerifier: String? = null
 
-    fun continueWithEmail() {
-        val context = getApplication<Application>().applicationContext
-
-        val customTabsIntent = CustomTabsIntent.Builder()
-            .build()
-        customTabsIntent.intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-
+    fun generateCodeChallenge(): String {
         val pkce = PKCE()
-        val codeVerifier = pkce.generateCodeVerifier()
-        val codeChallenge = pkce.generateCodeChallenge(codeVerifier)
-        state = generateState()
+        codeVerifier = pkce.generateCodeVerifier()
 
-        val uri = Uri.Builder()
-            .scheme("http")
-            .authority(BuildConfig.FEELING_WEBSITE_URL)
-            .appendPath("authorize")
-            .appendQueryParameter("client_id", BuildConfig.FEELING_API_CLIENT_ID)
-            .appendQueryParameter("response_type", "code")
-            .appendQueryParameter("redirect_uri", BuildConfig.FEELING_API_REDIRECT_URI)
-            .appendQueryParameter("code_challenge_method", PKCE.CODE_CHALLENGE_METHOD)
-            .appendQueryParameter("code_challenge", codeChallenge)
-            .appendQueryParameter("state", state)
-            .build()
-
-        TrustedWebUtils.launchAsTrustedWebActivity(
-            context,
-            customTabsIntent,
-            uri
-        )
+        return pkce.generateCodeChallenge(codeVerifier as String)
     }
 
-    private fun generateState(): String {
+    fun generateState(): String {
         val stateCharacters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".toList().toTypedArray()
-        return (1..32).map { stateCharacters.random() }.joinToString("")
+        state = (1..32).map { stateCharacters.random() }.joinToString("")
+
+        return state as String
     }
 
     fun callback(authorizationCode: String, receivedState: String) {
         if (state != receivedState) return
+
+        val response = repository.exchangeCodeForToken(
+            GetTokenModel(
+                authorizationCode,
+                codeVerifier as String,
+                BuildConfig.FEELING_API_CLIENT_ID
+            )
+        )
     }
 }

@@ -2,8 +2,10 @@ package app.getfeeling.feeling.api
 
 import app.getfeeling.feeling.api.models.AccountModel
 import app.getfeeling.feeling.api.models.FeelingModel
+import app.getfeeling.feeling.api.models.GetTokenModel
 import app.getfeeling.feeling.api.models.QuoteModel
 import app.getfeeling.feeling.api.models.SettingsModel
+import app.getfeeling.feeling.api.models.TokenModel
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -11,6 +13,10 @@ interface FeelingService {
 
     @GET("status")
     suspend fun getStatus(): Response<Unit>
+
+    // Authorization endpoints
+    @GET("token")
+    suspend fun getToken(@Body getTokenModel: GetTokenModel): Response<TokenModel>
 
     // Account endpoints
     @GET("account/exists")
@@ -43,3 +49,4 @@ interface FeelingService {
     @POST("settings")
     suspend fun updateSettings(@Body settingsModel: SettingsModel): Response<Unit>
 }
+
