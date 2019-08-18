@@ -9,7 +9,6 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import app.getfeeling.feeling.ui.signin.SignInFragment
 import app.getfeeling.feeling.ui.signin.SignInViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.android.AndroidInjection
@@ -27,12 +26,6 @@ class MainActivity : AppCompatActivity() {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, SignInFragment())
-                .commitNow()
-        }
 
         navController = findNavController(R.id.nav_host_fragment)
 
