@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.browser.customtabs.TrustedWebUtils
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import app.getfeeling.feeling.BuildConfig
@@ -38,6 +40,10 @@ class SignInFragment : DaggerFragment() {
         super.onActivityCreated(savedInstanceState)
 
         viewModel = ViewModelProviders.of(activity!!, viewModelFactory).get(SignInViewModel::class.java)
+        viewModel.tokenModel.observe(this, Observer {
+            Toast.makeText(context, "You're signed in! Your access token is ${it.accessToken}", Toast.LENGTH_LONG)
+                .show()
+        })
 
         binding.fragment = this
     }
