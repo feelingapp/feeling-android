@@ -56,9 +56,7 @@ class MainActivity : AppCompatActivity() {
             val authorizationCode = uri.getQueryParameter("authorization_code")
             val state = uri.getQueryParameter("state")
 
-            val model = this.run {
-                ViewModelProviders.of(this, viewModelFactory).get(SignInViewModel::class.java)
-            }
+            val model = ViewModelProviders.of(this, viewModelFactory).get(SignInViewModel::class.java)
 
             if (authorizationCode != null && state != null)
                 model.callback(authorizationCode, state)
