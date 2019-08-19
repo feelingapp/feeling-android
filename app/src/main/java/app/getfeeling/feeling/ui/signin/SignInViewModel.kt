@@ -22,7 +22,6 @@ class SignInViewModel @Inject constructor(private val repository: IFeelingReposi
         repository.exchangeCodeForToken(it)
     }
 
-
     fun generateCodeChallenge(): String {
         val pkce = PKCE()
         codeVerifier = pkce.generateCodeVerifier()
