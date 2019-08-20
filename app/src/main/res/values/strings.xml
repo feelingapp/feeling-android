@@ -1,5 +1,20 @@
 <resources>
+    <!-- General -->
     <string name="app_name">Feeling</string>
+    <string name="asset_statements">
+        [{
+            \"relation\": [\"delegate_permission/common.handle_all_urls\"],
+            \"target\": {\"namespace\": \"web\", \"site\": \"https://getfeeling.app\"}
+        }]
+    </string>
+
+    <!-- Sign In -->
+    <string name="sign_in_description">Hey, nice to meet you! Choose one of the options below to get started.</string>
+    <string name="sign_in_google">Continue with Google</string>
+    <string name="sign_in_email">Continue with Email</string>
+    <string name="sign_in_terms">By signing up, you understand that you must be 13 or older and agree to our agree to our Terms and Conditions and our Privacy Policy.</string>
+    <string name="sign_in_logo_alt">Logo</string>
+
     <string name="bottom_navigation_me">Me</string>
     <string name="bottom_navigation_settings">Settings</string>
 </resources>

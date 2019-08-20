@@ -4,14 +4,18 @@ import androidx.annotation.WorkerThread
 import androidx.lifecycle.liveData
 import app.getfeeling.feeling.api.FeelingService
 import app.getfeeling.feeling.api.models.ErrorsModel
+import app.getfeeling.feeling.api.models.GetTokenModel
+import app.getfeeling.feeling.api.models.TokenModel
 import app.getfeeling.feeling.repository.interfaces.IFeelingRepository
 import app.getfeeling.feeling.room.dao.FeelingDao
 import kotlinx.coroutines.Dispatchers
 import okhttp3.ResponseBody
 import retrofit2.Converter
 import javax.inject.Inject
+import javax.inject.Singleton
 
 @WorkerThread
+@Singleton
 class FeelingRepository @Inject constructor(
     private val feelingDao: FeelingDao,
     private val feelingService: FeelingService,
@@ -30,4 +34,13 @@ class FeelingRepository @Inject constructor(
             emit("Offline")
         }
     }
+
+    override fun exchangeCodeForToken(getTokenModel: GetTokenModel) = liveData(Dispatchers.IO) {
+        val response = feelingService.getToken(getTokenModel)
+
+        if (response.isSuccessful && response.body() != null) {
+            emit(response.body() as TokenModel)
+        }
+    }
 }
+

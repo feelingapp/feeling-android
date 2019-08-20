@@ -19,6 +19,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [
+                hostName    : "getfeeling.app",
+                defaultUrl  : "https://getfeeling.app",
+                launcherName: "Feeling"
+        ]
     }
     buildTypes {
         release {
@@ -35,9 +41,16 @@ android {
         } else {
             properties.load(project.rootProject.file("local.properties").newDataInputStream())
         }
-        def feelingApiUrl = properties.getProperty("feelingApiUrl")
 
-        it.buildConfigField "String", "FEELING_API_URL", feelingApiUrl
+        def feelingApiUrl = properties.getProperty("feelingApiUrl")
+        def feelingApiClientId = properties.getProperty("feelingApiClientId")
+        def feelingApiRedirectUri = properties.getProperty("feelingApiRedirectUri")
+        def feelingWebsiteUrl = properties.getProperty("feelingWebsiteUrl")
+
+        it.buildConfigField 'String', "FEELING_API_URL", feelingApiUrl
+        it.buildConfigField 'String', "FEELING_API_CLIENT_ID", feelingApiClientId
+        it.buildConfigField 'String', "FEELING_API_REDIRECT_URI", feelingApiRedirectUri
+        it.buildConfigField 'String', "FEELING_WEBSITE_URL", feelingWebsiteUrl
     }
 
     // Fixes duplicate META-INF/atomicfu.kotlin_module
@@ -45,6 +58,10 @@ android {
         pickFirst "META-INF/kotlinx-io.kotlin_module"
         pickFirst "META-INF/atomicfu.kotlin_module"
         pickFirst "META-INF/kotlinx-coroutines-io.kotlin_module"
+    }
+
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -117,6 +134,10 @@ dependencies {
     def coroutine_version = "1.2.0-alpha"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
+
+    // Chrome Custom Tabs
+    def chrome_custom_tabs_version = "a0f7418972"
+    implementation "com.github.GoogleChrome:custom-tabs-client:$chrome_custom_tabs_version"
 
     // Preferences
     implementation "androidx.preference:preference:1.1.0-rc01"

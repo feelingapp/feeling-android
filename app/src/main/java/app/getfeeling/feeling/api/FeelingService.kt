@@ -9,6 +9,10 @@ interface FeelingService {
     @GET("status")
     suspend fun getStatus(): Response<Unit>
 
+    // Authorization endpoints
+    @POST("token")
+    suspend fun getToken(@Body getTokenModel: GetTokenModel): Response<TokenModel>
+
     // Account endpoints
     @GET("account/exists")
     suspend fun checkIfAccountExists(@Query("email") email: String): Response<AccountModel>
@@ -40,3 +44,4 @@ interface FeelingService {
     @POST("settings")
     suspend fun updateSettings(@Body settingsModel: SettingsModel): Response<Unit>
 }
+
