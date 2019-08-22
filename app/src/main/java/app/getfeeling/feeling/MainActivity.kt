@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -56,7 +55,7 @@ class MainActivity : AppCompatActivity() {
             val authorizationCode = uri.getQueryParameter("authorization_code")
             val state = uri.getQueryParameter("state")
 
-            val model = ViewModelProviders.of(this, viewModelFactory).get(SignInViewModel::class.java)
+            val model = ViewModelProvider(this, viewModelFactory).get(SignInViewModel::class.java)
 
             if (authorizationCode != null && state != null)
                 model.callback(authorizationCode, state)

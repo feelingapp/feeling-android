@@ -11,7 +11,6 @@ import androidx.browser.customtabs.CustomTabsIntent
 import androidx.browser.customtabs.TrustedWebUtils
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import app.getfeeling.feeling.BuildConfig
 import app.getfeeling.feeling.databinding.SignInFragmentBinding
 import app.getfeeling.feeling.util.PKCE
@@ -39,7 +38,7 @@ class SignInFragment : DaggerFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel = ViewModelProviders.of(activity!!, viewModelFactory).get(SignInViewModel::class.java)
+        viewModel = ViewModelProvider(activity!!, viewModelFactory).get(SignInViewModel::class.java)
         viewModel.tokenModel.observe(this, Observer {
             Toast.makeText(context, "You're signed in! Your access token is ${it.accessToken}", Toast.LENGTH_LONG)
                 .show()
