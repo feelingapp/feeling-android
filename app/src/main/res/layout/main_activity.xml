@@ -3,8 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_width="match_parent">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
@@ -20,13 +19,23 @@
                 app:navGraph="@navigation/nav_graph"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="28dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:elevation="12dp"
+            app:layout_anchor="@+id/bottom_navigation"/>
+
+    <app.getfeeling.feeling.ui.FeelingNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_gravity="start"
             android:layout_alignParentBottom="true"
-            android:background="?android:attr/windowBackground"
             app:itemTextColor="@color/bottom_navigation_colours"
             app:itemIconTint="@color/bottom_navigation_colours"
             app:menu="@menu/navigation_items"/>
