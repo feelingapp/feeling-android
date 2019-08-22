@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import app.getfeeling.feeling.injection.ViewModelFactory
 import app.getfeeling.feeling.injection.ViewModelKey
-import app.getfeeling.feeling.ui.main.MainViewModel
+import app.getfeeling.feeling.ui.me.MeViewModel
 import app.getfeeling.feeling.ui.signin.SignInViewModel
 import dagger.Binds
 import dagger.Module
@@ -19,8 +19,8 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(MainViewModel::class)
-    abstract fun bindMainViewModel(mainViewModel: MainViewModel): ViewModel
+    @ViewModelKey(MeViewModel::class)
+    abstract fun bindMeViewModel(meViewModel: MeViewModel): ViewModel
 
     @Binds
     @IntoMap

@@ -33,8 +33,8 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemReselectedListener { }
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.action_settings -> navigate(R.id.action_main_fragment_to_settings_fragment)
-                R.id.action_me -> navigate(R.id.action_settings_fragment_to_main_fragment)
+                R.id.action_settings -> navigate(R.id.action_meFragment_to_settings_fragment)
+                R.id.action_me -> navigate(R.id.action_settings_fragment_to_meFragment)
             }
             true
         }
