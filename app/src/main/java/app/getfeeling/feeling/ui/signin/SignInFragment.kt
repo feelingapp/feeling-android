@@ -6,13 +6,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.browser.customtabs.TrustedWebUtils
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import app.getfeeling.feeling.BuildConfig
+import app.getfeeling.feeling.R
 import app.getfeeling.feeling.databinding.SignInFragmentBinding
 import app.getfeeling.feeling.util.PKCE
 import dagger.android.support.DaggerFragment
@@ -26,6 +28,8 @@ class SignInFragment : DaggerFragment() {
     private lateinit var viewModel: SignInViewModel
 
     private lateinit var binding: SignInFragmentBinding
+
+    private val mainNavController: NavController? by lazy { activity?.findNavController(R.id.nav_host_fragment) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,8 +45,7 @@ class SignInFragment : DaggerFragment() {
 
         viewModel = ViewModelProviders.of(activity!!, viewModelFactory).get(SignInViewModel::class.java)
         viewModel.tokenModel.observe(this, Observer {
-            Toast.makeText(context, "You're signed in! Your access token is ${it.accessToken}", Toast.LENGTH_LONG)
-                .show()
+            mainNavController?.navigate(R.id.main_fragment)
         })
 
         binding.fragment = this

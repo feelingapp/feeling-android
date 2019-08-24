@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/nav_graph"
-        app:startDestination="@id/main_fragment">
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/main_graph"
+            app:startDestination="@id/main_fragment">
+
+    <fragment
+            android:id="@+id/sign_in_fragment"
+            android:name="app.getfeeling.feeling.ui.signin.SignInFragment"
+            android:label="SignInFragment"/>
+
     <fragment
             android:id="@+id/main_fragment"
             android:name="app.getfeeling.feeling.ui.main.MainFragment"
@@ -23,4 +29,5 @@
                 android:id="@+id/action_settings_fragment_to_main_fragment"
                 app:destination="@id/main_fragment"/>
     </fragment>
+
 </navigation>
