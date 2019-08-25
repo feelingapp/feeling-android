@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import app.getfeeling.feeling.ui.signin.SignInViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
@@ -34,6 +35,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupBottomNavigationView() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        val bottomNavigationViewFab = findViewById<FloatingActionButton>(R.id.fab)
+
         bottomNavigationView.setupWithNavController(mainNavController)
         bottomNavigationView.setOnNavigationItemReselectedListener { }
         bottomNavigationView.setOnNavigationItemSelectedListener {
@@ -47,8 +50,10 @@ class MainActivity : AppCompatActivity() {
         mainNavController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.sign_in_fragment) {
                 bottomNavigationView.visibility = View.GONE
+                bottomNavigationViewFab.visibility = View.GONE
             } else {
                 bottomNavigationView.visibility = View.VISIBLE
+                bottomNavigationViewFab.visibility = View.VISIBLE
             }
         }
     }
