@@ -38,5 +38,6 @@
             android:layout_alignParentBottom="true"
             app:itemTextColor="@color/bottom_navigation_colours"
             app:itemIconTint="@color/bottom_navigation_colours"
+            app:itemBackground="@color/transparent"
             app:menu="@menu/navigation_items"/>
 </RelativeLayout>
