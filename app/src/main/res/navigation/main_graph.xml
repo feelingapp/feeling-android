@@ -28,6 +28,12 @@
         <action
                 android:id="@+id/action_settings_fragment_to_main_fragment"
                 app:destination="@id/main_fragment"/>
+
+        <action
+                android:id="@+id/action_settings_fragment_to_sign_in_fragment"
+                app:popUpTo="@+id/sign_in_fragment"
+                app:popUpToInclusive="true"
+                app:destination="@id/sign_in_fragment"/>
     </fragment>
 
 </navigation>
