@@ -12,7 +12,7 @@ class DailyReminderFragment : PreferenceFragmentCompat(), PreferenceManager.OnPr
     private val mainNavController: NavController? by lazy { activity?.findNavController(R.id.nav_host_fragment) }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        setPreferencesFromResource(R.xml.preferences_daily_reminder, rootKey)
+        setPreferencesFromResource(R.xml.daily_reminder_preferences, rootKey)
     }
 
     override fun onPreferenceTreeClick(preference: Preference): Boolean {
