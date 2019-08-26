@@ -4,7 +4,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/main_graph"
-            app:startDestination="@id/main_fragment">
+            app:startDestination="@id/me_fragment">
 
     <fragment
             android:id="@+id/sign_in_fragment"
@@ -12,12 +12,12 @@
             android:label="SignInFragment"/>
 
     <fragment
-            android:id="@+id/main_fragment"
-            android:name="app.getfeeling.feeling.ui.main.MainFragment"
-            android:label="Main Fragment"
-            tools:layout="@layout/main_fragment">
+            android:id="@+id/me_fragment"
+            android:name="app.getfeeling.feeling.ui.me.MeFragment"
+            android:label="Me Fragment"
+            tools:layout="@layout/me_fragment">
         <action
-                android:id="@+id/action_main_fragment_to_settings_fragment"
+                android:id="@+id/action_me_fragment_to_settings_fragment"
                 app:destination="@id/settings_fragment"/>
     </fragment>
 
@@ -26,8 +26,8 @@
             android:name="app.getfeeling.feeling.ui.settings.SettingsFragment"
             android:label="Settings Fragment">
         <action
-                android:id="@+id/action_settings_fragment_to_main_fragment"
-                app:destination="@id/main_fragment"/>
+                android:id="@+id/action_settings_fragment_to_me_fragment"
+                app:destination="@id/me_fragment"/>
     </fragment>
 
 </navigation>
