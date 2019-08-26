@@ -8,18 +8,16 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import app.getfeeling.feeling.R
 
-
-class SettingsFragment : PreferenceFragmentCompat(), PreferenceManager.OnPreferenceTreeClickListener {
+class DailyReminderFragment : PreferenceFragmentCompat(), PreferenceManager.OnPreferenceTreeClickListener {
     private val mainNavController: NavController? by lazy { activity?.findNavController(R.id.nav_host_fragment) }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        setPreferencesFromResource(R.xml.preferences, rootKey)
+        setPreferencesFromResource(R.xml.preferences_daily_reminder, rootKey)
     }
 
     override fun onPreferenceTreeClick(preference: Preference): Boolean {
         when (preference.key) {
-            "sign_out" -> mainNavController?.navigate(R.id.action_settings_fragment_to_sign_in_fragment)
-            "daily_reminder" -> mainNavController?.navigate(R.id.action_settings_fragment_to_daily_reminder_fragment)
+            "daily_reminder_time_picker" -> mainNavController?.navigate(R.id.action_daily_reminder_fragment_to_time_picker_fragment)
         }
 
         return super.onPreferenceTreeClick(preference)
