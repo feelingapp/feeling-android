@@ -3,7 +3,6 @@ package app.getfeeling.feeling
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
@@ -11,17 +10,16 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import app.getfeeling.feeling.ui.signin.SignInViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import dagger.android.AndroidInjection
+import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var mainNavController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
@@ -68,7 +66,7 @@ class MainActivity : AppCompatActivity() {
             val model = ViewModelProviders.of(this, viewModelFactory).get(SignInViewModel::class.java)
 
             if (authorizationCode != null && state != null)
-                model.callback(authorizationCode, state)
+                model.handleAuthorizationCallback(authorizationCode, state)
         }
     }
 }

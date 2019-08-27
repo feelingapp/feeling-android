@@ -36,7 +36,7 @@ class SignInViewModel @Inject constructor(private val repository: IFeelingReposi
         return state
     }
 
-    fun callback(authorizationCode: String, receivedState: String) {
+    fun handleAuthorizationCallback(authorizationCode: String, receivedState: String) {
         if (state != receivedState) return
 
         getTokenModel.value = GetTokenModel(
