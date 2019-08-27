@@ -12,7 +12,7 @@ class FeelingApp : DaggerApplication() {
     override fun applicationInjector(): AndroidInjector<out DaggerApplication>? = injector
 
     override fun onCreate() {
-        injector = DaggerAppComponent.builder().application(this).build()
+        injector = DaggerAppComponent.builder().application(this).appContext(this).build()
         super.onCreate()
         AndroidThreeTen.init(this)
     }
