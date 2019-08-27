@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import app.getfeeling.feeling.ui.signin.SignInViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.android.support.DaggerAppCompatActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
@@ -32,12 +33,14 @@ class MainActivity : DaggerAppCompatActivity() {
 
     private fun setupBottomNavigationView() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        val bottomNavigationViewFab = findViewById<FloatingActionButton>(R.id.fab)
+
         bottomNavigationView.setupWithNavController(mainNavController)
         bottomNavigationView.setOnNavigationItemReselectedListener { }
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.action_settings -> navigate(R.id.action_main_fragment_to_settings_fragment)
-                R.id.action_me -> navigate(R.id.action_settings_fragment_to_main_fragment)
+                R.id.action_settings -> navigate(R.id.action_me_fragment_to_settings_fragment)
+                R.id.action_me -> navigate(R.id.action_settings_fragment_to_me_fragment)
             }
             true
         }
@@ -45,8 +48,10 @@ class MainActivity : DaggerAppCompatActivity() {
         mainNavController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.sign_in_fragment) {
                 bottomNavigationView.visibility = View.GONE
+                bottomNavigationViewFab.visibility = View.GONE
             } else {
                 bottomNavigationView.visibility = View.VISIBLE
+                bottomNavigationViewFab.visibility = View.VISIBLE
             }
         }
     }
