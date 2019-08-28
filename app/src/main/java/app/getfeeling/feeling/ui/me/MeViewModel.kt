@@ -14,10 +14,12 @@ class MeViewModel @Inject constructor(private val repository: IFeelingRepository
     val feelings: LiveData<List<Feeling>>
         get() = _feelings
 
+    fun getTitle(): String = "Welcome Back Michael"
+
     fun getFeelingsByMonth(monthStart: OffsetDateTime, monthEnd: OffsetDateTime) {
         _feelings = repository.getFeelingsByMonth(
             monthStart,
             monthEnd
         ) as MutableLiveData<List<Feeling>>
     }
-}
+    

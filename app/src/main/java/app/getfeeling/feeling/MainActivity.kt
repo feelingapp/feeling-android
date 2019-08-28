@@ -2,49 +2,61 @@ package app.getfeeling.feeling
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupWithNavController
 import app.getfeeling.feeling.ui.signin.SignInViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import dagger.android.AndroidInjection
+import dagger.android.support.DaggerAppCompatActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var navController: NavController
-
-    private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var mainNavController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
-        navController = findNavController(R.id.nav_host_fragment)
+        mainNavController = findNavController(R.id.nav_host_fragment)
 
+        mainNavController.navigate(R.id.sign_in_fragment)
+
+        setupBottomNavigationView()
+    }
+
+    private fun setupBottomNavigationView() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        val bottomNavigationViewFab = findViewById<FloatingActionButton>(R.id.fab)
+
+        bottomNavigationView.setupWithNavController(mainNavController)
         bottomNavigationView.setOnNavigationItemReselectedListener { }
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.action_settings -> navigate(R.id.action_meFragment_to_settings_fragment)
-                R.id.action_me -> navigate(R.id.action_settings_fragment_to_meFragment)
+                R.id.action_settings -> navigate(R.id.action_me_fragment_to_settings_fragment)
+                R.id.action_me -> navigate(R.id.action_settings_fragment_to_me_fragment)
             }
             true
         }
-    }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp(appBarConfiguration)
+        mainNavController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.sign_in_fragment) {
+                bottomNavigationView.visibility = View.GONE
+                bottomNavigationViewFab.visibility = View.GONE
+            } else {
+                bottomNavigationView.visibility = View.VISIBLE
+                bottomNavigationViewFab.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun navigate(resId: Int) {
-        navController.navigate(resId)
+        mainNavController.navigate(resId)
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -58,7 +70,7 @@ class MainActivity : AppCompatActivity() {
             val model = ViewModelProvider(this, viewModelFactory).get(SignInViewModel::class.java)
 
             if (authorizationCode != null && state != null)
-                model.callback(authorizationCode, state)
+                model.handleAuthorizationCallback(authorizationCode, state)
         }
     }
 }

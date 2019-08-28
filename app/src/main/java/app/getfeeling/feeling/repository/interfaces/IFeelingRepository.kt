@@ -10,8 +10,6 @@ interface IFeelingRepository {
 
     fun getStatus(): LiveData<String>
 
-    fun exchangeCodeForToken(getTokenModel: GetTokenModel): LiveData<TokenModel>
-
     fun getFeelingsByMonth(
         monthStart: OffsetDateTime,
         monthEnd: OffsetDateTime

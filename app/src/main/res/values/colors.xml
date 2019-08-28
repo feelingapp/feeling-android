@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
+    <color name="transparent">#00000000</color>
+
     <color name="colorLight">#FEFEFE</color>
     <color name="colorDark">#1B1B1B</color>
 

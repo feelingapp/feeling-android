@@ -22,7 +22,7 @@ class MeFragment : DaggerFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = MeFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         return binding.root
