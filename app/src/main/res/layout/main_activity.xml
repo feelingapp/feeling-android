@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
     <fragment
@@ -12,9 +11,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/main_graph"
             app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:navGraph="@navigation/main_graph" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
@@ -24,22 +23,22 @@
             android:clickable="true"
             android:focusable="true"
             app:elevation="12dp"
-            app:layout_constraintEnd_toEndOf="@id/bottom_navigation"
-            app:layout_constraintStart_toStartOf="@+id/bottom_navigation"
             app:layout_constraintBottom_toBottomOf="@+id/bottom_navigation"
-    />
+            app:layout_constraintEnd_toEndOf="@id/bottom_navigation"
+            app:layout_constraintStart_toStartOf="@+id/bottom_navigation" />
 
     <app.getfeeling.feeling.ui.FeelingNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_gravity="bottom"
             android:layout_alignParentBottom="true"
-            app:itemTextColor="@color/bottom_navigation_colours"
-            app:itemIconTint="@color/bottom_navigation_colours"
+            android:layout_gravity="bottom"
             app:itemBackground="@color/transparent"
+            app:itemIconTint="@color/bottom_navigation_colours"
+            app:itemTextColor="@color/bottom_navigation_colours"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:menu="@menu/navigation_items" app:layout_constraintHorizontal_bias="0.0"/>
+            app:menu="@menu/navigation_items" />
 </androidx.constraintlayout.widget.ConstraintLayout>
