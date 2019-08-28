@@ -22,4 +22,4 @@ class MeViewModel @Inject constructor(private val repository: IFeelingRepository
             monthEnd
         ) as MutableLiveData<List<Feeling>>
     }
-    
+}
