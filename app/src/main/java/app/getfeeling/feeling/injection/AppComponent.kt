@@ -1,6 +1,7 @@
 package app.getfeeling.feeling.injection
 
 import android.app.Application
+import android.content.Context
 import app.getfeeling.feeling.FeelingApp
 import app.getfeeling.feeling.injection.module.AppModule
 import app.getfeeling.feeling.injection.module.FragmentModule
@@ -28,6 +29,9 @@ interface AppComponent : AndroidInjector<FeelingApp> {
     interface Builder {
         @BindsInstance
         fun application(application: Application): Builder
+
+        @BindsInstance
+        fun appContext(context: Context): Builder
 
         fun build(): AppComponent
     }

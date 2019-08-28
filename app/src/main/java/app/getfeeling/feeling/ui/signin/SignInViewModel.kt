@@ -8,11 +8,11 @@ import app.getfeeling.feeling.BuildConfig
 import app.getfeeling.feeling.api.models.GetTokenModel
 import app.getfeeling.feeling.api.models.GrantType
 import app.getfeeling.feeling.api.models.TokenModel
-import app.getfeeling.feeling.repository.interfaces.IFeelingRepository
+import app.getfeeling.feeling.repository.interfaces.ITokenRepository
 import app.getfeeling.feeling.util.PKCE
 import javax.inject.Inject
 
-class SignInViewModel @Inject constructor(private val repository: IFeelingRepository) :
+class SignInViewModel @Inject constructor(private val repository: ITokenRepository) :
     ViewModel() {
 
     private lateinit var state: String
@@ -36,7 +36,7 @@ class SignInViewModel @Inject constructor(private val repository: IFeelingReposi
         return state
     }
 
-    fun callback(authorizationCode: String, receivedState: String) {
+    fun handleAuthorizationCallback(authorizationCode: String, receivedState: String) {
         if (state != receivedState) return
 
         getTokenModel.value = GetTokenModel(
@@ -45,5 +45,9 @@ class SignInViewModel @Inject constructor(private val repository: IFeelingReposi
             codeVerifier,
             BuildConfig.FEELING_API_CLIENT_ID
         )
+    }
+
+    fun saveToken(tokenModel: TokenModel) {
+        repository.saveToken(tokenModel)
     }
 }

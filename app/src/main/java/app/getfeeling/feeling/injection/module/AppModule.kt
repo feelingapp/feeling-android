@@ -1,14 +1,18 @@
 package app.getfeeling.feeling.injection.module
 
 import android.app.Application
+import android.content.Context
 import androidx.room.Room
 import app.getfeeling.feeling.BuildConfig
 import app.getfeeling.feeling.api.FeelingService
 import app.getfeeling.feeling.api.models.ErrorsModel
 import app.getfeeling.feeling.repository.FeelingRepository
+import app.getfeeling.feeling.repository.TokenRepository
 import app.getfeeling.feeling.repository.interfaces.IFeelingRepository
+import app.getfeeling.feeling.repository.interfaces.ITokenRepository
 import app.getfeeling.feeling.room.FeelingDatabase
 import app.getfeeling.feeling.room.dao.FeelingDao
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -30,6 +34,10 @@ class AppModule {
     @Singleton
     @Provides
     fun provideFeelingDao(database: FeelingDatabase): FeelingDao = database.feelingDao()
+
+    @Singleton
+    @Provides
+    fun provideMoshi(): Moshi = Moshi.Builder().build()
 
     @Singleton
     @Provides
@@ -77,4 +85,13 @@ class AppModule {
         feelingService: FeelingService,
         errorConverter: Converter<ResponseBody, ErrorsModel>
     ): IFeelingRepository = FeelingRepository(feelingDao, feelingService, errorConverter)
+
+    @Singleton
+    @Provides
+    fun provideTokenRepository(
+        feelingService: FeelingService,
+        errorConverter: Converter<ResponseBody, ErrorsModel>,
+        moshi: Moshi,
+        context: Context
+    ): ITokenRepository = TokenRepository(feelingService, errorConverter, moshi, context)
 }
