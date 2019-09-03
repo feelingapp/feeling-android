@@ -3,20 +3,22 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/round_rect_shape">
+        android:layout_height="match_parent">
 
-    <ImageButton
+    <app.getfeeling.feeling.ui.me.CalendarDayView
             android:id="@+id/button_day"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="1dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp"
+            android:contentDescription="@string/calendar_day_desc"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            tools:background="@drawable/round_rect_shape"
+            tools:backgroundTint="@color/emojiLoving"
             tools:src="@drawable/ic_emoji_smiling_face_with_heart_eyes" />
 </androidx.constraintlayout.widget.ConstraintLayout>
