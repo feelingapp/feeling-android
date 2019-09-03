@@ -6,7 +6,7 @@
     </style>
 
     <style name="GoogleSignInButton">
-        <item name="android:background">@drawable/button</item>
+        <item name="android:background">@drawable/sign_in_button</item>
         <item name="android:width">316dp</item>
         <item name="android:height">56dp</item>
         <item name="android:textAllCaps">false</item>
@@ -15,7 +15,7 @@
     </style>
 
     <style name="EmailSignInButton">
-        <item name="android:background">@drawable/button</item>
+        <item name="android:background">@drawable/sign_in_button</item>
         <item name="android:width">316dp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@color/colorDark</item>
