@@ -12,6 +12,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
     defaultConfig {
         applicationId "app.getfeeling.feeling"
         minSdkVersion 21
@@ -19,7 +22,6 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
         manifestPlaceholders = [
                 hostName    : "getfeeling.app",
                 defaultUrl  : "https://getfeeling.app",
