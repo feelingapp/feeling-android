@@ -20,8 +20,6 @@ class MeFragment : DaggerFragment() {
 
     private lateinit var binding: MeFragmentBinding
 
-    private lateinit var calendarMonthAdapter: CalendarMonthAdapter
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,20 +32,18 @@ class MeFragment : DaggerFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MeViewModel::class.java)
-        calendarMonthAdapter = CalendarMonthAdapter()
-        calendarMonthAdapter.allFeelings = viewModel.allFeelings
-        calendarMonthAdapter.months = resources.getStringArray(R.array.months)
-
 //        viewModel.getAllFeelingsGroupedByMonth().observe(this) {
 //            calendarViewAdapter.allFeelings = it
 //        }
 
-        val linearLayoutManager = LinearLayoutManager(context)
-        linearLayoutManager.stackFromEnd = true
-
         binding.recyclerView.apply {
-            layoutManager = linearLayoutManager
-            adapter = calendarMonthAdapter
+            layoutManager = LinearLayoutManager(context).apply {
+                reverseLayout = true
+            }
+            adapter = CalendarMonthAdapter().apply {
+                setFeelingCalendar(viewModel.feelingCalendar)
+                months = resources.getStringArray(R.array.months)
+            }
         }
     }
 }

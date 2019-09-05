@@ -10,10 +10,10 @@ import androidx.core.content.ContextCompat
 import app.getfeeling.feeling.FeelingApp
 import app.getfeeling.feeling.R
 import app.getfeeling.feeling.room.entities.Feeling
-import org.threeten.bp.YearMonth
 
 class CalendarDayAdapter : BaseAdapter() {
-    var monthFeelings: List<Feeling> = emptyList()
+
+    var monthFeelings: Array<out Feeling?> = emptyArray()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -27,7 +27,7 @@ class CalendarDayAdapter : BaseAdapter() {
 
             val buttonDay = calendarDay.findViewById<ImageButton>(R.id.button_day)
             val background = getDrawable(R.drawable.round_rect_shape)!!
-            if (position >= monthFeelings.size) {
+            if (monthFeelings[position] == null) {
                 buttonDay.isClickable = false
 
                 background.mutate().setColorFilter(
@@ -35,28 +35,21 @@ class CalendarDayAdapter : BaseAdapter() {
                     Mode.MULTIPLY
                 )
             } else {
-                val (emoji, colour) = getEmojiAndColour(monthFeelings[position].emotion)
+                val (emoji, colour) = getEmojiAndColour(monthFeelings[position]!!.emotion)
                 buttonDay.setImageResource(emoji)
                 background.mutate().setColorFilter(colour, Mode.MULTIPLY)
             }
             buttonDay.background = background
-
         }
 
         return calendarDay!!
     }
 
-    override fun getItem(position: Int): Any = monthFeelings[position]
+    override fun getItem(position: Int): Feeling? = monthFeelings[position]
 
-    override fun getItemId(position: Int): Long = monthFeelings[position].id.toLong()
+    override fun getItemId(position: Int): Long = position.toLong()
 
-    override fun getCount(): Int {
-        val date = monthFeelings[0].createdAt
-
-        val isLeapYear = YearMonth.of(date.year, date.month).isLeapYear
-
-        return date.month.length(isLeapYear)
-    }
+    override fun getCount(): Int = monthFeelings.size
 
     private fun getEmojiAndColour(emotion: String): Pair<Int, Int> =
         when (emotion) {

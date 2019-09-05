@@ -4,17 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import app.getfeeling.feeling.R
-import app.getfeeling.feeling.room.entities.Feeling
 
 class CalendarMonthAdapter : RecyclerView.Adapter<CalendarMonthHolder>() {
 
     lateinit var months: Array<String>
 
-    var allFeelings: List<List<Feeling>> = emptyList()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+    private lateinit var feelingCalendar: FeelingCalendar
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarMonthHolder {
         val calendarMonth = LayoutInflater.from(parent.context)
@@ -24,8 +19,13 @@ class CalendarMonthAdapter : RecyclerView.Adapter<CalendarMonthHolder>() {
     }
 
     override fun onBindViewHolder(holder: CalendarMonthHolder, monthsBeforeCurrent: Int) {
-        holder.bind(allFeelings[monthsBeforeCurrent])
+        holder.bind(feelingCalendar[monthsBeforeCurrent])
     }
 
-    override fun getItemCount() = allFeelings.size
+    override fun getItemCount() = feelingCalendar.size
+
+    fun setFeelingCalendar(feelingCalendar: FeelingCalendar) {
+        this.feelingCalendar = feelingCalendar
+        notifyDataSetChanged()
+    }
 }
