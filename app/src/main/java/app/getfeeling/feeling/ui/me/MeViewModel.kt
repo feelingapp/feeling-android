@@ -1,5 +1,6 @@
 package app.getfeeling.feeling.ui.me
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.getfeeling.feeling.repository.interfaces.IFeelingRepository
@@ -25,12 +26,14 @@ class MeViewModel @Inject constructor(private val repository: IFeelingRepository
         }
     }
 
+    // Test field
     private var date: OffsetDateTime = OffsetDateTime.now()
 
     fun getTitle(): String = "Welcome Back Michael"
 
-    fun getAllFeelingsGroupedByMonth() = repository.getAllFeelingsGroupedByMonth()
+    fun getFeelingCalendar(): LiveData<FeelingCalendar> = repository.getFeelingCalendar()
 
+    // Test function
     fun addFeeling() {
         viewModelScope.launch(Dispatchers.IO) {
             if (repository.getUser(1) == null) {

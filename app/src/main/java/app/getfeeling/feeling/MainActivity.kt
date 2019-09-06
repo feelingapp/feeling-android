@@ -7,10 +7,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import app.getfeeling.feeling.ui.me.MeViewModel
 import app.getfeeling.feeling.ui.signin.SignInViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import dagger.android.support.DaggerAppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
@@ -24,10 +25,29 @@ class MainActivity : DaggerAppCompatActivity() {
         setContentView(R.layout.main_activity)
 
         mainNavController = findNavController(R.id.nav_host_fragment)
-
         mainNavController.navigate(R.id.sign_in_fragment)
 
         setupBottomNavigationView()
+
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(MeViewModel::class.java)
+        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
+            viewModel.addFeeling()
+        }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        val uri = intent.data
+
+        if (uri != null && uri.toString().startsWith(BuildConfig.FEELING_API_REDIRECT_URI)) {
+            val authorizationCode = uri.getQueryParameter("authorization_code")
+            val state = uri.getQueryParameter("state")
+
+            val model = ViewModelProvider(this, viewModelFactory).get(SignInViewModel::class.java)
+
+            if (authorizationCode != null && state != null)
+                model.handleAuthorizationCallback(authorizationCode, state)
+        }
     }
 
     private fun setupBottomNavigationView() {
@@ -57,20 +77,5 @@ class MainActivity : DaggerAppCompatActivity() {
 
     private fun navigate(resId: Int) {
         mainNavController.navigate(resId)
-    }
-
-    override fun onNewIntent(intent: Intent) {
-        super.onNewIntent(intent)
-        val uri = intent.data
-
-        if (uri != null && uri.toString().startsWith(BuildConfig.FEELING_API_REDIRECT_URI)) {
-            val authorizationCode = uri.getQueryParameter("authorization_code")
-            val state = uri.getQueryParameter("state")
-
-            val model = ViewModelProvider(this, viewModelFactory).get(SignInViewModel::class.java)
-
-            if (authorizationCode != null && state != null)
-                model.handleAuthorizationCallback(authorizationCode, state)
-        }
     }
 }

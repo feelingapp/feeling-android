@@ -12,6 +12,7 @@ import app.getfeeling.feeling.repository.interfaces.IFeelingRepository
 import app.getfeeling.feeling.repository.interfaces.ITokenRepository
 import app.getfeeling.feeling.room.FeelingDatabase
 import app.getfeeling.feeling.room.dao.FeelingDao
+import app.getfeeling.feeling.room.dao.UserDao
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -29,11 +30,16 @@ class AppModule {
     @Singleton
     @Provides
     fun provideDatabase(app: Application): FeelingDatabase =
-        Room.databaseBuilder(app, FeelingDatabase::class.java, "FeelingDatabase.db").build()
+        Room.databaseBuilder(app, FeelingDatabase::class.java, "FeelingDatabase.db")
+            .build()
 
     @Singleton
     @Provides
     fun provideFeelingDao(database: FeelingDatabase): FeelingDao = database.feelingDao()
+
+    @Singleton
+    @Provides
+    fun provideUserDao(database: FeelingDatabase): UserDao = database.userDao()
 
     @Singleton
     @Provides
@@ -71,7 +77,8 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideFeelingService(retrofit: Retrofit): FeelingService = retrofit.create(FeelingService::class.java)
+    fun provideFeelingService(retrofit: Retrofit): FeelingService =
+        retrofit.create(FeelingService::class.java)
 
     @Singleton
     @Provides
@@ -82,9 +89,10 @@ class AppModule {
     @Provides
     fun provideFeelingRepository(
         feelingDao: FeelingDao,
+        userDao: UserDao,
         feelingService: FeelingService,
         errorConverter: Converter<ResponseBody, ErrorsModel>
-    ): IFeelingRepository = FeelingRepository(feelingDao, feelingService, errorConverter)
+    ): IFeelingRepository = FeelingRepository(feelingDao, userDao, feelingService, errorConverter)
 
     @Singleton
     @Provides
