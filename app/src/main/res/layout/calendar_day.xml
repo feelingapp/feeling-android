@@ -22,6 +22,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:background="@drawable/round_rect_shape"
-            tools:backgroundTint="@color/emojiLoving"
+            tools:backgroundTint="@color/emotionLoving"
             tools:src="@drawable/ic_emoji_smiling_face_with_heart_eyes" />
 </androidx.constraintlayout.widget.ConstraintLayout>

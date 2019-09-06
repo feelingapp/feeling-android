@@ -39,7 +39,7 @@ class CalendarDayAdapter(private val feelingMonth: FeelingMonth) : BaseAdapter()
                 if (feelingMonth[position] == null) {
                     buttonDay.isClickable = false
                     background.mutate().setColorFilter(
-                        getColour(R.color.emojiNone),
+                        getColour(R.color.emotionNone),
                         PorterDuff.Mode.MULTIPLY
                     )
                 } else {
@@ -68,14 +68,14 @@ class CalendarDayAdapter(private val feelingMonth: FeelingMonth) : BaseAdapter()
 
     private fun getEmojiAndColour(emotion: String): Pair<Int, Int> =
         when (emotion) {
-            "Angry" -> Pair(R.drawable.ic_emoji_angry_face, getColour(R.color.emojiAngry))
+            "Angry" -> Pair(R.drawable.ic_emoji_angry_face, getColour(R.color.emotionAngry))
             "Happy" -> Pair(
-                R.drawable.ic_emoji_grinning_face_with_smiling_eyes, getColour(R.color.emojiHappy)
+                R.drawable.ic_emoji_grinning_face_with_smiling_eyes, getColour(R.color.emotionHappy)
             )
-            "Sad" -> Pair(R.drawable.ic_emoji_loudly_crying_face, getColour(R.color.emojiSad))
-            "Neutral" -> Pair(R.drawable.ic_emoji_neutral_face, getColour(R.color.emojiNeutral))
+            "Sad" -> Pair(R.drawable.ic_emoji_loudly_crying_face, getColour(R.color.emotionSad))
+            "Neutral" -> Pair(R.drawable.ic_emoji_neutral_face, getColour(R.color.emotionNeutral))
             "Loving" -> Pair(
-                R.drawable.ic_emoji_smiling_face_with_heart_eyes, getColour(R.color.emojiLoving)
+                R.drawable.ic_emoji_smiling_face_with_heart_eyes, getColour(R.color.emotionLoving)
             )
             else -> throw NotImplementedError()
         }

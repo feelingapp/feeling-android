@@ -16,12 +16,12 @@
     <color name="bottomNavigationInactive">#8B8B8B</color>
 
     <!-- Calendar -->
-    <color name="emojiSad">#cbebf8</color>
-    <color name="emojiLoving">#f8cbcb</color>
-    <color name="emojiHappy">#f8eecb</color>
-    <color name="emojiNeutral">#cff8cb</color>
-    <color name="emojiAngry">#e5d1f2</color>
-    <color name="emojiNone">#ebebeb</color>
+    <color name="emotionSad">#cbebf8</color>
+    <color name="emotionLoving">#f8cbcb</color>
+    <color name="emotionHappy">#f8eecb</color>
+    <color name="emotionNeutral">#cff8cb</color>
+    <color name="emotionAngry">#e5d1f2</color>
+    <color name="emotionNone">#ebebeb</color>
 
     <color name="emotionBorder">#bbbbbb</color>
 </resources>
