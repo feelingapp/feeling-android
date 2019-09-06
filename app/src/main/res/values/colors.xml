@@ -22,4 +22,6 @@
     <color name="emojiNeutral">#cff8cb</color>
     <color name="emojiAngry">#e5d1f2</color>
     <color name="emojiNone">#ebebeb</color>
+
+    <color name="emotionBorder">#bbbbbb</color>
 </resources>

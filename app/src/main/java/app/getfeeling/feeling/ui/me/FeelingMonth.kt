@@ -18,6 +18,8 @@ class FeelingMonth(private val yearMonth: YearMonth) {
 
     val dayOffset: Int get() = yearMonth.atDay(1).dayOfWeek.value - 1
 
+    val monthValue: Int get() = yearMonth.monthValue
+
     val monthArrayValue: Int get() = yearMonth.month.value - 1
 
     val monthLength: Int get() = yearMonth.month.length(yearMonth.isLeapYear)

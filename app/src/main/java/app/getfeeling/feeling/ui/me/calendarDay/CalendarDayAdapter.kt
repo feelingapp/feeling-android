@@ -1,6 +1,7 @@
 package app.getfeeling.feeling.ui.me.calendarDay
 
 import android.graphics.PorterDuff
+import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +12,9 @@ import app.getfeeling.feeling.FeelingApp
 import app.getfeeling.feeling.R
 import app.getfeeling.feeling.room.entities.Feeling
 import app.getfeeling.feeling.ui.me.FeelingMonth
+import org.threeten.bp.OffsetDateTime
 
-class CalendarDayAdapter(private val feelingMonth: FeelingMonth) :
-    BaseAdapter() {
+class CalendarDayAdapter(private val feelingMonth: FeelingMonth) : BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var calendarDay = convertView
@@ -25,10 +26,18 @@ class CalendarDayAdapter(private val feelingMonth: FeelingMonth) :
             if (position < feelingMonth.dayOffset) {
                 buttonDay.visibility = View.INVISIBLE
             } else {
-                val background = getDrawable(R.drawable.round_rect_shape)!!
+                val background = getDrawable(R.drawable.round_rect_shape)!! as GradientDrawable
+                if ((position - feelingMonth.dayOffset) == (OffsetDateTime.now().dayOfMonth - 1)
+                    && feelingMonth.monthValue == OffsetDateTime.now().monthValue
+                ) {
+                    background.setStroke(6, getColour(R.color.emotionBorder))
+                } else {
+                    // for some reason I have to clear the stroke
+                    background.setStroke(0, 0)
+                }
+
                 if (feelingMonth[position] == null) {
                     buttonDay.isClickable = false
-
                     background.mutate().setColorFilter(
                         getColour(R.color.emojiNone),
                         PorterDuff.Mode.MULTIPLY
