@@ -12,18 +12,21 @@ import javax.inject.Inject
 
 class MeViewModel @Inject constructor(private val repository: IFeelingRepository) : ViewModel() {
 
-    val feelingCalendar: FeelingCalendar = FeelingCalendar()
-
-    init {
-        with(feelingCalendar) {
-            insert(Feeling(1, "Neutral", "", "", OffsetDateTime.parse("2019-07-03T10:00:00+00:00")))
-            insert(Feeling(1, "Loving", "", "", OffsetDateTime.parse("2019-07-24T10:00:00+00:00")))
-            insert(Feeling(1, "Loving", "", "", OffsetDateTime.parse("2019-08-22T00:00:00+00:00")))
-            insert(Feeling(1, "Sad", "", "", OffsetDateTime.parse("2019-08-05T00:00:00+00:00")))
-            insert(Feeling(1, "Happy", "", "", OffsetDateTime.parse("2019-09-05T10:00:00+00:00")))
-            insert(Feeling(1, "Angry", "", "", OffsetDateTime.parse("2019-09-24T10:00:00+00:00")))
-        }
-    }
+    val allFeelings =
+        listOf(
+            listOf(
+                Feeling(1, "Loving", "", "", OffsetDateTime.parse("2019-08-22T00:00:00+00:00")),
+                Feeling(1, "Sad", "", "", OffsetDateTime.parse("2019-08-23T00:00:00+00:00"))
+            ),
+            listOf(
+                Feeling(1, "Happy", "", "", OffsetDateTime.parse("2019-09-23T10:00:00+00:00")),
+                Feeling(1, "Angry", "", "", OffsetDateTime.parse("2019-09-24T10:00:00+00:00"))
+            ),
+            listOf(
+                Feeling(1, "Neutral", "", "", OffsetDateTime.parse("2019-10-23T10:00:00+00:00")),
+                Feeling(1, "Loving", "", "", OffsetDateTime.parse("2019-10-24T10:00:00+00:00"))
+            )
+        )
 
     private var date: OffsetDateTime = OffsetDateTime.now()
 

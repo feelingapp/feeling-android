@@ -2,7 +2,6 @@ package app.getfeeling.feeling.room.entities
 
 import androidx.room.*
 import org.threeten.bp.OffsetDateTime
-import org.threeten.bp.YearMonth
 
 @Entity(
     tableName = "feelings",
@@ -37,7 +36,4 @@ data class Feeling(
         createdAt,
         OffsetDateTime.now()
     )
-
-    val yearMonth: YearMonth
-        get() = YearMonth.from(createdAt)
 }
