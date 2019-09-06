@@ -14,6 +14,6 @@ class CalendarMonthHolder(calendarMonth: View, private val months: Array<String>
 
     fun bind(feelingMonth: FeelingMonth) {
         monthTextView.text = months[feelingMonth.monthArrayValue]
-        feelingGrid.adapter = CalendarDayAdapter(feelingMonth.feelings)
+        feelingGrid.adapter = CalendarDayAdapter(feelingMonth)
     }
 }

@@ -10,7 +10,7 @@ class FeelingMonth(private val yearMonth: YearMonth) {
         feelings = arrayOfNulls(monthLength)
     }
 
-    operator fun get(index: Int) = feelings[index]
+    operator fun get(index: Int) = feelings[index - dayOffset]
 
     fun insert(feeling: Feeling) {
         feelings[feeling.createdAt.dayOfMonth - 1] = feeling
@@ -20,5 +20,5 @@ class FeelingMonth(private val yearMonth: YearMonth) {
 
     val monthArrayValue: Int get() = yearMonth.month.value - 1
 
-    private val monthLength: Int get() = yearMonth.month.length(yearMonth.isLeapYear)
+    val monthLength: Int get() = yearMonth.month.length(yearMonth.isLeapYear)
 }

@@ -1,6 +1,6 @@
 package app.getfeeling.feeling.ui.me
 
-import android.graphics.PorterDuff.Mode
+import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +11,8 @@ import app.getfeeling.feeling.FeelingApp
 import app.getfeeling.feeling.R
 import app.getfeeling.feeling.room.entities.Feeling
 
-class CalendarDayAdapter(private val monthFeelings: Array<Feeling?>) : BaseAdapter() {
+class CalendarDayAdapter(private val feelingMonth: FeelingMonth) :
+    BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var calendarDay = convertView
@@ -20,36 +21,40 @@ class CalendarDayAdapter(private val monthFeelings: Array<Feeling?>) : BaseAdapt
                 .inflate(R.layout.calendar_day, parent, false)
 
             val buttonDay = calendarDay.findViewById<ImageButton>(R.id.button_day)
-            val background = getDrawable(R.drawable.round_rect_shape)!!
-            if (monthFeelings[position] == null) {
-                buttonDay.isClickable = false
-
-                background.mutate().setColorFilter(
-                    getColour(R.color.emojiNone),
-                    Mode.MULTIPLY
-                )
+            if (position < feelingMonth.dayOffset) {
+                buttonDay.visibility = View.INVISIBLE
             } else {
-                val (emoji, colour) = getEmojiAndColour(monthFeelings[position]!!.emotion)
-                buttonDay.setImageResource(emoji)
-                background.mutate().setColorFilter(colour, Mode.MULTIPLY)
+                val background = getDrawable(R.drawable.round_rect_shape)!!
+                if (feelingMonth[position] == null) {
+                    buttonDay.isClickable = false
+
+                    background.mutate().setColorFilter(
+                        getColour(R.color.emojiNone),
+                        PorterDuff.Mode.MULTIPLY
+                    )
+                } else {
+                    val (emoji, colour) = getEmojiAndColour(feelingMonth[position]!!.emotion)
+                    buttonDay.setImageResource(emoji)
+                    background.mutate().setColorFilter(colour, PorterDuff.Mode.MULTIPLY)
+                }
+                buttonDay.background = background
             }
-            buttonDay.background = background
         }
 
         return calendarDay!!
     }
 
-    override fun getItem(position: Int): Feeling? = monthFeelings[position]
+    override fun getItem(position: Int): Feeling? = feelingMonth[position]
 
     override fun getItemId(position: Int): Long {
-        monthFeelings[position]?.let {
+        feelingMonth[position]?.let {
             return it.id.toLong()
         }
 
         return -1
     }
 
-    override fun getCount(): Int = monthFeelings.size
+    override fun getCount(): Int = feelingMonth.monthLength + feelingMonth.dayOffset
 
     private fun getEmojiAndColour(emotion: String): Pair<Int, Int> =
         when (emotion) {
