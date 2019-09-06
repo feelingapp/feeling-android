@@ -1,4 +1,4 @@
-package app.getfeeling.feeling.ui.me
+package app.getfeeling.feeling.ui.me.calendarDay
 
 import android.graphics.PorterDuff
 import android.view.LayoutInflater
@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import app.getfeeling.feeling.FeelingApp
 import app.getfeeling.feeling.R
 import app.getfeeling.feeling.room.entities.Feeling
+import app.getfeeling.feeling.ui.me.FeelingMonth
 
 class CalendarDayAdapter(private val feelingMonth: FeelingMonth) :
     BaseAdapter() {

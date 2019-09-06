@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.getfeeling.feeling.R
 import app.getfeeling.feeling.databinding.MeFragmentBinding
+import app.getfeeling.feeling.ui.me.calendarMonth.CalendarMonthAdapter
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 

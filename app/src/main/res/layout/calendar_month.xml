@@ -14,7 +14,7 @@
             android:paddingEnd="0dp"
             tools:text="January" />
 
-    <app.getfeeling.feeling.ui.me.CalendarMonthView
+    <app.getfeeling.feeling.ui.me.calendarMonth.CalendarMonthView
             android:id="@+id/feeling_grid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

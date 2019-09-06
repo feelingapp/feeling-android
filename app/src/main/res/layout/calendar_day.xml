@@ -9,7 +9,7 @@
         android:paddingEnd="3dp"
         android:paddingBottom="3dp">
 
-    <app.getfeeling.feeling.ui.me.CalendarDayView
+    <app.getfeeling.feeling.ui.me.calendarDay.CalendarDayView
             android:id="@+id/button_day"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -1,4 +1,4 @@
-package app.getfeeling.feeling.ui.me
+package app.getfeeling.feeling.ui.me.calendarMonth
 
 import android.content.Context
 import android.util.AttributeSet
