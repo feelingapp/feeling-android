@@ -35,16 +35,20 @@ class TokenRepository @Inject constructor(
     override fun saveToken(tokenModel: TokenModel) {
         val jsonAdapter = moshi.adapter(TokenModel::class.java)
         val json = jsonAdapter.toJson(tokenModel)
-        SecurePreferencesHelper.setValue(context, "KEY", json)
+        SecurePreferencesHelper.setValue(context, "TOKEN", json)
     }
 
     override fun getToken(): TokenModel? {
         val jsonAdapter = moshi.adapter(TokenModel::class.java)
-        val json = SecurePreferencesHelper.getValue(context, "KEY")
+        val json = SecurePreferencesHelper.getValue(context, "TOKEN")
 
         return if (json != null) jsonAdapter.fromJson(json) else null
     }
 
     override fun hasValidToken(): Boolean = SecurePreferencesHelper.containsValue(context, "KEY")
+
+    override fun clearToken() {
+        SecurePreferencesHelper.removeValue(context, "TOKEN")
+    }
 }
 

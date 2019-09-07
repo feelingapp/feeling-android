@@ -12,4 +12,6 @@ interface ITokenRepository {
     fun getToken(): TokenModel?
 
     fun hasValidToken(): Boolean
+
+    fun clearToken()
 }

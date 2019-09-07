@@ -3,20 +3,22 @@ package app.getfeeling.feeling
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import app.getfeeling.feeling.ui.signin.SignInViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import dagger.android.support.DaggerAppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val signInViewModel by viewModels<SignInViewModel> { viewModelFactory }
 
     private lateinit var mainNavController: NavController
 
@@ -66,10 +68,8 @@ class MainActivity : DaggerAppCompatActivity() {
             val authorizationCode = uri.getQueryParameter("authorization_code")
             val state = uri.getQueryParameter("state")
 
-            val model = ViewModelProviders.of(this, viewModelFactory).get(SignInViewModel::class.java)
-
             if (authorizationCode != null && state != null)
-                model.handleAuthorizationCallback(authorizationCode, state)
+                signInViewModel.handleAuthorizationCallback(authorizationCode, state)
         }
     }
 }
