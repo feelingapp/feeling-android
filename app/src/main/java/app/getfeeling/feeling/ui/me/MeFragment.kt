@@ -38,7 +38,8 @@ class MeFragment : DaggerFragment() {
 //            calendarViewAdapter.allFeelings = it
 //        }
 
-        binding.recyclerView.apply {
+        binding.viewModel = viewModel
+        with(binding.recyclerView) {
             layoutManager = LinearLayoutManager(context).apply {
                 reverseLayout = true
             }
