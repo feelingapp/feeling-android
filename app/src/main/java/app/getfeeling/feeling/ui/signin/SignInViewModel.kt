@@ -48,4 +48,8 @@ class SignInViewModel @Inject constructor(private val repository: ITokenReposito
     }
 
     fun isSignedIn() = repository.hasValidToken()
+
+    fun signOut() {
+            repository.clearToken()
+    }
 }
