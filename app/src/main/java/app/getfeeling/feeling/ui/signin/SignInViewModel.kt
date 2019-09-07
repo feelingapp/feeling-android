@@ -1,8 +1,6 @@
 package app.getfeeling.feeling.ui.signin
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import app.getfeeling.feeling.BuildConfig
 import app.getfeeling.feeling.api.models.GetTokenModel
@@ -12,15 +10,14 @@ import app.getfeeling.feeling.repository.interfaces.ITokenRepository
 import app.getfeeling.feeling.util.PKCE
 import javax.inject.Inject
 
+
 class SignInViewModel @Inject constructor(private val repository: ITokenRepository) :
     ViewModel() {
 
+    val tokenModel: LiveData<TokenModel> = repository.tokenModel
+
     private lateinit var state: String
     private lateinit var codeVerifier: String
-    private val getTokenModel = MutableLiveData<GetTokenModel>()
-    val tokenModel: LiveData<TokenModel> = Transformations.switchMap(getTokenModel) {
-        repository.exchangeCodeForToken(it)
-    }
 
     fun generateCodeChallenge(): String {
         val pkce = PKCE()
@@ -30,7 +27,8 @@ class SignInViewModel @Inject constructor(private val repository: ITokenReposito
     }
 
     fun generateState(): String {
-        val stateCharacters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".toList().toTypedArray()
+        val stateCharacters =
+            "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".toList().toTypedArray()
         state = (1..32).map { stateCharacters.random() }.joinToString("")
 
         return state
@@ -39,16 +37,14 @@ class SignInViewModel @Inject constructor(private val repository: ITokenReposito
     fun handleAuthorizationCallback(authorizationCode: String, receivedState: String) {
         if (state != receivedState) return
 
-        getTokenModel.value = GetTokenModel(
+        val getTokenModel = GetTokenModel(
             GrantType.AUTHORIZATION_CODE,
             authorizationCode,
             codeVerifier,
             BuildConfig.FEELING_API_CLIENT_ID
         )
-    }
 
-    fun saveToken(tokenModel: TokenModel) {
-        repository.saveToken(tokenModel)
+        repository.exchangeCodeForToken(getTokenModel)
     }
 
     fun isSignedIn() = repository.hasValidToken()

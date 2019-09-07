@@ -70,6 +70,9 @@ class MainActivity : DaggerAppCompatActivity() {
 
             if (authorizationCode != null && state != null)
                 signInViewModel.handleAuthorizationCallback(authorizationCode, state)
+
+            val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+            bottomNavigationView.menu.findItem(R.id.action_me).setChecked(true)
         }
     }
 }

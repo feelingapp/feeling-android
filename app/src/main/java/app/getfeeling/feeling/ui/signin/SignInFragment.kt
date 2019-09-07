@@ -44,8 +44,9 @@ class SignInFragment : DaggerFragment() {
         super.onActivityCreated(savedInstanceState)
 
         viewModel.tokenModel.observe(this, Observer {
-            viewModel.saveToken(it)
-            mainNavController?.navigate(R.id.action_sign_in_fragment_to_me_fragment)
+            if (it != null) {
+                mainNavController?.navigate(R.id.action_sign_in_fragment_to_me_fragment)
+            }
         })
 
         binding.fragment = this

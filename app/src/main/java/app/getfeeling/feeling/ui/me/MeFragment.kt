@@ -31,7 +31,9 @@ class MeFragment : DaggerFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        if (!signInViewModel.isSignedIn()) mainNavController?.navigate(R.id.action_me_fragment_to_sign_in_fragment)
+        if (!signInViewModel.isSignedIn()) {
+            mainNavController?.navigate(R.id.action_me_fragment_to_sign_in_fragment)
+        }
 
         binding = MeFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
