@@ -14,8 +14,7 @@ import app.getfeeling.feeling.util.SecurePreferencesHelper
 import com.squareup.moshi.Moshi
 import de.adorsys.android.securestoragelibrary.SecurePreferences
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import retrofit2.Converter
 import javax.inject.Inject
@@ -44,24 +43,29 @@ class TokenRepository @Inject constructor(
         SecurePreferences.registerOnSharedPreferenceChangeListener(context, listener)
     }
 
-    override fun exchangeCodeForToken(getTokenModel: GetTokenModel) =
-        GlobalScope.launch(Dispatchers.IO) {
+    override suspend fun exchangeCodeForToken(getTokenModel: GetTokenModel) =
+        withContext(Dispatchers.IO) {
             val response = feelingService.getToken(getTokenModel)
 
             if (response.isSuccessful && response.body() != null)
                 saveToken(response.body() as TokenModel)
         }
 
-    override fun saveToken(tokenModel: TokenModel) {
-        val jsonAdapter = moshi.adapter(TokenModel::class.java)
-        val json = jsonAdapter.toJson(tokenModel)
-        SecurePreferencesHelper.setValue(context, "TOKEN", json)
-    }
+    override suspend fun saveToken(tokenModel: TokenModel) =
+        withContext(Dispatchers.IO) {
+            val jsonAdapter = moshi.adapter(TokenModel::class.java)
+            val json = jsonAdapter.toJson(tokenModel)
+            SecurePreferencesHelper.setValue(context, "TOKEN", json)
 
-    override fun hasValidToken(): Boolean = _tokenModel.value != null
+        }
 
-    override fun clearToken() {
-        SecurePreferencesHelper.removeValue(context, "TOKEN")
+    override suspend fun clearToken() =
+        withContext(Dispatchers.IO) {
+            SecurePreferencesHelper.removeValue(context, "TOKEN")
+        }
+
+    override fun hasValidToken(): Boolean {
+        return _tokenModel.value != null
     }
 }
 

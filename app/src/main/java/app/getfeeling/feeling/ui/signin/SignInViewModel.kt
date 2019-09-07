@@ -2,12 +2,14 @@ package app.getfeeling.feeling.ui.signin
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import app.getfeeling.feeling.BuildConfig
 import app.getfeeling.feeling.api.models.GetTokenModel
 import app.getfeeling.feeling.api.models.GrantType
 import app.getfeeling.feeling.api.models.TokenModel
 import app.getfeeling.feeling.repository.interfaces.ITokenRepository
 import app.getfeeling.feeling.util.PKCE
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -44,12 +46,16 @@ class SignInViewModel @Inject constructor(private val repository: ITokenReposito
             BuildConfig.FEELING_API_CLIENT_ID
         )
 
-        repository.exchangeCodeForToken(getTokenModel)
+        viewModelScope.launch {
+            repository.exchangeCodeForToken(getTokenModel)
+        }
     }
 
     fun isSignedIn() = repository.hasValidToken()
 
     fun signOut() {
+        viewModelScope.launch {
             repository.clearToken()
+        }
     }
 }
