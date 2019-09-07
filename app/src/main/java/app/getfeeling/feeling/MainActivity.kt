@@ -26,8 +26,6 @@ class MainActivity : DaggerAppCompatActivity() {
 
         mainNavController = findNavController(R.id.nav_host_fragment)
 
-        mainNavController.navigate(R.id.sign_in_fragment)
-
         setupBottomNavigationView()
     }
 

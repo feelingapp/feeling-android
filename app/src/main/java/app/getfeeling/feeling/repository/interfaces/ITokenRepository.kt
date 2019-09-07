@@ -10,4 +10,6 @@ interface ITokenRepository {
     fun saveToken(tokenModel: TokenModel)
 
     fun getToken(): TokenModel?
+
+    fun hasValidToken(): Boolean
 }

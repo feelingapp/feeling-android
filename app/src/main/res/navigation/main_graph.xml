@@ -19,6 +19,9 @@
         <action
                 android:id="@+id/action_me_fragment_to_settings_fragment"
                 app:destination="@id/settings_fragment"/>
+        <action
+                android:id="@+id/action_me_fragment_to_sign_in_fragment"
+                app:destination="@id/sign_in_fragment" />
     </fragment>
 
     <fragment

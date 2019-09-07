@@ -44,5 +44,7 @@ class TokenRepository @Inject constructor(
 
         return if (json != null) jsonAdapter.fromJson(json) else null
     }
+
+    override fun hasValidToken(): Boolean = SecurePreferencesHelper.containsValue(context, "KEY")
 }
 

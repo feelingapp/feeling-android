@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.browser.customtabs.TrustedWebUtils
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import app.getfeeling.feeling.BuildConfig
@@ -25,7 +25,7 @@ class SignInFragment : DaggerFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: SignInViewModel
+    private val viewModel by activityViewModels<SignInViewModel> { viewModelFactory }
 
     private lateinit var binding: SignInFragmentBinding
 
@@ -43,7 +43,6 @@ class SignInFragment : DaggerFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel = ViewModelProviders.of(activity!!, viewModelFactory).get(SignInViewModel::class.java)
         viewModel.tokenModel.observe(this, Observer {
             viewModel.saveToken(it)
             mainNavController?.navigate(R.id.me_fragment)
