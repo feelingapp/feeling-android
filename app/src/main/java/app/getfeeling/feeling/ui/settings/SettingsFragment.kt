@@ -60,7 +60,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
 
         viewModel.tokenModel.observe(this, Observer {
             if (it == null) {
-                mainNavController?.navigate(R.id.action_settings_fragment_to_me_fragment)
+                mainNavController?.popBackStack()
             }
         })
     }
