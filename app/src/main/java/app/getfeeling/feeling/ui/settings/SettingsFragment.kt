@@ -13,7 +13,6 @@ import androidx.navigation.ui.NavigationUI.setupWithNavController
 import app.getfeeling.feeling.R
 import app.getfeeling.feeling.databinding.SettingsFragmentBinding
 
-
 class SettingsFragment : Fragment() {
     private val settingsNavController: NavController? by lazy { activity?.findNavController(R.id.settings_nav_host_fragment) }
 
@@ -39,6 +38,3 @@ class SettingsFragment : Fragment() {
         )
     }
 }
-
-
-
