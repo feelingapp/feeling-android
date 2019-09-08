@@ -34,16 +34,7 @@ class MainActivity : DaggerAppCompatActivity() {
     private fun setupBottomNavigationView() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         val bottomNavigationViewFab = findViewById<FloatingActionButton>(R.id.fab)
-
         bottomNavigationView.setupWithNavController(mainNavController)
-        bottomNavigationView.setOnNavigationItemReselectedListener { }
-        bottomNavigationView.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.action_settings -> navigate(R.id.action_me_fragment_to_settings_fragment)
-                R.id.action_me -> navigate(R.id.action_settings_fragment_to_me_fragment)
-            }
-            true
-        }
 
         mainNavController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.sign_in_fragment) {
@@ -56,10 +47,6 @@ class MainActivity : DaggerAppCompatActivity() {
         }
     }
 
-    private fun navigate(resId: Int) {
-        mainNavController.navigate(resId)
-    }
-
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         val uri = intent.data
@@ -70,9 +57,6 @@ class MainActivity : DaggerAppCompatActivity() {
 
             if (authorizationCode != null && state != null)
                 signInViewModel.handleAuthorizationCallback(authorizationCode, state)
-
-            val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-            bottomNavigationView.menu.findItem(R.id.action_me).setChecked(true)
         }
     }
 }
