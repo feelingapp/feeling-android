@@ -17,7 +17,7 @@
             tools:context=".ui.me.MeFragment">
 
         <androidx.appcompat.widget.Toolbar
-                android:id="@+id/my_toolbar"
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/colorLight"
@@ -32,9 +32,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@{viewModel.title}"
                     android:textColor="@color/colorDark"
-                    tools:text="Welcome Back Michael" />
+                    tools:text="@{viewModel.title}" />
         </androidx.appcompat.widget.Toolbar>
 
         <LinearLayout
@@ -46,7 +45,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/my_toolbar">
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
             <TextView
                     style="@style/WeekDayInitial"

@@ -45,7 +45,7 @@ class SignInFragment : DaggerFragment() {
 
         viewModel.tokenModel.observe(this, Observer {
             if (it != null) {
-                mainNavController?.navigate(R.id.action_sign_in_fragment_to_me_fragment)
+                mainNavController?.popBackStack()
             }
         })
 
