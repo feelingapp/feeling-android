@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingStart="3dp"
-        android:paddingTop="3dp"
-        android:paddingEnd="3dp"
-        android:paddingBottom="3dp">
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <app.getfeeling.feeling.ui.me.calendarDay.CalendarDayView
-            android:id="@+id/button_day"
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="@string/calendar_day_desc"
-            android:scaleType="fitCenter"
-            android:paddingTop="10dp"
-            android:paddingBottom="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:background="@drawable/round_rect_shape"
-            tools:backgroundTint="@color/emotionLoving"
-            tools:src="@drawable/ic_emoji_smiling_face_with_heart_eyes" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:paddingStart="3dp"
+            android:paddingTop="3dp"
+            android:paddingEnd="3dp"
+            android:paddingBottom="3dp">
+
+        <app.getfeeling.feeling.ui.me.calendarDay.CalendarDayView
+                android:id="@+id/button_day"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/calendar_day_desc"
+                android:paddingTop="10dp"
+                android:paddingBottom="4dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:background="@drawable/round_rect_shape"
+                tools:backgroundTint="@color/emotionLoving"
+                tools:src="@drawable/ic_emoji_smiling_face_with_heart_eyes" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

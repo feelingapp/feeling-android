@@ -6,9 +6,10 @@ import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import app.getfeeling.feeling.R
+import app.getfeeling.feeling.databinding.CalendarDayBinding
 import app.getfeeling.feeling.room.entities.Feeling
 import org.threeten.bp.OffsetDateTime
 import javax.inject.Inject
@@ -17,12 +18,15 @@ class CalendarDayAdapter @Inject constructor(private val context: Context) :
     AbstractCalendarDayAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        var calendarDay = convertView
-        if (calendarDay == null) {
-            calendarDay = LayoutInflater.from(parent?.context)
-                .inflate(R.layout.calendar_day, parent, false)
+        if (convertView == null) {
+            val binding = DataBindingUtil.inflate<CalendarDayBinding>(
+                LayoutInflater.from(parent?.context),
+                R.layout.calendar_day,
+                parent,
+                false
+            )
 
-            val buttonDay = calendarDay.findViewById<ImageButton>(R.id.button_day)
+            val buttonDay = binding.buttonDay
             if (position < feelingMonth.dayOffset) {
                 buttonDay.visibility = View.INVISIBLE
             } else {
@@ -49,9 +53,11 @@ class CalendarDayAdapter @Inject constructor(private val context: Context) :
                 }
                 buttonDay.background = background
             }
+
+            return binding.root
         }
 
-        return calendarDay!!
+        return convertView
     }
 
     override fun getItem(position: Int): Feeling? = feelingMonth[position]

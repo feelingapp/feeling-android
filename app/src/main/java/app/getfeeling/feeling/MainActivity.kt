@@ -3,10 +3,13 @@ package app.getfeeling.feeling
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import app.getfeeling.feeling.databinding.MainActivityBinding
 import app.getfeeling.feeling.ui.me.MeViewModel
 import app.getfeeling.feeling.ui.signin.SignInViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -15,23 +18,27 @@ import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
+
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    private val meViewModel: MeViewModel by viewModels { viewModelFactory }
+
     private lateinit var mainNavController: NavController
+
+    private lateinit var binding: MainActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
+        binding = DataBindingUtil.setContentView(this, R.layout.main_activity)
 
         mainNavController = findNavController(R.id.nav_host_fragment)
         mainNavController.navigate(R.id.sign_in_fragment)
 
         setupBottomNavigationView()
 
-        val viewModel = ViewModelProvider(this, viewModelFactory).get(MeViewModel::class.java)
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
-            viewModel.addFeeling()
+        binding.fab.setOnClickListener {
+            meViewModel.addFeeling()
         }
     }
 

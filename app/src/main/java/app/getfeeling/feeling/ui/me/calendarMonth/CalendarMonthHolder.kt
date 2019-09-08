@@ -1,19 +1,14 @@
 package app.getfeeling.feeling.ui.me.calendarMonth
 
-import android.view.View
-import android.widget.GridView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import app.getfeeling.feeling.R
+import app.getfeeling.feeling.databinding.CalendarMonthBinding
 import app.getfeeling.feeling.ui.me.calendarDay.AbstractCalendarDayAdapter
 
-class CalendarMonthHolder(calendarMonth: View) : RecyclerView.ViewHolder(calendarMonth) {
-
-    private val monthTextView: TextView = calendarMonth.findViewById(R.id.month)
-    private val feelingGrid: GridView = calendarMonth.findViewById(R.id.feeling_grid)
+class CalendarMonthHolder(private val binding: CalendarMonthBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
     fun bind(calendarDayAdapter: AbstractCalendarDayAdapter, month: String) {
-        monthTextView.text = month
-        feelingGrid.adapter = calendarDayAdapter
+        binding.month.text = month
+        binding.feelingGrid.adapter = calendarDayAdapter
     }
 }

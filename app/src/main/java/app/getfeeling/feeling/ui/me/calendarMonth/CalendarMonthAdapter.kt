@@ -3,7 +3,9 @@ package app.getfeeling.feeling.ui.me.calendarMonth
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import app.getfeeling.feeling.R
+import app.getfeeling.feeling.databinding.CalendarMonthBinding
 import app.getfeeling.feeling.ui.me.FeelingCalendar
 import app.getfeeling.feeling.ui.me.calendarDay.AbstractCalendarDayAdapter
 import javax.inject.Inject
@@ -18,10 +20,14 @@ class CalendarMonthAdapter @Inject constructor(
     private val months: Array<String> = context.resources.getStringArray(R.array.months)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarMonthHolder {
-        val calendarMonth = LayoutInflater.from(parent.context)
-            .inflate(R.layout.calendar_month, parent, false)
+        val calendarMonthBinding = DataBindingUtil.inflate<CalendarMonthBinding>(
+            LayoutInflater.from(parent.context),
+            R.layout.calendar_month,
+            parent,
+            false
+        )
 
-        return CalendarMonthHolder(calendarMonth)
+        return CalendarMonthHolder(calendarMonthBinding)
     }
 
     override fun onBindViewHolder(holder: CalendarMonthHolder, monthsBeforeCurrent: Int) {
