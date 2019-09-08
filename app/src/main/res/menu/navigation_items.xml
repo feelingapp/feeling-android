@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-            android:id="@+id/action_me"
+            android:id="@+id/me_fragment"
             android:icon="@drawable/ic_me"
             android:title="@string/bottom_navigation_me" />
     <item
-            android:id="@+id/action_settings"
+            android:id="@+id/settings_fragment"
             android:icon="@drawable/ic_settings"
             android:title="@string/bottom_navigation_settings" />
 </menu>

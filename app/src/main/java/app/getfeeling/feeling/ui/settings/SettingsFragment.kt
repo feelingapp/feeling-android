@@ -1,19 +1,37 @@
 package app.getfeeling.feeling.ui.settings
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import app.getfeeling.feeling.R
+import app.getfeeling.feeling.ui.signin.SignInViewModel
+import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
 
-class SettingsFragment : PreferenceFragmentCompat(), PreferenceManager.OnPreferenceTreeClickListener {
+class SettingsFragment : PreferenceFragmentCompat(),
+    PreferenceManager.OnPreferenceTreeClickListener {
     private val mainNavController: NavController? by lazy { activity?.findNavController(R.id.nav_host_fragment) }
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel by activityViewModels<SignInViewModel> { viewModelFactory }
+
+    override fun onAttach(context: Context) {
+        AndroidSupportInjection.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
@@ -24,7 +42,7 @@ class SettingsFragment : PreferenceFragmentCompat(), PreferenceManager.OnPrefere
             "terms_and_conditions" -> openPage("https://getfeeling.app/terms")
             "privacy_policy" -> openPage("https://getfeeling.app/privacy")
             "daily_reminder" -> mainNavController?.navigate(R.id.action_settings_fragment_to_daily_reminder_fragment)
-            "sign_out" -> mainNavController?.navigate(R.id.action_settings_fragment_to_sign_in_fragment)
+            "sign_out" -> signOut()
         }
 
         return super.onPreferenceTreeClick(preference)
@@ -35,5 +53,15 @@ class SettingsFragment : PreferenceFragmentCompat(), PreferenceManager.OnPrefere
         customTabsIntent.intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
 
         customTabsIntent.launchUrl(context, Uri.parse(uri))
+    }
+
+    private fun signOut() {
+        viewModel.signOut()
+
+        viewModel.tokenModel.observe(this, Observer {
+            if (it == null) {
+                mainNavController?.popBackStack()
+            }
+        })
     }
 }

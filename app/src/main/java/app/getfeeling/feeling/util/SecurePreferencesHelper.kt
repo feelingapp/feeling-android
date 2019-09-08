@@ -35,14 +35,14 @@ object SecurePreferencesHelper {
             }.reduce { accumulator, chunk -> accumulator + chunk }
     }
 
-    fun removeLongStringValue(context: Context, key: String) {
+    fun removeValue(context: Context, key: String) {
         val numberOfChunks = SecurePreferences.getIntValue(context, getNumberOfChunksKey(key), 0)
 
         (0 until numberOfChunks).map { SecurePreferences.removeValue(context, "$key$it") }
         SecurePreferences.removeValue(context, getNumberOfChunksKey(key))
     }
 
-    fun containsLongStringValue(context: Context, key: String): Boolean {
+    fun containsValue(context: Context, key: String): Boolean {
         return SecurePreferences.contains(context, getNumberOfChunksKey(key))
     }
 }
