@@ -5,7 +5,8 @@ import android.graphics.*
 import android.util.AttributeSet
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class FeelingNavigationView(context: Context, attrs: AttributeSet) : BottomNavigationView(context, attrs) {
+class FeelingNavigationView(context: Context, attrs: AttributeSet) :
+    BottomNavigationView(context, attrs) {
 
     private var path: Path = Path()
     private var paint: Paint = Paint()
@@ -37,12 +38,18 @@ class FeelingNavigationView(context: Context, attrs: AttributeSet) : BottomNavig
         super.onSizeChanged(w, h, oldw, oldh)
 
         // the coordinates (x,y) of the start point before curve
-        mFirstCurveStartPoint.set((width / 2) - (curveCircleRadius * 2) - (curveCircleRadius / 3), 0f)
+        mFirstCurveStartPoint.set(
+            (width / 2) - (curveCircleRadius * 2) - (curveCircleRadius / 3),
+            0f
+        )
         // the coordinates (x,y) of the end point after curve
         mFirstCurveEndPoint.set(width / 2f, curveCircleRadius + (curveCircleRadius / 4))
         // same thing for the second curve
         mSecondCurveStartPoint = mFirstCurveEndPoint
-        mSecondCurveEndPoint.set((width / 2) + (curveCircleRadius * 2) + (curveCircleRadius / 3), 0f)
+        mSecondCurveEndPoint.set(
+            (width / 2) + (curveCircleRadius * 2) + (curveCircleRadius / 3),
+            0f
+        )
 
         // the coordinates (x,y)  of the 1st control point on a cubic curve
         mFirstCurveControlPoint1.set(

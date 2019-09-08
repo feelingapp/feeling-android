@@ -10,11 +10,11 @@ import app.getfeeling.feeling.room.entities.Feeling
 @Dao
 interface FeelingDao {
     @Insert
-    fun insert(feeling: Feeling)
+    suspend fun insert(feeling: Feeling)
 
     @Delete
-    fun delete(feeling: Feeling)
+    suspend fun delete(feeling: Feeling)
 
-    @Query("SELECT * FROM feelings ORDER BY datetime(created_at) DESC ")
-    fun feelingsByDate(): LiveData<List<Feeling>>
+    @Query("SELECT * FROM feelings")
+    fun getAllFeelings(): LiveData<List<Feeling>>
 }

@@ -15,5 +15,5 @@ interface UserDao {
     fun delete(user: User)
 
     @Query("SELECT * FROM users WHERE id = :id LIMIT 1")
-    fun get(id: Int): User
+    fun get(id: Int): User?
 }

@@ -6,9 +6,7 @@ import androidx.room.*
     tableName = "settings",
     indices = [Index(value = ["user_id"], unique = true)],
     foreignKeys = [ForeignKey(
-        entity = User::class, parentColumns = arrayOf("id"), childColumns = arrayOf(
-            "user_id"
-        )
+        entity = User::class, parentColumns = arrayOf("id"), childColumns = arrayOf("user_id")
     )]
 )
 data class Setting(

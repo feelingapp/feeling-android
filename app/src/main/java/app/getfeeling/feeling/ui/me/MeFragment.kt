@@ -8,8 +8,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import app.getfeeling.feeling.R
 import app.getfeeling.feeling.databinding.MeFragmentBinding
+import app.getfeeling.feeling.ui.me.calendarMonth.AbstractCalendarMonthAdapter
 import app.getfeeling.feeling.ui.signin.SignInViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -19,11 +21,17 @@ class MeFragment : DaggerFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    @Inject
+    lateinit var calendarLayoutManager: RecyclerView.LayoutManager
+
+    @Inject
+    lateinit var calendarMonthAdapter: AbstractCalendarMonthAdapter
+
     private val mainNavController: NavController? by lazy { activity?.findNavController(R.id.nav_host_fragment) }
 
-    private val viewModel by activityViewModels<MeViewModel> { viewModelFactory }
+    private val meViewModel: MeViewModel by activityViewModels { viewModelFactory }
 
-    private val signInViewModel by activityViewModels<SignInViewModel> { viewModelFactory }
+    private val signInViewModel: SignInViewModel by activityViewModels { viewModelFactory }
 
     private lateinit var binding: MeFragmentBinding
 
@@ -40,9 +48,17 @@ class MeFragment : DaggerFragment() {
         return binding.root
     }
 
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        binding.viewModel = viewModel
+
+        with(binding) {
+            viewModel = meViewModel
+            with(recyclerView) {
+                layoutManager = calendarLayoutManager
+                adapter = calendarMonthAdapter.apply {
+                    setFeelingCalendar(meViewModel.feelingCalendar)
+                }
+            }
+        }
     }
 }

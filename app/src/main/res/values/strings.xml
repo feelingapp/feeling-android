@@ -17,6 +17,31 @@
     </string>
     <string name="sign_in_logo_alt">Logo</string>
 
+    <!-- Main Activity -->
     <string name="bottom_navigation_me">Me</string>
     <string name="bottom_navigation_settings">Settings</string>
+
+    <!-- Me Fragment -->
+    <string name="calendar_day_desc">Emotion</string>
+    <string-array name="months">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+    <string name="weekday_mon">M</string>
+    <string name="weekday_tue">T</string>
+    <string name="weekday_wed">W</string>
+    <string name="weekday_thu">T</string>
+    <string name="weekday_fri">F</string>
+    <string name="weekday_sat">S</string>
+    <string name="weekday_sun">S</string>
 </resources>
