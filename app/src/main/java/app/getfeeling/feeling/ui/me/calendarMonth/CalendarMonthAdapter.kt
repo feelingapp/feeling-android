@@ -1,31 +1,38 @@
 package app.getfeeling.feeling.ui.me.calendarMonth
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import app.getfeeling.feeling.R
 import app.getfeeling.feeling.ui.me.FeelingCalendar
+import app.getfeeling.feeling.ui.me.calendarDay.AbstractCalendarDayAdapter
+import javax.inject.Inject
 
-class CalendarMonthAdapter : RecyclerView.Adapter<CalendarMonthHolder>() {
-
-    lateinit var months: Array<String>
+class CalendarMonthAdapter @Inject constructor(
+    context: Context,
+    private val calendarDayAdapter: AbstractCalendarDayAdapter
+) : AbstractCalendarMonthAdapter() {
 
     private lateinit var feelingCalendar: FeelingCalendar
+
+    private val months: Array<String> = context.resources.getStringArray(R.array.months)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarMonthHolder {
         val calendarMonth = LayoutInflater.from(parent.context)
             .inflate(R.layout.calendar_month, parent, false)
 
-        return CalendarMonthHolder(calendarMonth, months)
+        return CalendarMonthHolder(calendarMonth)
     }
 
     override fun onBindViewHolder(holder: CalendarMonthHolder, monthsBeforeCurrent: Int) {
-        holder.bind(feelingCalendar[monthsBeforeCurrent])
+        val feelingMonth = feelingCalendar[monthsBeforeCurrent]
+        calendarDayAdapter.feelingMonth = feelingMonth
+        holder.bind(calendarDayAdapter, months[feelingMonth.monthArrayValue])
     }
 
     override fun getItemCount() = feelingCalendar.numOfMonths()
 
-    fun setFeelingCalendar(feelingCalendar: FeelingCalendar) {
+    override fun setFeelingCalendar(feelingCalendar: FeelingCalendar) {
         this.feelingCalendar = feelingCalendar
         notifyDataSetChanged()
     }

@@ -5,18 +5,15 @@ import android.widget.GridView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import app.getfeeling.feeling.R
-import app.getfeeling.feeling.ui.me.FeelingMonth
-import app.getfeeling.feeling.ui.me.calendarDay.CalendarDayAdapter
+import app.getfeeling.feeling.ui.me.calendarDay.AbstractCalendarDayAdapter
 
-class CalendarMonthHolder(calendarMonth: View, private val months: Array<String>) :
-    RecyclerView.ViewHolder(calendarMonth) {
+class CalendarMonthHolder(calendarMonth: View) : RecyclerView.ViewHolder(calendarMonth) {
 
     private val monthTextView: TextView = calendarMonth.findViewById(R.id.month)
     private val feelingGrid: GridView = calendarMonth.findViewById(R.id.feeling_grid)
 
-    fun bind(feelingMonth: FeelingMonth) {
-        monthTextView.text = months[feelingMonth.monthArrayValue]
-        feelingGrid.adapter =
-            CalendarDayAdapter(feelingMonth)
+    fun bind(calendarDayAdapter: AbstractCalendarDayAdapter, month: String) {
+        monthTextView.text = month
+        feelingGrid.adapter = calendarDayAdapter
     }
 }

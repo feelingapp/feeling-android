@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import app.getfeeling.feeling.R
+import androidx.recyclerview.widget.RecyclerView
 import app.getfeeling.feeling.databinding.MeFragmentBinding
-import app.getfeeling.feeling.ui.me.calendarMonth.CalendarMonthAdapter
+import app.getfeeling.feeling.ui.me.calendarMonth.AbstractCalendarMonthAdapter
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -17,7 +17,13 @@ class MeFragment : DaggerFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: MeViewModel
+    @Inject
+    lateinit var calendarLayoutManager: RecyclerView.LayoutManager
+
+    @Inject
+    lateinit var calendarMonthAdapter: AbstractCalendarMonthAdapter
+
+    private val meViewModel: MeViewModel by activityViewModels { viewModelFactory }
 
     private lateinit var binding: MeFragmentBinding
 
@@ -32,20 +38,14 @@ class MeFragment : DaggerFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(MeViewModel::class.java)
 
-//        viewModel.getAllFeelingsGroupedByMonth().observe(this) {
-//            calendarViewAdapter.allFeelings = it
-//        }
-
-        binding.viewModel = viewModel
-        with(binding.recyclerView) {
-            layoutManager = LinearLayoutManager(context).apply {
-                reverseLayout = true
-            }
-            adapter = CalendarMonthAdapter().apply {
-                setFeelingCalendar(viewModel.feelingCalendar)
-                months = resources.getStringArray(R.array.months)
+        with(binding) {
+            viewModel = meViewModel
+            with(recyclerView) {
+                layoutManager = calendarLayoutManager
+                adapter = calendarMonthAdapter.apply {
+                    setFeelingCalendar(meViewModel.feelingCalendar)
+                }
             }
         }
     }

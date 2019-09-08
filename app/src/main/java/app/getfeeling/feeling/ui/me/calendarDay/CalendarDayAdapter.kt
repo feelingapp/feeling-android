@@ -1,20 +1,20 @@
 package app.getfeeling.feeling.ui.me.calendarDay
 
+import android.content.Context
 import android.graphics.PorterDuff
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.ImageButton
 import androidx.core.content.ContextCompat
-import app.getfeeling.feeling.FeelingApp
 import app.getfeeling.feeling.R
 import app.getfeeling.feeling.room.entities.Feeling
-import app.getfeeling.feeling.ui.me.FeelingMonth
 import org.threeten.bp.OffsetDateTime
+import javax.inject.Inject
 
-class CalendarDayAdapter(private val feelingMonth: FeelingMonth) : BaseAdapter() {
+class CalendarDayAdapter @Inject constructor(private val context: Context) :
+    AbstractCalendarDayAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var calendarDay = convertView
@@ -81,9 +81,9 @@ class CalendarDayAdapter(private val feelingMonth: FeelingMonth) : BaseAdapter()
         }
 
     private fun getColour(colour: Int) =
-        ContextCompat.getColor(FeelingApp.applicationContext(), colour)
+        ContextCompat.getColor(context, colour)
 
     private fun getDrawable(drawable: Int) =
-        ContextCompat.getDrawable(FeelingApp.applicationContext(), drawable)
+        ContextCompat.getDrawable(context, drawable)
 }
 

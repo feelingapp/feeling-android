@@ -2,6 +2,8 @@ package app.getfeeling.feeling.injection.module
 
 import android.app.Application
 import android.content.Context
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import app.getfeeling.feeling.BuildConfig
 import app.getfeeling.feeling.api.FeelingService
@@ -13,6 +15,10 @@ import app.getfeeling.feeling.repository.interfaces.ITokenRepository
 import app.getfeeling.feeling.room.FeelingDatabase
 import app.getfeeling.feeling.room.dao.FeelingDao
 import app.getfeeling.feeling.room.dao.UserDao
+import app.getfeeling.feeling.ui.me.calendarDay.AbstractCalendarDayAdapter
+import app.getfeeling.feeling.ui.me.calendarDay.CalendarDayAdapter
+import app.getfeeling.feeling.ui.me.calendarMonth.AbstractCalendarMonthAdapter
+import app.getfeeling.feeling.ui.me.calendarMonth.CalendarMonthAdapter
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -102,4 +108,23 @@ class AppModule {
         moshi: Moshi,
         context: Context
     ): ITokenRepository = TokenRepository(feelingService, errorConverter, moshi, context)
+
+    @Singleton
+    @Provides
+    fun provideLinearLayoutManager(context: Context): RecyclerView.LayoutManager =
+        LinearLayoutManager(context).apply {
+            reverseLayout = true
+        }
+
+    @Provides
+    fun provideCalendarDayAdapter(context: Context): AbstractCalendarDayAdapter =
+        CalendarDayAdapter(context)
+
+    @Singleton
+    @Provides
+    fun provideCalendarMonthAdapter(
+        context: Context,
+        calendarDayAdapter: AbstractCalendarDayAdapter
+    ): AbstractCalendarMonthAdapter =
+        CalendarMonthAdapter(context, calendarDayAdapter)
 }
