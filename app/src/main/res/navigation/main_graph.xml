@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/main_graph"
@@ -9,44 +8,26 @@
     <fragment
             android:id="@+id/sign_in_fragment"
             android:name="app.getfeeling.feeling.ui.signin.SignInFragment"
-            android:label="SignInFragment"/>
+            android:label="SignInFragment" />
 
     <fragment
             android:id="@+id/me_fragment"
             android:name="app.getfeeling.feeling.ui.me.MeFragment"
-            android:label="Me Fragment"
+            android:label="MeFragment"
             tools:layout="@layout/me_fragment">
         <action
+                android:id="@+id/action_me_fragment_to_sign_in_fragment"
+                app:destination="@id/sign_in_fragment" />
+        <action
                 android:id="@+id/action_me_fragment_to_settings_fragment"
-                app:destination="@id/settings_fragment"/>
+                app:destination="@id/settings_fragment" />
     </fragment>
-
     <fragment
             android:id="@+id/settings_fragment"
             android:name="app.getfeeling.feeling.ui.settings.SettingsFragment"
-            android:label="Settings Fragment">
+            android:label="SettingsFragment">
         <action
                 android:id="@+id/action_settings_fragment_to_me_fragment"
-                app:destination="@id/me_fragment"/>
-
-        <action
-                android:id="@+id/action_settings_fragment_to_sign_in_fragment"
-                app:popUpTo="@+id/sign_in_fragment"
-                app:popUpToInclusive="true"
-                app:destination="@id/sign_in_fragment"/>
-
-        <action android:id="@+id/action_settings_fragment_to_daily_reminder_fragment"
-                app:destination="@id/daily_reminder_fragment"/>
+                app:destination="@id/me_fragment" />
     </fragment>
-
-    <fragment android:id="@+id/daily_reminder_fragment"
-              android:name="app.getfeeling.feeling.ui.settings.DailyReminderFragment"
-              android:label="Daily Reminder Fragment">
-        <action android:id="@+id/action_daily_reminder_fragment_to_time_picker_fragment"
-                app:destination="@id/time_picker_fragment"/>
-    </fragment>
-
-    <fragment android:id="@+id/time_picker_fragment"
-              android:name="app.getfeeling.feeling.ui.settings.TimePickerFragment"
-              android:label="Time Picker Fragment"/>
 </navigation>
