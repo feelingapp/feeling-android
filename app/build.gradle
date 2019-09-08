@@ -12,6 +12,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
     defaultConfig {
         applicationId "app.getfeeling.feeling"
         minSdkVersion 21
@@ -91,7 +94,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
     // Navigation
-    def nav_version = "2.2.0-alpha01"
+    def nav_version = "2.2.0-alpha02"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
@@ -143,6 +146,6 @@ dependencies {
     implementation "androidx.preference:preference:1.1.0-rc01"
 
     // Secure Storage
-    def secure_storage_version = "1.2.1"
+    def secure_storage_version = "1.2.2"
     implementation "de.adorsys.android:securestoragelibrary:$secure_storage_version"
 }

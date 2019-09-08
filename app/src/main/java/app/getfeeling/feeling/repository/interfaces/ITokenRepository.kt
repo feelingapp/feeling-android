@@ -5,9 +5,13 @@ import app.getfeeling.feeling.api.models.GetTokenModel
 import app.getfeeling.feeling.api.models.TokenModel
 
 interface ITokenRepository {
-    fun exchangeCodeForToken(getTokenModel: GetTokenModel): LiveData<TokenModel>
+    val tokenModel: LiveData<TokenModel>
 
-    fun saveToken(tokenModel: TokenModel)
+    suspend fun exchangeCodeForToken(getTokenModel: GetTokenModel)
 
-    fun getToken(): TokenModel?
+    suspend fun saveToken(tokenModel: TokenModel)
+
+    suspend fun clearToken()
+
+    fun hasValidToken(): Boolean
 }
