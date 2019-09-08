@@ -21,6 +21,7 @@ class MainActivity : DaggerAppCompatActivity() {
     private lateinit var mainNavController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
