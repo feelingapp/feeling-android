@@ -24,6 +24,9 @@ class PKCE {
         messageDigest.update(codeVerifierBytes)
         val codeChallengeBytes = messageDigest.digest()
 
-        return Base64.encodeToString(codeChallengeBytes, Base64.URL_SAFE or Base64.NO_WRAP or Base64.NO_PADDING)
+        return Base64.encodeToString(
+            codeChallengeBytes,
+            Base64.URL_SAFE or Base64.NO_WRAP or Base64.NO_PADDING
+        )
     }
 }

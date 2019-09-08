@@ -8,7 +8,8 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import app.getfeeling.feeling.R
 
-class DailyReminderFragment : PreferenceFragmentCompat(), PreferenceManager.OnPreferenceTreeClickListener {
+class DailyReminderFragment : PreferenceFragmentCompat(),
+    PreferenceManager.OnPreferenceTreeClickListener {
     private val mainNavController: NavController? by lazy { activity?.findNavController(R.id.nav_host_fragment) }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
