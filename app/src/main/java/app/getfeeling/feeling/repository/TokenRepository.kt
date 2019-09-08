@@ -73,4 +73,3 @@ class TokenRepository @Inject constructor(
         return _tokenModel.value != null
     }
 }
-
