@@ -48,7 +48,6 @@ class TokenRepository @Inject constructor(
         _tokenModel.value = if (json != null) jsonAdapter.fromJson(json) else null
     }
 
-
     override suspend fun exchangeCodeForToken(getTokenModel: GetTokenModel) =
         withContext(Dispatchers.IO) {
             val response = feelingService.getToken(getTokenModel)
