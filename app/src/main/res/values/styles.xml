@@ -5,6 +5,10 @@
         <item name="android:windowBackground">@color/colorLight</item>
     </style>
 
+    <style name="AppTheme.Launcher">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
     <style name="GoogleSignInButton">
         <item name="android:background">@drawable/sign_in_button</item>
         <item name="android:width">316dp</item>
