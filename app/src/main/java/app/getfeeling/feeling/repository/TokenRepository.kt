@@ -33,15 +33,21 @@ class TokenRepository @Inject constructor(
 
     private val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
         if (key == "TOKEN0") {
-            val jsonAdapter = moshi.adapter(TokenModel::class.java)
-            val json = SecurePreferencesHelper.getValue(context, "TOKEN")
-            _tokenModel.value = if (json != null) jsonAdapter.fromJson(json) else null
+            getTokenFromStorage()
         }
     }
 
     init {
         SecurePreferences.registerOnSharedPreferenceChangeListener(context, listener)
+        getTokenFromStorage()
     }
+
+    private fun getTokenFromStorage() = run {
+        val jsonAdapter = moshi.adapter(TokenModel::class.java)
+        val json = SecurePreferencesHelper.getValue(context, "TOKEN")
+        _tokenModel.value = if (json != null) jsonAdapter.fromJson(json) else null
+    }
+
 
     override suspend fun exchangeCodeForToken(getTokenModel: GetTokenModel) =
         withContext(Dispatchers.IO) {
