@@ -3,7 +3,7 @@ package app.getfeeling.feeling.api.models
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
-enum class GrantType() {
+enum class GrantType {
     @Json(name = "authorization_code")
     AUTHORIZATION_CODE,
 

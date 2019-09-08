@@ -10,7 +10,7 @@
     </style>
 
     <style name="GoogleSignInButton">
-        <item name="android:background">@drawable/button</item>
+        <item name="android:background">@drawable/sign_in_button</item>
         <item name="android:width">316dp</item>
         <item name="android:height">56dp</item>
         <item name="android:textAllCaps">false</item>
@@ -19,10 +19,17 @@
     </style>
 
     <style name="EmailSignInButton">
-        <item name="android:background">@drawable/button</item>
+        <item name="android:background">@drawable/sign_in_button</item>
         <item name="android:width">316dp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@color/colorDark</item>
         <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="WeekDayInitial">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textAlignment">center</item>
     </style>
 </resources>

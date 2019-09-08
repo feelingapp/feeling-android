@@ -15,5 +15,5 @@ interface QuoteDao {
     fun delete(quote: Quote)
 
     @Query("SELECT * FROM quotes WHERE emotion = :emotion LIMIT 1")
-    fun getQuoteByEmotion(emotion: String): Quote
+    fun get(emotion: String): Quote
 }

@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <Preference
             android:key="daily_reminder"
-            android:title="Daily Reminder"
             android:summary="Be reminded everyday to log how you're feeling"
-            app:iconSpaceReserved="false"
-            app:allowDividerBelow="true"/>
+            android:title="Daily Reminder"
+            app:allowDividerBelow="true"
+            app:iconSpaceReserved="false" />
 
     <Preference
             android:key="terms_and_conditions"
             android:title="Terms and Conditions"
-            app:iconSpaceReserved="false"
-            app:allowDividerAbove="true"/>
+            app:allowDividerAbove="true"
+            app:iconSpaceReserved="false" />
 
     <Preference
             android:key="privacy_policy"
             android:title="Privacy Policy"
-            app:iconSpaceReserved="false"
-            app:allowDividerBelow="true"/>
+            app:allowDividerBelow="true"
+            app:iconSpaceReserved="false" />
 
     <Preference
             android:key="version"
-            android:title="Version"
             android:summary="1.0"
-            app:iconSpaceReserved="false"
-            app:allowDividerAbove="true"/>
+            android:title="Version"
+            app:allowDividerAbove="true"
+            app:iconSpaceReserved="false" />
 
     <Preference
             android:key="sign_out"
-            android:title="Sign out"
             android:summary="You are signed in as Michael Lee"
-            app:iconSpaceReserved="false"/>
+            android:title="Sign out"
+            app:iconSpaceReserved="false" />
 </PreferenceScreen>
