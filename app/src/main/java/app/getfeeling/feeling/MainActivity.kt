@@ -52,10 +52,8 @@ class MainActivity : DaggerAppCompatActivity() {
             val authorizationCode = uri.getQueryParameter("authorization_code")
             val state = uri.getQueryParameter("state")
 
-            val model = ViewModelProvider(this, viewModelFactory).get(SignInViewModel::class.java)
-
             if (authorizationCode != null && state != null)
-                model.handleAuthorizationCallback(authorizationCode, state)
+                signInViewModel.handleAuthorizationCallback(authorizationCode, state)
         }
     }
 
@@ -72,19 +70,6 @@ class MainActivity : DaggerAppCompatActivity() {
                 bottomNavigationView.visibility = View.VISIBLE
                 bottomNavigationViewFab.show()
             }
-        }
-    }
-
-    override fun onNewIntent(intent: Intent) {
-        super.onNewIntent(intent)
-        val uri = intent.data
-
-        if (uri != null && uri.toString().startsWith(BuildConfig.FEELING_API_REDIRECT_URI)) {
-            val authorizationCode = uri.getQueryParameter("authorization_code")
-            val state = uri.getQueryParameter("state")
-
-            if (authorizationCode != null && state != null)
-                signInViewModel.handleAuthorizationCallback(authorizationCode, state)
         }
     }
 }
