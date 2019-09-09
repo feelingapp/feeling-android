@@ -109,7 +109,6 @@ class AppModule {
         context: Context
     ): ITokenRepository = TokenRepository(feelingService, errorConverter, moshi, context)
 
-    @Singleton
     @Provides
     fun provideLinearLayoutManager(context: Context): RecyclerView.LayoutManager =
         LinearLayoutManager(context).apply {
