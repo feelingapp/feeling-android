@@ -16,6 +16,7 @@ import app.getfeeling.feeling.ui.me.calendarMonth.AbstractCalendarMonthAdapter
 import app.getfeeling.feeling.ui.signin.SignInViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
+import javax.inject.Provider
 
 class MeFragment : DaggerFragment() {
 
@@ -23,7 +24,7 @@ class MeFragment : DaggerFragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     @Inject
-    lateinit var calendarLayoutManager: RecyclerView.LayoutManager
+    lateinit var calendarLayoutManager: Provider<RecyclerView.LayoutManager>
 
     @Inject
     lateinit var calendarMonthAdapter: AbstractCalendarMonthAdapter
@@ -59,7 +60,7 @@ class MeFragment : DaggerFragment() {
         with(binding) {
             viewModel = meViewModel
             with(recyclerView) {
-                layoutManager = calendarLayoutManager
+                layoutManager = calendarLayoutManager.get()
                 adapter = calendarMonthAdapter
             }
         }
