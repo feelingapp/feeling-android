@@ -1,6 +1,7 @@
 package app.getfeeling.feeling.ui.me
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.getfeeling.feeling.repository.interfaces.IFeelingRepository
@@ -13,25 +14,19 @@ import javax.inject.Inject
 
 class MeViewModel @Inject constructor(private val repository: IFeelingRepository) : ViewModel() {
 
-    val feelingCalendar: FeelingCalendar = FeelingCalendar()
+    private val allFeelings: LiveData<List<Feeling>> = repository.getAllFeelings()
 
-    init {
-        with(feelingCalendar) {
-            insert(Feeling(1, "Neutral", "", "", OffsetDateTime.parse("2019-07-03T10:00:00+00:00")))
-            insert(Feeling(1, "Loving", "", "", OffsetDateTime.parse("2019-07-24T10:00:00+00:00")))
-            insert(Feeling(1, "Loving", "", "", OffsetDateTime.parse("2019-08-22T00:00:00+00:00")))
-            insert(Feeling(1, "Sad", "", "", OffsetDateTime.parse("2019-08-05T00:00:00+00:00")))
-            insert(Feeling(1, "Happy", "", "", OffsetDateTime.parse("2019-09-05T10:00:00+00:00")))
-            insert(Feeling(1, "Angry", "", "", OffsetDateTime.parse("2019-09-24T10:00:00+00:00")))
+    val feelingCalendar: LiveData<FeelingCalendar> =
+        Transformations.map(allFeelings) { allFeelings ->
+            FeelingCalendar().apply {
+                allFeelings.forEach(::insert)
+            }
         }
-    }
 
     // Test field
     private var date: OffsetDateTime = OffsetDateTime.now()
 
     fun getTitle(): String = "Welcome Back Michael"
-
-    fun getFeelingCalendar(): LiveData<FeelingCalendar> = repository.getFeelingCalendar()
 
     // Test function
     fun addFeeling() {

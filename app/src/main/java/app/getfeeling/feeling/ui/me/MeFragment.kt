@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -51,13 +52,15 @@ class MeFragment : DaggerFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        meViewModel.feelingCalendar.observe(this) { feelingCalendar ->
+            calendarMonthAdapter.setFeelingCalendar(feelingCalendar)
+        }
+
         with(binding) {
             viewModel = meViewModel
             with(recyclerView) {
                 layoutManager = calendarLayoutManager
-                adapter = calendarMonthAdapter.apply {
-                    setFeelingCalendar(meViewModel.feelingCalendar)
-                }
+                adapter = calendarMonthAdapter
             }
         }
     }
