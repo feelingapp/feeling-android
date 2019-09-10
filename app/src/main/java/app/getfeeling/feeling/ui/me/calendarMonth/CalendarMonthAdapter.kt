@@ -20,9 +20,8 @@ class CalendarMonthAdapter @Inject constructor(
     private val months: Array<String> = context.resources.getStringArray(R.array.months)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarMonthHolder {
-        val calendarMonthBinding = DataBindingUtil.inflate<CalendarMonthBinding>(
+        val calendarMonthBinding = CalendarMonthBinding.inflate(
             LayoutInflater.from(parent.context),
-            R.layout.calendar_month,
             parent,
             false
         )
