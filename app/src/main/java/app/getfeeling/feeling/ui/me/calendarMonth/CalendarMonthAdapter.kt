@@ -36,8 +36,7 @@ class CalendarMonthAdapter @Inject constructor(
         }
     }
 
-    override fun getItemCount(): Int =
-        if (feelingCalendar == null) 0 else feelingCalendar!!.numOfMonths()
+    override fun getItemCount(): Int = feelingCalendar?.numOfMonths() ?: 0
 
     override fun setFeelingCalendar(feelingCalendar: FeelingCalendar) {
         this.feelingCalendar = feelingCalendar
