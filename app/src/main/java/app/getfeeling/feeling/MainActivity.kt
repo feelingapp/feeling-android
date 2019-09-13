@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -12,6 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import app.getfeeling.feeling.databinding.MainActivityBinding
 import app.getfeeling.feeling.ui.me.MeViewModel
 import app.getfeeling.feeling.ui.signin.SignInViewModel
+import app.getfeeling.feeling.util.makeStatusBarTransparent
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.android.support.DaggerAppCompatActivity
@@ -41,6 +43,12 @@ class MainActivity : DaggerAppCompatActivity() {
 
         binding.fab.setOnClickListener {
             meViewModel.addFeeling()
+        }
+        this.makeStatusBarTransparent()
+
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.nav_host_fragment)) { _, insets ->
+            insets.consumeSystemWindowInsets()
         }
     }
 
