@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
 import app.getfeeling.feeling.R
 import app.getfeeling.feeling.databinding.CalendarDayBinding
 import app.getfeeling.feeling.room.entities.Feeling
@@ -19,9 +18,8 @@ class CalendarDayAdapter @Inject constructor(private val context: Context) :
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         if (convertView == null) {
-            val binding = DataBindingUtil.inflate<CalendarDayBinding>(
+            val binding = CalendarDayBinding.inflate(
                 LayoutInflater.from(parent?.context),
-                R.layout.calendar_day,
                 parent,
                 false
             )

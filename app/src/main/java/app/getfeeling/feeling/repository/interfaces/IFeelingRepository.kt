@@ -3,13 +3,12 @@ package app.getfeeling.feeling.repository.interfaces
 import androidx.lifecycle.LiveData
 import app.getfeeling.feeling.room.entities.Feeling
 import app.getfeeling.feeling.room.entities.User
-import app.getfeeling.feeling.ui.me.FeelingCalendar
 
 interface IFeelingRepository {
 
     fun getStatus(): LiveData<String>
 
-    fun getFeelingCalendar(): LiveData<FeelingCalendar>
+    fun getAllFeelings(): LiveData<List<Feeling>>
 
     suspend fun addFeeling(feeling: Feeling)
 

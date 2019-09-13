@@ -10,7 +10,6 @@ import app.getfeeling.feeling.room.dao.FeelingDao
 import app.getfeeling.feeling.room.dao.UserDao
 import app.getfeeling.feeling.room.entities.Feeling
 import app.getfeeling.feeling.room.entities.User
-import app.getfeeling.feeling.ui.me.FeelingCalendar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
@@ -27,15 +26,7 @@ class FeelingRepository @Inject constructor(
     private val errorConverter: Converter<ResponseBody, ErrorsModel>
 ) : IFeelingRepository {
 
-    override fun getFeelingCalendar(): LiveData<FeelingCalendar> =
-        liveData(Dispatchers.IO) {
-            val feelingCalendar = FeelingCalendar()
-
-            val allFeelings = feelingDao.getAllFeelings().value!!
-            allFeelings.forEach(feelingCalendar::insert)
-
-            emit(feelingCalendar)
-        }
+    override fun getAllFeelings(): LiveData<List<Feeling>> = feelingDao.getAllFeelings()
 
     override fun getStatus() = liveData(Dispatchers.IO) {
         try {
