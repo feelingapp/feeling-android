@@ -106,10 +106,9 @@ class AppModule {
     @Provides
     fun provideFeelingRepository(
         feelingDao: FeelingDao,
-        userDao: UserDao,
         feelingService: FeelingService,
         errorConverter: Converter<ResponseBody, ErrorsModel>
-    ): IFeelingRepository = FeelingRepository(feelingDao, userDao, feelingService, errorConverter)
+    ): IFeelingRepository = FeelingRepository(feelingDao, feelingService, errorConverter)
 
     @Singleton
     @Provides
