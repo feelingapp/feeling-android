@@ -11,7 +11,6 @@ object FeelingHelper {
             Emotion.UNSURE -> Pair(R.drawable.ic_emoji_unsure_face, R.color.emotionUnsure)
             Emotion.ANGRY -> Pair(R.drawable.ic_emoji_angry_face, R.color.emotionAngry)
             Emotion.UPSET -> Pair(R.drawable.ic_emoji_upset_face, R.color.emotionUpset)
-
             else -> throw NotImplementedError(emotion)
         }
 }
