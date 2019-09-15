@@ -48,7 +48,7 @@ class CalendarDayAdapter @Inject constructor(private val context: Context) :
                 } else {
                     val (emoji, colour) = getEmojiAndColour(feelingMonth[position]!!.emotion)
                     buttonDay.setImageResource(emoji)
-                    background.mutate().setColorFilter(colour, PorterDuff.Mode.MULTIPLY)
+                    background.mutate().setColorFilter(getColour(colour), PorterDuff.Mode.MULTIPLY)
                 }
                 buttonDay.background = background
             }
