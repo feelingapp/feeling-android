@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import app.getfeeling.feeling.BuildConfig
+import app.getfeeling.feeling.api.AuthorizationInterceptor
 import app.getfeeling.feeling.api.FeelingService
 import app.getfeeling.feeling.api.models.ErrorsModel
 import app.getfeeling.feeling.repository.FeelingRepository
@@ -65,9 +66,19 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
+    fun provideAuthorizationInterceptor(moshi: Moshi, context: Context): AuthorizationInterceptor {
+        return AuthorizationInterceptor(moshi, context)
+    }
+
+    @Singleton
+    @Provides
+    fun provideOkHttpClient(
+        loggingInterceptor: HttpLoggingInterceptor,
+        authorizationInterceptor: AuthorizationInterceptor
+    ): OkHttpClient =
         OkHttpClient().newBuilder()
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(authorizationInterceptor)
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS).build()
