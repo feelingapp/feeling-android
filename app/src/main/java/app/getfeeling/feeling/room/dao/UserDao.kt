@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import app.getfeeling.feeling.room.entities.User
+import app.getfeeling.feeling.models.User
 
 @Dao
 interface UserDao {
