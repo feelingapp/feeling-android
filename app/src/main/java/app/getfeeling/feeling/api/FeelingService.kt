@@ -17,6 +17,9 @@ interface FeelingService {
     @GET("account/exists")
     suspend fun checkIfAccountExists(@Query("email") email: String): Response<AccountExistsModel>
 
+    @GET("account/me")
+    suspend fun getMe(): Response<AccountModel>
+
     // Feeling endpoints
     @GET("feeling")
     suspend fun getFeelings(): Response<FeelingsModel>
