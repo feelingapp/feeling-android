@@ -16,10 +16,10 @@
     <color name="bottomNavigationInactive">#8B8B8B</color>
 
     <!-- Calendar -->
-    <color name="emotionSad">#cbebf8</color>
-    <color name="emotionLoving">#f8cbcb</color>
-    <color name="emotionHappy">#f8eecb</color>
-    <color name="emotionNeutral">#cff8cb</color>
+    <color name="emotionUpset">#cbebf8</color>
+    <color name="emotionAmazing">#f8cbcb</color>
+    <color name="emotionGreat">#f8eecb</color>
+    <color name="emotionUnsure">#cff8cb</color>
     <color name="emotionAngry">#e5d1f2</color>
     <color name="emotionNone">#ebebeb</color>
 

@@ -36,7 +36,7 @@ class MeViewModel @Inject constructor(private val repository: IFeelingRepository
             }
 
             repository.addFeeling(
-                Feeling(1, "Happy", "dunno something", "#tag", date)
+                Feeling(1, "Amazing", "dunno something", "#tag", date)
             )
 
             date = date.minusDays(1)
