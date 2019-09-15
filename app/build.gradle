@@ -148,4 +148,8 @@ dependencies {
     // Secure Storage
     def secure_storage_version = "1.2.2"
     implementation "de.adorsys.android:securestoragelibrary:$secure_storage_version"
+
+    // Room Debug Database
+    def room_debug_database_version = "1.0.6"
+    debugImplementation "com.amitshekhar.android:debug-db:$room_debug_database_version"
 }
