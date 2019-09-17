@@ -1,6 +1,7 @@
 package app.getfeeling.feeling.room.entities
 
 import androidx.room.*
+import app.getfeeling.feeling.models.User
 
 @Entity(
     tableName = "settings",

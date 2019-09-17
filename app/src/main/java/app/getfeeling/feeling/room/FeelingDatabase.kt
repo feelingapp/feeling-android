@@ -3,6 +3,7 @@ package app.getfeeling.feeling.room
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import app.getfeeling.feeling.models.User
 import app.getfeeling.feeling.room.converters.OffsetDateTimeConverter
 import app.getfeeling.feeling.room.dao.FeelingDao
 import app.getfeeling.feeling.room.dao.QuoteDao
@@ -11,7 +12,7 @@ import app.getfeeling.feeling.room.dao.UserDao
 import app.getfeeling.feeling.room.entities.Feeling
 import app.getfeeling.feeling.room.entities.Quote
 import app.getfeeling.feeling.room.entities.Setting
-import app.getfeeling.feeling.room.entities.User
+
 
 // TODO Remove exportSchema once we have settled on db design
 @Database(

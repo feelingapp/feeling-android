@@ -32,8 +32,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textColor="@color/colorDark"
-                    tools:text="@{viewModel.title}" />
+                    android:text="@{@string/toolbar_welcome(viewModel.user.firstName)}"
+                    android:textColor="@color/colorDark" />
         </androidx.appcompat.widget.Toolbar>
 
         <LinearLayout

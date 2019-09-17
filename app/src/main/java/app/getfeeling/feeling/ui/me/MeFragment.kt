@@ -53,6 +53,8 @@ class MeFragment : DaggerFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        meViewModel.getUser()
+
         meViewModel.feelingCalendar.observe(this) { feelingCalendar ->
             calendarMonthAdapter.setFeelingCalendar(feelingCalendar)
         }

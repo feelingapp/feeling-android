@@ -14,4 +14,6 @@ interface ITokenRepository {
     suspend fun clearToken()
 
     fun hasValidToken(): Boolean
+
+    fun getUserId(): String?
 }

@@ -7,9 +7,7 @@ import app.getfeeling.feeling.api.FeelingService
 import app.getfeeling.feeling.api.models.ErrorsModel
 import app.getfeeling.feeling.repository.interfaces.IFeelingRepository
 import app.getfeeling.feeling.room.dao.FeelingDao
-import app.getfeeling.feeling.room.dao.UserDao
 import app.getfeeling.feeling.room.entities.Feeling
-import app.getfeeling.feeling.room.entities.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
@@ -21,7 +19,6 @@ import javax.inject.Singleton
 @Singleton
 class FeelingRepository @Inject constructor(
     private val feelingDao: FeelingDao,
-    private val userDao: UserDao,
     private val feelingService: FeelingService,
     private val errorConverter: Converter<ResponseBody, ErrorsModel>
 ) : IFeelingRepository {
@@ -44,13 +41,5 @@ class FeelingRepository @Inject constructor(
     override suspend fun addFeeling(feeling: Feeling) = withContext(Dispatchers.IO) {
         feelingDao.insert(feeling)
     }
-
-    // Test function
-    override suspend fun addUser(user: User) = withContext(Dispatchers.IO) {
-        userDao.insert(user)
-    }
-
-    // Test function
-    override fun getUser(id: Int): User? = userDao.get(id)
 }
 

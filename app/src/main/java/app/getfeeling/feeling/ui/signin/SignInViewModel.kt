@@ -12,7 +12,6 @@ import app.getfeeling.feeling.util.PKCE
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 class SignInViewModel @Inject constructor(private val repository: ITokenRepository) :
     ViewModel() {
 

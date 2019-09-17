@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import app.getfeeling.feeling.room.entities.User
+import app.getfeeling.feeling.models.User
 
 @Dao
 interface UserDao {
@@ -15,5 +15,5 @@ interface UserDao {
     fun delete(user: User)
 
     @Query("SELECT * FROM users WHERE id = :id LIMIT 1")
-    fun get(id: Int): User?
+    fun get(id: String): User?
 }
