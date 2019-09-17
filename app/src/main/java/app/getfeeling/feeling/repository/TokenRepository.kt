@@ -11,6 +11,7 @@ import app.getfeeling.feeling.api.models.GetTokenModel
 import app.getfeeling.feeling.api.models.TokenModel
 import app.getfeeling.feeling.repository.interfaces.ITokenRepository
 import app.getfeeling.feeling.util.SecurePreferencesHelper
+import com.auth0.android.jwt.JWT
 import com.squareup.moshi.Moshi
 import de.adorsys.android.securestoragelibrary.SecurePreferences
 import kotlinx.coroutines.Dispatchers
@@ -19,6 +20,7 @@ import okhttp3.ResponseBody
 import retrofit2.Converter
 import javax.inject.Inject
 import javax.inject.Singleton
+
 
 @WorkerThread
 @Singleton
@@ -30,6 +32,13 @@ class TokenRepository @Inject constructor(
 ) : ITokenRepository {
     private val _tokenModel = MutableLiveData<TokenModel>()
     override val tokenModel: LiveData<TokenModel> = _tokenModel
+
+    override fun getUserId(): String? {
+        return _tokenModel.value?.run {
+            val jwt = JWT(this.accessToken)
+            jwt.getClaim("sub").asString()
+        }
+    }
 
     private val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
         if (key == "TOKEN0") {
