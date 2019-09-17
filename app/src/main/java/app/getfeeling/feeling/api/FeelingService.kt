@@ -1,6 +1,7 @@
 package app.getfeeling.feeling.api
 
 import app.getfeeling.feeling.api.models.*
+import app.getfeeling.feeling.models.User
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -13,12 +14,12 @@ interface FeelingService {
     @POST("token")
     suspend fun getToken(@Body getTokenModel: GetTokenModel): Response<TokenModel>
 
-    // Account endpoints
-    @GET("account/exists")
+    // User endpoints
+    @GET("user/exists")
     suspend fun checkIfAccountExists(@Query("email") email: String): Response<AccountExistsModel>
 
-    @GET("account/me")
-    suspend fun getMe(): Response<AccountModel>
+    @GET("user/me")
+    suspend fun getMe(): Response<User>
 
     // Feeling endpoints
     @GET("feeling")
