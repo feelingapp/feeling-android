@@ -21,7 +21,6 @@ import retrofit2.Converter
 import javax.inject.Inject
 import javax.inject.Singleton
 
-
 @WorkerThread
 @Singleton
 class TokenRepository @Inject constructor(
