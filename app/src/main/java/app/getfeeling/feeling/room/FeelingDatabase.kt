@@ -3,8 +3,8 @@ package app.getfeeling.feeling.room
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import app.getfeeling.feeling.room.converters.EmotionConverter
 import app.getfeeling.feeling.models.User
+import app.getfeeling.feeling.room.converters.EmotionConverter
 import app.getfeeling.feeling.room.converters.OffsetDateTimeConverter
 import app.getfeeling.feeling.room.dao.FeelingDao
 import app.getfeeling.feeling.room.dao.QuoteDao

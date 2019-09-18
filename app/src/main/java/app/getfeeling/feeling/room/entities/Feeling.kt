@@ -1,8 +1,8 @@
 package app.getfeeling.feeling.room.entities
 
 import androidx.room.*
-import app.getfeeling.feeling.util.Emotion
 import app.getfeeling.feeling.models.User
+import app.getfeeling.feeling.util.Emotion
 import org.threeten.bp.OffsetDateTime
 import org.threeten.bp.YearMonth
 
