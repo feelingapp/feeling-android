@@ -6,7 +6,6 @@ import app.getfeeling.feeling.repository.interfaces.IFeelingRepository
 import app.getfeeling.feeling.repository.interfaces.ITokenRepository
 import app.getfeeling.feeling.repository.interfaces.IUserRepository
 import app.getfeeling.feeling.room.entities.Feeling
-import app.getfeeling.feeling.room.entities.User
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
