@@ -77,7 +77,7 @@ class MainActivity : DaggerAppCompatActivity() {
                 bottomNavigationView.visibility = View.GONE
                 bottomNavigationViewFab.hide()
             } else {
-                bottomAppBar.visibility = View.GONE
+                bottomAppBar.visibility = View.VISIBLE
                 bottomNavigationView.visibility = View.VISIBLE
                 bottomNavigationViewFab.show()
             }
