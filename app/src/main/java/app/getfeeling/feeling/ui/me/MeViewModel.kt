@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import app.getfeeling.feeling.repository.interfaces.IFeelingRepository
 import app.getfeeling.feeling.room.entities.Feeling
 import app.getfeeling.feeling.room.entities.User
+import app.getfeeling.feeling.util.Emotion
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.threeten.bp.OffsetDateTime
@@ -36,7 +37,7 @@ class MeViewModel @Inject constructor(private val repository: IFeelingRepository
             }
 
             repository.addFeeling(
-                Feeling(1, "Amazing", "dunno something", "#tag", date)
+                Feeling(1, Emotion.AMAZING, "dunno something", "#tag", date)
             )
 
             date = date.minusDays(1)

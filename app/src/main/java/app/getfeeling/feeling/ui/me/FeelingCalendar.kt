@@ -24,11 +24,11 @@ class FeelingCalendar {
 
     fun insert(feeling: Feeling) {
         // make sure all months exist up till oldest
-        while (oldestFeelingMonth.isAfter(feeling.yearMonth)) {
+        while (oldestFeelingMonth.isAfter(feeling.getYearMonth())) {
             addFeelingMonth()
         }
 
-        feelingMonths[feeling.yearMonth.monthsBeforeNow()].insert(feeling)
+        feelingMonths[feeling.getYearMonth().monthsBeforeNow()].insert(feeling)
     }
 
     fun numOfMonths() = feelingMonths.size

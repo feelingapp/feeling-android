@@ -3,6 +3,7 @@ package app.getfeeling.feeling.room
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import app.getfeeling.feeling.room.converters.EmotionConverter
 import app.getfeeling.feeling.room.converters.OffsetDateTimeConverter
 import app.getfeeling.feeling.room.dao.FeelingDao
 import app.getfeeling.feeling.room.dao.QuoteDao
@@ -19,7 +20,7 @@ import app.getfeeling.feeling.room.entities.User
     version = 1,
     exportSchema = false
 )
-@TypeConverters(OffsetDateTimeConverter::class)
+@TypeConverters(OffsetDateTimeConverter::class, EmotionConverter::class)
 abstract class FeelingDatabase : RoomDatabase() {
     abstract fun feelingDao(): FeelingDao
     abstract fun userDao(): UserDao

@@ -15,7 +15,6 @@ import app.getfeeling.feeling.databinding.MainActivityBinding
 import app.getfeeling.feeling.ui.me.MeViewModel
 import app.getfeeling.feeling.ui.signin.SignInViewModel
 import app.getfeeling.feeling.util.Emotion
-import app.getfeeling.feeling.util.FeelingHelper.getEmojiAndColour
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
@@ -60,14 +59,16 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     private fun setupBottomNavigationView() {
+        val bottomAppBar = binding.bottomAppBar
         val bottomNavigationView = binding.bottomNavigation
         val bottomNavigationViewFab = binding.fab
         bottomNavigationView.setupWithNavController(mainNavController)
 
-        val (emoji, colour) = getEmojiAndColour(Emotion.getRandom())
+        val randomEmotion = Emotion.values().random()
         with(bottomNavigationViewFab) {
-            backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, colour))
-            setImageResource(emoji)
+            backgroundTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(context, randomEmotion.getColour()))
+            setImageResource(randomEmotion.getEmoji())
         }
 
         mainNavController.addOnDestinationChangedListener { _, destination, _ ->

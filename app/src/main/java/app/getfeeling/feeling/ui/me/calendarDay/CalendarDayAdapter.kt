@@ -10,7 +10,6 @@ import androidx.core.content.ContextCompat
 import app.getfeeling.feeling.R
 import app.getfeeling.feeling.databinding.CalendarDayBinding
 import app.getfeeling.feeling.room.entities.Feeling
-import app.getfeeling.feeling.util.FeelingHelper.getEmojiAndColour
 import org.threeten.bp.OffsetDateTime
 import javax.inject.Inject
 
@@ -46,9 +45,10 @@ class CalendarDayAdapter @Inject constructor(private val context: Context) :
                         PorterDuff.Mode.MULTIPLY
                     )
                 } else {
-                    val (emoji, colour) = getEmojiAndColour(feelingMonth[position]!!.emotion)
-                    buttonDay.setImageResource(emoji)
-                    background.mutate().setColorFilter(getColour(colour), PorterDuff.Mode.MULTIPLY)
+                    val emotion = feelingMonth[position]!!.emotion
+                    buttonDay.setImageResource(emotion.getEmoji())
+                    background.mutate()
+                        .setColorFilter(getColour(emotion.getColour()), PorterDuff.Mode.MULTIPLY)
                 }
                 buttonDay.background = background
             }
