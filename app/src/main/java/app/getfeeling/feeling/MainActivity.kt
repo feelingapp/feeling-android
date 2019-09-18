@@ -73,9 +73,11 @@ class MainActivity : DaggerAppCompatActivity() {
 
         mainNavController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.sign_in_fragment) {
+                bottomAppBar.visibility = View.GONE
                 bottomNavigationView.visibility = View.GONE
                 bottomNavigationViewFab.visibility = View.GONE
             } else {
+                bottomAppBar.visibility = View.GONE
                 bottomNavigationView.visibility = View.VISIBLE
                 bottomNavigationViewFab.visibility = View.VISIBLE
             }
