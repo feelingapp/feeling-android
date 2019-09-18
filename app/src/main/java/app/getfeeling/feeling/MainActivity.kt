@@ -75,11 +75,11 @@ class MainActivity : DaggerAppCompatActivity() {
             if (destination.id == R.id.sign_in_fragment) {
                 bottomAppBar.visibility = View.GONE
                 bottomNavigationView.visibility = View.GONE
-                bottomNavigationViewFab.visibility = View.GONE
+                bottomNavigationViewFab.hide()
             } else {
                 bottomAppBar.visibility = View.GONE
                 bottomNavigationView.visibility = View.VISIBLE
-                bottomNavigationViewFab.visibility = View.VISIBLE
+                bottomNavigationViewFab.show()
             }
         }
     }
