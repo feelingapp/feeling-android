@@ -45,9 +45,10 @@ class CalendarDayAdapter @Inject constructor(private val context: Context) :
                         PorterDuff.Mode.MULTIPLY
                     )
                 } else {
-                    val (emoji, colour) = getEmojiAndColour(feelingMonth[position]!!.emotion)
-                    buttonDay.setImageResource(emoji)
-                    background.mutate().setColorFilter(colour, PorterDuff.Mode.MULTIPLY)
+                    val emotion = feelingMonth[position]!!.emotion
+                    buttonDay.setImageResource(emotion.getEmoji())
+                    background.mutate()
+                        .setColorFilter(getColour(emotion.getColour()), PorterDuff.Mode.MULTIPLY)
                 }
                 buttonDay.background = background
             }
@@ -69,20 +70,6 @@ class CalendarDayAdapter @Inject constructor(private val context: Context) :
     }
 
     override fun getCount(): Int = feelingMonth.monthLength + feelingMonth.dayOffset
-
-    private fun getEmojiAndColour(emotion: String): Pair<Int, Int> =
-        when (emotion) {
-            "Angry" -> Pair(R.drawable.ic_emoji_angry_face, getColour(R.color.emotionAngry))
-            "Happy" -> Pair(
-                R.drawable.ic_emoji_grinning_face_with_smiling_eyes, getColour(R.color.emotionHappy)
-            )
-            "Sad" -> Pair(R.drawable.ic_emoji_loudly_crying_face, getColour(R.color.emotionSad))
-            "Neutral" -> Pair(R.drawable.ic_emoji_neutral_face, getColour(R.color.emotionNeutral))
-            "Loving" -> Pair(
-                R.drawable.ic_emoji_smiling_face_with_heart_eyes, getColour(R.color.emotionLoving)
-            )
-            else -> throw NotImplementedError()
-        }
 
     private fun getColour(colour: Int) =
         ContextCompat.getColor(context, colour)

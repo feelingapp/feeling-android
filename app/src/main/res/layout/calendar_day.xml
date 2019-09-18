@@ -16,15 +16,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/calendar_day_desc"
-                android:paddingTop="10dp"
-                android:paddingBottom="4dp"
                 android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:background="@drawable/round_rect_shape"
-                tools:backgroundTint="@color/emotionLoving"
-                tools:src="@drawable/ic_emoji_smiling_face_with_heart_eyes" />
+                tools:backgroundTint="@color/emotionAmazing"
+                tools:src="@drawable/ic_emoji_amazing_face" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

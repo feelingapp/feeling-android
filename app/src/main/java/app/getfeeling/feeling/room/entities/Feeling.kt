@@ -2,6 +2,7 @@ package app.getfeeling.feeling.room.entities
 
 import androidx.room.*
 import app.getfeeling.feeling.models.User
+import app.getfeeling.feeling.util.Emotion
 import org.threeten.bp.OffsetDateTime
 import org.threeten.bp.YearMonth
 
@@ -17,7 +18,7 @@ import org.threeten.bp.YearMonth
 data class Feeling(
     @PrimaryKey(autoGenerate = true) var id: Int,
     @ColumnInfo(name = "user_id") var userId: Int,
-    var emotion: String,
+    var emotion: Emotion,
     var description: String,
     var hashtags: String,
     @ColumnInfo(name = "created_at") var createdAt: OffsetDateTime,
@@ -25,7 +26,7 @@ data class Feeling(
 ) {
     constructor(
         userId: Int,
-        emotion: String,
+        emotion: Emotion,
         description: String,
         hashtags: String,
         createdAt: OffsetDateTime
@@ -39,6 +40,5 @@ data class Feeling(
         OffsetDateTime.now()
     )
 
-    val yearMonth: YearMonth
-        get() = YearMonth.from(createdAt)
+    fun getYearMonth(): YearMonth = YearMonth.from(createdAt)
 }

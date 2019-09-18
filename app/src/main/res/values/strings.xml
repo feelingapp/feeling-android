@@ -45,4 +45,9 @@
     <string name="weekday_fri">F</string>
     <string name="weekday_sat">S</string>
     <string name="weekday_sun">S</string>
+    <string name="emotion_amazing">Amazing</string>
+    <string name="emotion_great">Great</string>
+    <string name="emotion_unsure">Unsure</string>
+    <string name="emotion_angry">Angry</string>
+    <string name="emotion_upset">Upset</string>
 </resources>

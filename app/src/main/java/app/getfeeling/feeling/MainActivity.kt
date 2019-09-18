@@ -1,9 +1,11 @@
 package app.getfeeling.feeling
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -11,8 +13,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import app.getfeeling.feeling.databinding.MainActivityBinding
 import app.getfeeling.feeling.ui.signin.SignInViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import app.getfeeling.feeling.util.Emotion
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
@@ -51,15 +52,25 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     private fun setupBottomNavigationView() {
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        val bottomNavigationViewFab = findViewById<FloatingActionButton>(R.id.fab)
+        val bottomAppBar = binding.bottomAppBar
+        val bottomNavigationView = binding.bottomNavigation
+        val bottomNavigationViewFab = binding.fab
         bottomNavigationView.setupWithNavController(mainNavController)
+
+        val randomEmotion = Emotion.values().random()
+        with(bottomNavigationViewFab) {
+            backgroundTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(context, randomEmotion.getColour()))
+            setImageResource(randomEmotion.getEmoji())
+        }
 
         mainNavController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.sign_in_fragment) {
+                bottomAppBar.visibility = View.GONE
                 bottomNavigationView.visibility = View.GONE
                 bottomNavigationViewFab.hide()
             } else {
+                bottomAppBar.visibility = View.VISIBLE
                 bottomNavigationView.visibility = View.VISIBLE
                 bottomNavigationViewFab.show()
             }
