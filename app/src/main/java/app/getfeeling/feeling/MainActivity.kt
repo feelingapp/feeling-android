@@ -12,7 +12,6 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import app.getfeeling.feeling.databinding.MainActivityBinding
-import app.getfeeling.feeling.ui.me.MeViewModel
 import app.getfeeling.feeling.ui.signin.SignInViewModel
 import app.getfeeling.feeling.util.Emotion
 import dagger.android.support.DaggerAppCompatActivity
@@ -22,8 +21,6 @@ class MainActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private val meViewModel: MeViewModel by viewModels { viewModelFactory }
 
     private val signInViewModel: SignInViewModel by viewModels { viewModelFactory }
 
@@ -39,10 +36,6 @@ class MainActivity : DaggerAppCompatActivity() {
         mainNavController = findNavController(R.id.nav_host_fragment)
 
         setupBottomNavigationView()
-
-        binding.fab.setOnClickListener {
-            meViewModel.addFeeling()
-        }
     }
 
     override fun onNewIntent(intent: Intent) {

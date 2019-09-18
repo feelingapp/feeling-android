@@ -11,8 +11,10 @@ import app.getfeeling.feeling.api.FeelingService
 import app.getfeeling.feeling.api.models.ErrorsModel
 import app.getfeeling.feeling.repository.FeelingRepository
 import app.getfeeling.feeling.repository.TokenRepository
+import app.getfeeling.feeling.repository.UserRepository
 import app.getfeeling.feeling.repository.interfaces.IFeelingRepository
 import app.getfeeling.feeling.repository.interfaces.ITokenRepository
+import app.getfeeling.feeling.repository.interfaces.IUserRepository
 import app.getfeeling.feeling.room.FeelingDatabase
 import app.getfeeling.feeling.room.dao.FeelingDao
 import app.getfeeling.feeling.room.dao.UserDao
@@ -106,10 +108,9 @@ class AppModule {
     @Provides
     fun provideFeelingRepository(
         feelingDao: FeelingDao,
-        userDao: UserDao,
         feelingService: FeelingService,
         errorConverter: Converter<ResponseBody, ErrorsModel>
-    ): IFeelingRepository = FeelingRepository(feelingDao, userDao, feelingService, errorConverter)
+    ): IFeelingRepository = FeelingRepository(feelingDao, feelingService, errorConverter)
 
     @Singleton
     @Provides
@@ -119,6 +120,13 @@ class AppModule {
         moshi: Moshi,
         context: Context
     ): ITokenRepository = TokenRepository(feelingService, errorConverter, moshi, context)
+
+    @Singleton
+    @Provides
+    fun provideUserRepository(
+        feelingService: FeelingService,
+        userDao: UserDao
+    ): IUserRepository = UserRepository(feelingService, userDao)
 
     @Provides
     fun provideLinearLayoutManager(context: Context): RecyclerView.LayoutManager =

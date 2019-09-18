@@ -22,6 +22,7 @@
     <string name="bottom_navigation_settings">Settings</string>
 
     <!-- Me Fragment -->
+    <string name="toolbar_welcome">Welcome Back %s</string>
     <string name="calendar_day_desc">Emotion</string>
     <string-array name="months">
         <item>January</item>
