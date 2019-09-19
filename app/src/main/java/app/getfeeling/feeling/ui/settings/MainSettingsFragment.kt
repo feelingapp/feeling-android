@@ -54,13 +54,11 @@ class MainSettingsFragment : PreferenceFragmentCompat(),
     private fun openPage(uri: String) {
         val customTabsIntent = CustomTabsIntent.Builder().build()
         customTabsIntent.intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-
         customTabsIntent.launchUrl(context, Uri.parse(uri))
     }
 
     private fun signOut() {
         viewModel.signOut()
-
         viewModel.tokenModel.observe(this, Observer {
             if (it == null) {
                 mainNavController?.popBackStack()
