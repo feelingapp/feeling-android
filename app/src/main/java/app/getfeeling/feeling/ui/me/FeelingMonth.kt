@@ -4,13 +4,10 @@ import app.getfeeling.feeling.room.entities.Feeling
 import org.threeten.bp.YearMonth
 
 class FeelingMonth(private val yearMonth: YearMonth) {
-    var feelings: Array<Feeling?>
 
-    init {
-        feelings = arrayOfNulls(monthLength)
-    }
+    var feelings: Array<Feeling?> = arrayOfNulls(monthLength)
 
-    operator fun get(index: Int) = feelings[index - dayOffset]
+    fun getWithOffset(position: Int) = feelings[position - dayOffset]
 
     fun insert(feeling: Feeling) {
         feelings[feeling.createdAt.dayOfMonth - 1] = feeling
