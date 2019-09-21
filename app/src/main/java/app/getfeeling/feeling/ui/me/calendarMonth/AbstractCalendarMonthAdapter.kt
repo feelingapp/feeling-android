@@ -1,9 +1,21 @@
 package app.getfeeling.feeling.ui.me.calendarMonth
 
+import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import app.getfeeling.feeling.ui.me.FeelingCalendar
 
 abstract class AbstractCalendarMonthAdapter : RecyclerView.Adapter<CalendarMonthHolder>() {
 
-    abstract fun setFeelingCalendar(feelingCalendar: FeelingCalendar)
+    internal var feelingCalendar: FeelingCalendar? = null
+
+    internal lateinit var listener: AdapterView.OnItemClickListener
+
+    fun setFeelingCalendar(feelingCalendar: FeelingCalendar) {
+        this.feelingCalendar = feelingCalendar
+        notifyDataSetChanged()
+    }
+
+    fun setOnItemClickListener(listener: AdapterView.OnItemClickListener) {
+        this.listener = listener
+    }
 }
