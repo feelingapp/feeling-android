@@ -8,10 +8,11 @@ import app.getfeeling.feeling.databinding.CalendarMonthBinding
 import app.getfeeling.feeling.ui.me.FeelingCalendar
 import app.getfeeling.feeling.ui.me.calendarDay.AbstractCalendarDayAdapter
 import javax.inject.Inject
+import javax.inject.Provider
 
 class CalendarMonthAdapter @Inject constructor(
     context: Context,
-    private val calendarDayAdapter: AbstractCalendarDayAdapter
+    private val calendarDayAdapterProvider: Provider<AbstractCalendarDayAdapter>
 ) : AbstractCalendarMonthAdapter() {
 
     private var feelingCalendar: FeelingCalendar? = null
@@ -31,8 +32,10 @@ class CalendarMonthAdapter @Inject constructor(
     override fun onBindViewHolder(holder: CalendarMonthHolder, monthsBeforeCurrent: Int) {
         feelingCalendar?.let { feelingCalendar ->
             val feelingMonth = feelingCalendar[monthsBeforeCurrent]
-            calendarDayAdapter.feelingMonth = feelingMonth
-            holder.bind(calendarDayAdapter, months[feelingMonth.monthArrayValue])
+            val calendarDayAdapter = calendarDayAdapterProvider.get().apply {
+                setFeelingMonth(feelingMonth)
+            }
+            holder.bind(calendarDayAdapter, months[feelingMonth.getMonthArrayValue()])
         }
     }
 

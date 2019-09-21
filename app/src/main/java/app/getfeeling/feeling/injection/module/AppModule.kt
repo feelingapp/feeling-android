@@ -32,6 +32,7 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Provider
 import javax.inject.Singleton
 
 @Module
@@ -135,14 +136,13 @@ class AppModule {
         }
 
     @Provides
-    fun provideCalendarDayAdapter(context: Context): AbstractCalendarDayAdapter =
-        CalendarDayAdapter(context)
+    fun provideCalendarDayAdapter(): AbstractCalendarDayAdapter = CalendarDayAdapter()
 
     @Singleton
     @Provides
     fun provideCalendarMonthAdapter(
         context: Context,
-        calendarDayAdapter: AbstractCalendarDayAdapter
+        calendarDayAdapterProvider: Provider<AbstractCalendarDayAdapter>
     ): AbstractCalendarMonthAdapter =
-        CalendarMonthAdapter(context, calendarDayAdapter)
+        CalendarMonthAdapter(context, calendarDayAdapterProvider)
 }
