@@ -11,9 +11,9 @@ data class Quote(
     @PrimaryKey
     var id: String,
 
-    var quote: Emotion,
+    var quote: String,
 
     var author: String,
 
-    var emotion: String
+    var emotion: Emotion
 )
