@@ -8,7 +8,8 @@
     <fragment
             android:id="@+id/sign_in_fragment"
             android:name="app.getfeeling.feeling.ui.signin.SignInFragment"
-            android:label="SignInFragment" />
+            android:label="SignInFragment"
+            tools:layout="@layout/sign_in_fragment" />
 
     <fragment
             android:id="@+id/me_fragment"
@@ -23,6 +24,6 @@
     <fragment
             android:id="@+id/settings_fragment"
             android:name="app.getfeeling.feeling.ui.settings.SettingsFragment"
-            android:label="SettingsFragment" />
-
+            android:label="SettingsFragment"
+            tools:layout="@layout/settings_fragment" />
 </navigation>
