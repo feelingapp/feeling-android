@@ -74,7 +74,7 @@
                 android:background="@drawable/top_rounded_rect_shape"
                 android:clipToPadding="false"
                 android:elevation="8dp"
-                android:paddingBottom="100dp"
+                android:paddingBottom="112dp"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <LinearLayout
