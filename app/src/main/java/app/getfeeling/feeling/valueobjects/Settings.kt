@@ -20,6 +20,7 @@ data class Settings(
 
     var dailyReminder: DailyReminder
 ) {
+    @JsonClass(generateAdapter = true)
     data class DailyReminder(
         val enabled: Boolean,
         val hour: Int,

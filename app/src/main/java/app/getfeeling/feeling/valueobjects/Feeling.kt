@@ -54,7 +54,6 @@ data class Feeling(
     val yearMonth: YearMonth
         get() = YearMonth.from(createdAt)
 
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
