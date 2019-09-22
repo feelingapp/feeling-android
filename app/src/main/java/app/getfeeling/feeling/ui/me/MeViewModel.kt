@@ -11,9 +11,10 @@ import javax.inject.Inject
 
 class MeViewModel @Inject constructor(
     private val userRepository: IUserRepository,
-    private val tokenRepository: ITokenRepository,
     feelingRepository: IFeelingRepository
+    tokenRepository: ITokenRepository,
 ) : ViewModel() {
+    
     private val userId = tokenRepository.getUserId()
 
     private val _user = MediatorLiveData<User?>()
@@ -28,12 +29,10 @@ class MeViewModel @Inject constructor(
             }
         }
 
-    fun getUser() {
-        viewModelScope.launch {
-            userId?.apply {
-                userRepository.getUser(userId).apply {
-                    _user.addSource(this.data) { _user.postValue(it) }
-                }
+    fun getUser() = viewModelScope.launch {
+        userId?.apply {
+            userRepository.getUser(userId).apply {
+                _user.addSource(this.data) { _user.postValue(it) }
             }
         }
     }
