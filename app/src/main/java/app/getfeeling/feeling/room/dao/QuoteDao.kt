@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import app.getfeeling.feeling.room.entities.Quote
+import app.getfeeling.feeling.valueobjects.Quote
 
 @Dao
 interface QuoteDao {

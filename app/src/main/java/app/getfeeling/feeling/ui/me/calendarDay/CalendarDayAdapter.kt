@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import app.getfeeling.feeling.databinding.CalendarDayBinding
-import app.getfeeling.feeling.room.entities.Feeling
+import app.getfeeling.feeling.valueobjects.Feeling
 
 class CalendarDayAdapter : AbstractCalendarDayAdapter() {
 

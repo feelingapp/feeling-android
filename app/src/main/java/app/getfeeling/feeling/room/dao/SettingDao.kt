@@ -1,19 +1,19 @@
 package app.getfeeling.feeling.room.dao
 
 import androidx.room.*
-import app.getfeeling.feeling.room.entities.Setting
+import app.getfeeling.feeling.valueobjects.Settings
 
 @Dao
 interface SettingDao {
     @Insert
-    fun insert(setting: Setting)
+    fun insert(setting: Settings)
 
     @Update
-    fun update(setting: Setting)
+    fun update(setting: Settings)
 
     @Delete
-    fun delete(setting: Setting)
+    fun delete(setting: Settings)
 
-    @Query("SELECT daily_reminder_json FROM settings WHERE user_id = :userId")
+    @Query("SELECT dailyReminder FROM settings WHERE userId = :userId")
     fun getDailyReminder(userId: Int): String
 }

@@ -1,6 +1,6 @@
 package app.getfeeling.feeling.ui.me
 
-import app.getfeeling.feeling.room.entities.Feeling
+import app.getfeeling.feeling.valueobjects.Feeling
 import org.threeten.bp.YearMonth
 
 class FeelingMonth(private val yearMonth: YearMonth) {

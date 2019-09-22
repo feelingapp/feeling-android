@@ -43,7 +43,7 @@ class SignInFragment : DaggerFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel.tokenModel.observe(this, Observer {
+        viewModel.token.observe(this, Observer {
             if (it != null) {
                 mainNavController?.popBackStack()
             }

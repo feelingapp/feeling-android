@@ -4,10 +4,10 @@ import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import app.getfeeling.feeling.api.FeelingService
-import app.getfeeling.feeling.api.models.ErrorsModel
+import app.getfeeling.feeling.valueobjects.Errors
 import app.getfeeling.feeling.repository.interfaces.IFeelingRepository
 import app.getfeeling.feeling.room.dao.FeelingDao
-import app.getfeeling.feeling.room.entities.Feeling
+import app.getfeeling.feeling.valueobjects.Feeling
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
@@ -20,7 +20,7 @@ import javax.inject.Singleton
 class FeelingRepository @Inject constructor(
     private val feelingDao: FeelingDao,
     private val feelingService: FeelingService,
-    private val errorConverter: Converter<ResponseBody, ErrorsModel>
+    private val errorConverter: Converter<ResponseBody, Errors>
 ) : IFeelingRepository {
 
     override fun getAllFeelings(): LiveData<List<Feeling>> = feelingDao.getAllFeelings()

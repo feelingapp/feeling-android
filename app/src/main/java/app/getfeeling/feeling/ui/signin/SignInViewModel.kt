@@ -4,18 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.getfeeling.feeling.BuildConfig
-import app.getfeeling.feeling.api.models.GetTokenModel
-import app.getfeeling.feeling.api.models.GrantType
-import app.getfeeling.feeling.api.models.TokenModel
 import app.getfeeling.feeling.repository.interfaces.ITokenRepository
 import app.getfeeling.feeling.util.PKCE
+import app.getfeeling.feeling.valueobjects.GrantType
+import app.getfeeling.feeling.valueobjects.Token
+import app.getfeeling.feeling.valueobjects.TokenRequest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SignInViewModel @Inject constructor(private val repository: ITokenRepository) :
     ViewModel() {
 
-    val tokenModel: LiveData<TokenModel> = repository.tokenModel
+    val token: LiveData<Token> = repository.token
 
     private lateinit var state: String
     private lateinit var codeVerifier: String
@@ -38,7 +38,7 @@ class SignInViewModel @Inject constructor(private val repository: ITokenReposito
     fun handleAuthorizationCallback(authorizationCode: String, receivedState: String) {
         if (state != receivedState) return
 
-        val getTokenModel = GetTokenModel(
+        val tokenRequest = TokenRequest(
             GrantType.AUTHORIZATION_CODE,
             authorizationCode,
             codeVerifier,
@@ -46,7 +46,7 @@ class SignInViewModel @Inject constructor(private val repository: ITokenReposito
         )
 
         viewModelScope.launch {
-            repository.exchangeCodeForToken(getTokenModel)
+            repository.exchangeCodeForToken(tokenRequest)
         }
     }
 

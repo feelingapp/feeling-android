@@ -1,10 +1,10 @@
-package app.getfeeling.feeling.api.models
+package app.getfeeling.feeling.valueobjects
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class TokenModel(
+data class Token(
     @Json(name = "access_token") val accessToken: String,
     @Json(name = "expires_in") val expiresIn: String,
     @Json(name = "token_type") val tokenType: String,

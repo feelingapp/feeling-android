@@ -1,6 +1,6 @@
 package app.getfeeling.feeling.repository.interfaces
 
-import app.getfeeling.feeling.models.User
+import app.getfeeling.feeling.valueobjects.User
 import app.getfeeling.feeling.repository.helpers.LiveResource
 
 interface IUserRepository {
