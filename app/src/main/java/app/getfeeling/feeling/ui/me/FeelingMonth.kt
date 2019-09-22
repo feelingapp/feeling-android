@@ -20,4 +20,6 @@ class FeelingMonth(private val yearMonth: YearMonth) {
     val monthArrayValue: Int get() = yearMonth.month.value - 1
 
     val monthLength: Int get() = yearMonth.month.length(yearMonth.isLeapYear)
+
+    val year: Int get() = yearMonth.year
 }

@@ -20,9 +20,7 @@ class CalendarDayHolder(private val context: Context, val binding: CalendarDayBi
             val background = getDrawable(R.drawable.round_rect_shape)!! as GradientDrawable
 
             // Give border to current day
-            if ((position - feelingMonth.dayOffset) == (OffsetDateTime.now().dayOfMonth - 1)
-                && feelingMonth.monthValue == OffsetDateTime.now().monthValue
-            ) {
+            if (isCurrentDay(position, feelingMonth)) {
                 background.setStroke(6, getColour(R.color.emotionBorder))
             } else {
                 // for some reason I have to clear the stroke
@@ -44,6 +42,15 @@ class CalendarDayHolder(private val context: Context, val binding: CalendarDayBi
             }
             imageEmoji.background = background
         }
+    }
+
+    private fun isCurrentDay(
+        position: Int,
+        feelingMonth: FeelingMonth
+    ): Boolean = with(OffsetDateTime.now()) {
+        ((position - feelingMonth.dayOffset) == (dayOfMonth - 1)
+                && feelingMonth.monthValue == monthValue
+                && feelingMonth.year == year)
     }
 
     private fun getColour(colour: Int) = ContextCompat.getColor(context, colour)
