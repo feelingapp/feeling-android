@@ -19,6 +19,9 @@
         <action
                 android:id="@+id/action_me_fragment_to_sign_in_fragment"
                 app:destination="@id/sign_in_fragment" />
+        <action
+                android:id="@+id/action_me_fragment_to_day_fragment"
+                app:destination="@id/day_fragment" />
     </fragment>
 
     <fragment
@@ -26,4 +29,15 @@
             android:name="app.getfeeling.feeling.ui.settings.SettingsFragment"
             android:label="SettingsFragment"
             tools:layout="@layout/settings_fragment" />
+
+    <fragment
+            android:id="@+id/day_fragment"
+            android:name="app.getfeeling.feeling.ui.day.DayFragment"
+            android:label="DayFragment"
+            tools:layout="@layout/day_fragment">
+        <argument
+                android:name="feelingId"
+                android:defaultValue="-1"
+                app:argType="integer" />
+    </fragment>
 </navigation>

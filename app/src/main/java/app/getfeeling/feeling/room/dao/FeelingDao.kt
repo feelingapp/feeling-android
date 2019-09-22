@@ -9,6 +9,10 @@ import app.getfeeling.feeling.room.entities.Feeling
 
 @Dao
 interface FeelingDao {
+
+    @Query("SELECT * FROM feelings WHERE id = :id")
+    fun get(id: Int): LiveData<Feeling>
+
     @Insert
     suspend fun insert(feeling: Feeling)
 

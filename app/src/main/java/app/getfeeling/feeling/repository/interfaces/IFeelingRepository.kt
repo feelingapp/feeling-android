@@ -9,6 +9,8 @@ interface IFeelingRepository {
 
     fun getAllFeelings(): LiveData<List<Feeling>>
 
+    fun getFeeling(id: Int): LiveData<Feeling>
+
     suspend fun addFeeling(feeling: Feeling)
 }
 

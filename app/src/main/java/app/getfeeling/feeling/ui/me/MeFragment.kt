@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
@@ -63,7 +64,15 @@ class MeFragment : DaggerFragment() {
             viewModel = meViewModel
             with(recyclerView) {
                 layoutManager = calendarLayoutManager.get()
-                adapter = calendarMonthAdapter
+                adapter = calendarMonthAdapter.apply {
+                    setOnItemClickListener(AdapterView.OnItemClickListener { _, _, _, id ->
+                        mainNavController?.navigate(
+                            MeFragmentDirections.actionMeFragmentToDayFragment(
+                                id.toInt()
+                            )
+                        )
+                    })
+                }
             }
         }
     }
