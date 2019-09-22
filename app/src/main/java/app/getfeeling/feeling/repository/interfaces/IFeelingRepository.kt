@@ -1,7 +1,7 @@
 package app.getfeeling.feeling.repository.interfaces
 
 import androidx.lifecycle.LiveData
-import app.getfeeling.feeling.room.entities.Feeling
+import app.getfeeling.feeling.valueobjects.Feeling
 
 interface IFeelingRepository {
 

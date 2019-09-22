@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import app.getfeeling.feeling.room.entities.Feeling
+import app.getfeeling.feeling.valueobjects.Feeling
 
 @Dao
 interface FeelingDao {

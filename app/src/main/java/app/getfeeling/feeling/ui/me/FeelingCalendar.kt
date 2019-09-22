@@ -1,6 +1,6 @@
 package app.getfeeling.feeling.ui.me
 
-import app.getfeeling.feeling.room.entities.Feeling
+import app.getfeeling.feeling.valueobjects.Feeling
 import org.threeten.bp.Month
 import org.threeten.bp.YearMonth
 
@@ -24,11 +24,11 @@ class FeelingCalendar {
 
     fun insert(feeling: Feeling) {
         // make sure all months exist up till oldest
-        while (oldestFeelingMonth.isAfter(feeling.getYearMonth())) {
+        while (oldestFeelingMonth.isAfter(feeling.yearMonth)) {
             addFeelingMonth()
         }
 
-        feelingMonths[feeling.getYearMonth().monthsBeforeNow()].insert(feeling)
+        feelingMonths[feeling.yearMonth.monthsBeforeNow()].insert(feeling)
     }
 
     fun numOfMonths() = feelingMonths.size

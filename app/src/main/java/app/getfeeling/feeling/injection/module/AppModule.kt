@@ -8,7 +8,7 @@ import androidx.room.Room
 import app.getfeeling.feeling.BuildConfig
 import app.getfeeling.feeling.api.AuthorizationInterceptor
 import app.getfeeling.feeling.api.FeelingService
-import app.getfeeling.feeling.api.models.ErrorsModel
+import app.getfeeling.feeling.valueobjects.Errors
 import app.getfeeling.feeling.repository.FeelingRepository
 import app.getfeeling.feeling.repository.TokenRepository
 import app.getfeeling.feeling.repository.UserRepository
@@ -101,22 +101,22 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideErrorConverter(retrofit: Retrofit): Converter<ResponseBody, ErrorsModel> =
-        retrofit.responseBodyConverter(ErrorsModel::class.java, arrayOfNulls(0))
+    fun provideErrorConverter(retrofit: Retrofit): Converter<ResponseBody, Errors> =
+        retrofit.responseBodyConverter(Errors::class.java, arrayOfNulls(0))
 
     @Singleton
     @Provides
     fun provideFeelingRepository(
         feelingDao: FeelingDao,
         feelingService: FeelingService,
-        errorConverter: Converter<ResponseBody, ErrorsModel>
+        errorConverter: Converter<ResponseBody, Errors>
     ): IFeelingRepository = FeelingRepository(feelingDao, feelingService, errorConverter)
 
     @Singleton
     @Provides
     fun provideTokenRepository(
         feelingService: FeelingService,
-        errorConverter: Converter<ResponseBody, ErrorsModel>,
+        errorConverter: Converter<ResponseBody, Errors>,
         moshi: Moshi,
         context: Context
     ): ITokenRepository = TokenRepository(feelingService, errorConverter, moshi, context)

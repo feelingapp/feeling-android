@@ -1,7 +1,15 @@
 package app.getfeeling.feeling.api
 
 import app.getfeeling.feeling.TestHelper
-import app.getfeeling.feeling.api.models.*
+import app.getfeeling.feeling.api.models.AccountModelJsonAdapter
+import app.getfeeling.feeling.api.models.FeelingModelJsonAdapter
+import app.getfeeling.feeling.api.models.FeelingsModelJsonAdapter
+import app.getfeeling.feeling.api.models.QuoteModelJsonAdapter
+import app.getfeeling.feeling.valueobjects.Feeling
+import app.getfeeling.feeling.valueobjects.FeelingJsonAdapter
+import app.getfeeling.feeling.valueobjects.FeelingsJsonAdapter
+import app.getfeeling.feeling.valueobjects.Settings
+import app.getfeeling.feeling.util.Emotion
 import com.google.common.truth.Truth.assertThat
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.runBlocking
@@ -120,7 +128,7 @@ class FeelingServiceTest {
     fun getFeelings_success() {
         // arrange
         val expectedResponseBody = TestHelper.getJson("get_feelings_success.json")
-        val expectedFeelingsModel = FeelingsModelJsonAdapter(moshi).fromJson(expectedResponseBody)!!
+        val expectedFeelingsModel = FeelingsJsonAdapter(moshi).fromJson(expectedResponseBody)!!
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
@@ -139,7 +147,7 @@ class FeelingServiceTest {
     fun getFeeling_success() {
         // arrange
         val expectedResponseBody = TestHelper.getJson("get_feeling_success.json")
-        val expectedFeelingModel = FeelingModelJsonAdapter(moshi).fromJson(expectedResponseBody)!!
+        val expectedFeelingModel = FeelingJsonAdapter(moshi).fromJson(expectedResponseBody)!!
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
@@ -173,7 +181,7 @@ class FeelingServiceTest {
 
         // act
         val response = runBlocking {
-            feelingService.createFeeling(FeelingModel("", "", arrayOf(""), ""))
+            feelingService.createFeeling(Feeling("", Emotion.AMAZING, "", listOf()))
         }
 
         // assert
@@ -187,7 +195,7 @@ class FeelingServiceTest {
 
         // act
         val response = runBlocking {
-            feelingService.updateFeeling(1, FeelingModel("", "", arrayOf(""), ""))
+            feelingService.updateFeeling(1, Feeling("", Emotion.AMAZING, "", listOf()))
         }
 
         // assert
@@ -201,7 +209,7 @@ class FeelingServiceTest {
 
         // act
         val response = runBlocking {
-            feelingService.updateFeeling(1, FeelingModel("", "", arrayOf(""), ""))
+            feelingService.updateFeeling(1, Feeling("", Emotion.AMAZING, "", listOf()))
         }
 
         // assert
@@ -267,7 +275,7 @@ class FeelingServiceTest {
     fun getSettings_success() {
         // arrange
         val expectedResponseBody = TestHelper.getJson("get_settings_success.json")
-        val expectedSettingsModel = SettingsModelJsonAdapter(moshi).fromJson(expectedResponseBody)!!
+        val expectedSettings = SettingsJsonAdapter(moshi).fromJson(expectedResponseBody)!!
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
@@ -279,7 +287,7 @@ class FeelingServiceTest {
 
         // assert
         assertThat(response.isSuccessful).isTrue()
-        assertThat(response.body()!!).isEqualTo(expectedSettingsModel)
+        assertThat(response.body()!!).isEqualTo(expectedSettings)
     }
 
     @Test
@@ -301,7 +309,7 @@ class FeelingServiceTest {
 
         // act
         val response = runBlocking {
-            feelingService.updateSettings(SettingsModel(SettingsModel.DailyReminder(true, 0, 0)))
+            feelingService.updateSettings(Settings("", Settings.DailyReminder(true, 0, 0)))
         }
 
         // assert

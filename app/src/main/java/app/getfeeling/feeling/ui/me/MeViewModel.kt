@@ -1,11 +1,11 @@
 package app.getfeeling.feeling.ui.me
 
 import androidx.lifecycle.*
-import app.getfeeling.feeling.models.User
+import app.getfeeling.feeling.valueobjects.User
 import app.getfeeling.feeling.repository.interfaces.IFeelingRepository
 import app.getfeeling.feeling.repository.interfaces.ITokenRepository
 import app.getfeeling.feeling.repository.interfaces.IUserRepository
-import app.getfeeling.feeling.room.entities.Feeling
+import app.getfeeling.feeling.valueobjects.Feeling
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
