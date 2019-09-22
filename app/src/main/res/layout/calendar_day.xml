@@ -18,6 +18,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/calendar_day_desc"
                 android:scaleType="fitCenter"
+                android:padding="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
