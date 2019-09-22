@@ -8,7 +8,6 @@ import androidx.room.Room
 import app.getfeeling.feeling.BuildConfig
 import app.getfeeling.feeling.api.AuthorizationInterceptor
 import app.getfeeling.feeling.api.FeelingService
-import app.getfeeling.feeling.valueobjects.Errors
 import app.getfeeling.feeling.repository.FeelingRepository
 import app.getfeeling.feeling.repository.TokenRepository
 import app.getfeeling.feeling.repository.UserRepository
@@ -22,6 +21,7 @@ import app.getfeeling.feeling.ui.me.calendarDay.AbstractCalendarDayAdapter
 import app.getfeeling.feeling.ui.me.calendarDay.CalendarDayAdapter
 import app.getfeeling.feeling.ui.me.calendarMonth.AbstractCalendarMonthAdapter
 import app.getfeeling.feeling.ui.me.calendarMonth.CalendarMonthAdapter
+import app.getfeeling.feeling.valueobjects.Errors
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -38,9 +38,11 @@ import javax.inject.Singleton
 class AppModule {
     @Singleton
     @Provides
-    fun provideDatabase(app: Application): FeelingDatabase =
+    fun provideDatabase(app: Application, moshi: Moshi): FeelingDatabase =
         Room.databaseBuilder(app, FeelingDatabase::class.java, "FeelingDatabase.db")
-            .build()
+            .build().apply {
+                FeelingDatabase.moshi = moshi
+            }
 
     @Singleton
     @Provides

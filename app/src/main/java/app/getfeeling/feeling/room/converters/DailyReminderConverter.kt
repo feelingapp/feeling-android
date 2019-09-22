@@ -1,11 +1,11 @@
 package app.getfeeling.feeling.room.converters
 
 import androidx.room.TypeConverter
+import app.getfeeling.feeling.room.FeelingDatabase
 import app.getfeeling.feeling.valueobjects.Settings
-import com.squareup.moshi.Moshi
 
 object DailyReminderConverter {
-    private val adapter = Moshi.Builder().build().adapter(Settings.DailyReminder::class.java)
+    private val adapter = FeelingDatabase.moshi.adapter(Settings.DailyReminder::class.java)
 
     @TypeConverter
     @JvmStatic
