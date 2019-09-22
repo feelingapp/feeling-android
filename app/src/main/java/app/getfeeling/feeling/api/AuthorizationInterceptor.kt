@@ -1,7 +1,7 @@
 package app.getfeeling.feeling.api
 
 import android.content.Context
-import app.getfeeling.feeling.api.models.TokenModel
+import app.getfeeling.feeling.valueobjects.Token
 import app.getfeeling.feeling.util.SecurePreferencesHelper
 import com.squareup.moshi.Moshi
 import okhttp3.Interceptor
@@ -29,8 +29,8 @@ class AuthorizationInterceptor @Inject constructor(
         return chain.proceed(requestBuilder.build())
     }
 
-    private fun getTokenModel(): TokenModel? {
-        val jsonAdapter = moshi.adapter(TokenModel::class.java)
+    private fun getTokenModel(): Token? {
+        val jsonAdapter = moshi.adapter(Token::class.java)
         val json = SecurePreferencesHelper.getValue(context, "TOKEN")
 
         return if (json != null) jsonAdapter.fromJson(json) else null

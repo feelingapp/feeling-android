@@ -4,7 +4,6 @@ import androidx.room.TypeConverter
 import app.getfeeling.feeling.util.Emotion
 
 object EmotionConverter {
-
     @TypeConverter
     @JvmStatic
     fun toEmotion(value: String): Emotion = Emotion.valueOf(value)

@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import app.getfeeling.feeling.R
 import app.getfeeling.feeling.databinding.CalendarDayBinding
-import app.getfeeling.feeling.room.entities.Feeling
+import app.getfeeling.feeling.valueobjects.Feeling
 import org.threeten.bp.OffsetDateTime
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package app.getfeeling.feeling.api.models
+package app.getfeeling.feeling.valueobjects
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -12,7 +12,7 @@ enum class GrantType {
 }
 
 @JsonClass(generateAdapter = true)
-data class GetTokenModel(
+data class TokenRequest(
     @Json(name = "grant_type") val grantType: GrantType,
     @Json(name = "code") val code: String,
     @Json(name = "code_verifier") val codeVerifier: String,

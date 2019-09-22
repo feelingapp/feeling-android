@@ -1,15 +1,15 @@
 package app.getfeeling.feeling.repository.interfaces
 
 import androidx.lifecycle.LiveData
-import app.getfeeling.feeling.api.models.GetTokenModel
-import app.getfeeling.feeling.api.models.TokenModel
+import app.getfeeling.feeling.valueobjects.Token
+import app.getfeeling.feeling.valueobjects.TokenRequest
 
 interface ITokenRepository {
-    val tokenModel: LiveData<TokenModel>
+    val token: LiveData<Token>
 
-    suspend fun exchangeCodeForToken(getTokenModel: GetTokenModel)
+    suspend fun exchangeCodeForToken(tokenRequest: TokenRequest)
 
-    suspend fun saveToken(tokenModel: TokenModel)
+    suspend fun saveToken(token: Token)
 
     suspend fun clearToken()
 

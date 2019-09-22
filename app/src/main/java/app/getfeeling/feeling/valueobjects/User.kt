@@ -1,4 +1,4 @@
-package app.getfeeling.feeling.models
+package app.getfeeling.feeling.valueobjects
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

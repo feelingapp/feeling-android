@@ -61,7 +61,7 @@ class MainSettingsFragment : PreferenceFragmentCompat(),
     private fun signOut() {
         viewModel.signOut()
 
-        viewModel.tokenModel.observe(this, Observer {
+        viewModel.token.observe(this, Observer {
             if (it == null) {
                 mainNavController?.popBackStack()
             }
