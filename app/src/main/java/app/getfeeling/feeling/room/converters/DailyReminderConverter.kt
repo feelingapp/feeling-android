@@ -3,9 +3,10 @@ package app.getfeeling.feeling.room.converters
 import androidx.room.TypeConverter
 import app.getfeeling.feeling.room.FeelingDatabase
 import app.getfeeling.feeling.valueobjects.Settings
+import app.getfeeling.feeling.valueobjects.Settings_DailyReminderJsonAdapter
 
 object DailyReminderConverter {
-    private val adapter = FeelingDatabase.moshi.adapter(Settings.DailyReminder::class.java)
+    private val adapter = Settings_DailyReminderJsonAdapter(FeelingDatabase.moshi)
 
     @TypeConverter
     @JvmStatic
