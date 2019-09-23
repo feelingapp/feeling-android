@@ -7,7 +7,7 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import app.getfeeling.feeling.R
 import app.getfeeling.feeling.repository.interfaces.IFeelingRepository
-import app.getfeeling.feeling.room.entities.Feeling
+import app.getfeeling.feeling.valueobjects.Feeling
 import java.util.*
 import javax.inject.Inject
 
