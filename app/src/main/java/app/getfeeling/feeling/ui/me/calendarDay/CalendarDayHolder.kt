@@ -46,9 +46,9 @@ class CalendarDayHolder(private val context: Context, val binding: CalendarDayBi
         position: Int,
         feelingMonth: FeelingMonth
     ): Boolean = with(OffsetDateTime.now()) {
-        ((position - feelingMonth.dayOffset) == (dayOfMonth - 1)
+        (position - feelingMonth.dayOffset) == (dayOfMonth - 1)
                 && feelingMonth.monthValue == monthValue
-                && feelingMonth.year == year)
+                && feelingMonth.year == year
     }
 
     private fun getColour(colour: Int) = ContextCompat.getColor(context, colour)
