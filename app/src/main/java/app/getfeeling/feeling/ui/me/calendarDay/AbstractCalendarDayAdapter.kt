@@ -5,5 +5,10 @@ import app.getfeeling.feeling.ui.me.FeelingMonth
 
 abstract class AbstractCalendarDayAdapter : BaseAdapter() {
 
-    lateinit var feelingMonth: FeelingMonth
+    internal lateinit var feelingMonth: FeelingMonth
+
+    fun setFeelingMonth(feelingMonth: FeelingMonth) {
+        this.feelingMonth = feelingMonth
+        notifyDataSetChanged()
+    }
 }

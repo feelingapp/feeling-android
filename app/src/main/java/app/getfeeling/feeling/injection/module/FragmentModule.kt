@@ -1,5 +1,6 @@
 package app.getfeeling.feeling.injection.module
 
+import app.getfeeling.feeling.ui.day.DayFragment
 import app.getfeeling.feeling.ui.me.MeFragment
 import app.getfeeling.feeling.ui.settings.MainSettingsFragment
 import app.getfeeling.feeling.ui.settings.SettingsFragment
@@ -21,4 +22,7 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun contributeSignInFragment(): SignInFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeDayFragment(): DayFragment
 }

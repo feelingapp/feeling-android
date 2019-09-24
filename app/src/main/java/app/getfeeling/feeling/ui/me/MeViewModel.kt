@@ -1,19 +1,20 @@
 package app.getfeeling.feeling.ui.me
 
 import androidx.lifecycle.*
-import app.getfeeling.feeling.valueobjects.User
 import app.getfeeling.feeling.repository.interfaces.IFeelingRepository
 import app.getfeeling.feeling.repository.interfaces.ITokenRepository
 import app.getfeeling.feeling.repository.interfaces.IUserRepository
 import app.getfeeling.feeling.valueobjects.Feeling
+import app.getfeeling.feeling.valueobjects.User
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MeViewModel @Inject constructor(
     private val userRepository: IUserRepository,
-    private val tokenRepository: ITokenRepository,
+    tokenRepository: ITokenRepository,
     feelingRepository: IFeelingRepository
 ) : ViewModel() {
+
     private val userId = tokenRepository.getUserId()
 
     private val _user = MediatorLiveData<User?>()
@@ -28,12 +29,10 @@ class MeViewModel @Inject constructor(
             }
         }
 
-    fun getUser() {
-        viewModelScope.launch {
-            userId?.apply {
-                userRepository.getUser(userId).apply {
-                    _user.addSource(this.data) { _user.postValue(it) }
-                }
+    fun getUser() = viewModelScope.launch {
+        userId?.apply {
+            userRepository.getUser(userId).apply {
+                _user.addSource(this.data) { _user.postValue(it) }
             }
         }
     }

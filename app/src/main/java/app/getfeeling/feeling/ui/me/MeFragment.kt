@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
@@ -12,6 +13,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import app.getfeeling.feeling.R
 import app.getfeeling.feeling.databinding.MeFragmentBinding
+import app.getfeeling.feeling.ui.me.calendarDay.CalendarDayHolder
 import app.getfeeling.feeling.ui.me.calendarMonth.AbstractCalendarMonthAdapter
 import app.getfeeling.feeling.ui.signin.SignInViewModel
 import dagger.android.support.DaggerFragment
@@ -63,7 +65,15 @@ class MeFragment : DaggerFragment() {
             viewModel = meViewModel
             with(recyclerView) {
                 layoutManager = calendarLayoutManager.get()
-                adapter = calendarMonthAdapter
+                adapter = calendarMonthAdapter.apply {
+                    listener = AdapterView.OnItemClickListener { _, view, _, _ ->
+                        mainNavController?.navigate(
+                            MeFragmentDirections.actionMeFragmentToDayFragment(
+                                (view.tag as CalendarDayHolder).feelingId
+                            )
+                        )
+                    }
+                }
             }
         }
     }

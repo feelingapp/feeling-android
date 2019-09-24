@@ -25,6 +25,8 @@ class FeelingRepository @Inject constructor(
 
     override fun getAllFeelings(): LiveData<List<Feeling>> = feelingDao.getAllFeelings()
 
+    override fun getFeeling(id: String): LiveData<Feeling> = feelingDao.get(id)
+
     override fun getStatus() = liveData(Dispatchers.IO) {
         try {
             val response = feelingService.getStatus()

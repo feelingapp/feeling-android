@@ -14,7 +14,8 @@
             android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.me.MeFragment">
+            tools:context=".ui.me.MeFragment"
+            tools:background="@color/colorLight">
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -33,7 +34,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@{@string/toolbar_welcome(viewModel.user.firstName)}"
-                    android:textColor="@color/colorDark" />
+                    android:textColor="@color/colorDark"
+                    tools:text="Welcome Back Michael" />
         </androidx.appcompat.widget.Toolbar>
 
         <LinearLayout
@@ -82,10 +84,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:clipToPadding="false"
-                android:paddingBottom="172dp"
+                android:paddingBottom="180dp"
                 android:scrollbars="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/days_of_the_week" />
+                app:layout_constraintTop_toBottomOf="@id/days_of_the_week"
+                tools:listitem="@layout/calendar_month"
+                tools:itemCount="30"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
