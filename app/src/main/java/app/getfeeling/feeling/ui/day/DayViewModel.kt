@@ -14,7 +14,7 @@ import javax.inject.Inject
 class DayViewModel @Inject constructor(context: Context, repository: IFeelingRepository) :
     ViewModel() {
 
-    val feelingId: MutableLiveData<Int> = MutableLiveData()
+    private val feelingId: MutableLiveData<String> = MutableLiveData()
 
     val feeling: LiveData<Feeling> = Transformations.switchMap(feelingId) { feelingId ->
         repository.getFeeling(feelingId)
@@ -28,6 +28,10 @@ class DayViewModel @Inject constructor(context: Context, repository: IFeelingRep
 
     val emotion: LiveData<String> = Transformations.map(feeling) { feeling ->
         context.getString(feeling.emotion.getString()).toLowerCase(Locale.getDefault())
+    }
+
+    fun setFeelingId(id: String) {
+        feelingId.value = id
     }
 
     private val ordinalNumbers: Array<String> =

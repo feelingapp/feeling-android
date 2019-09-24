@@ -8,14 +8,10 @@ abstract class AbstractCalendarMonthAdapter : RecyclerView.Adapter<CalendarMonth
 
     internal var feelingCalendar: FeelingCalendar? = null
 
-    internal lateinit var listener: AdapterView.OnItemClickListener
+    lateinit var listener: AdapterView.OnItemClickListener
 
     fun setFeelingCalendar(feelingCalendar: FeelingCalendar) {
         this.feelingCalendar = feelingCalendar
         notifyDataSetChanged()
-    }
-
-    fun setOnItemClickListener(listener: AdapterView.OnItemClickListener) {
-        this.listener = listener
     }
 }

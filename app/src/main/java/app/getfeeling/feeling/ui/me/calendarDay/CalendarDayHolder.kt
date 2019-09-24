@@ -12,6 +12,8 @@ import org.threeten.bp.OffsetDateTime
 
 class CalendarDayHolder(private val context: Context, val binding: CalendarDayBinding) {
 
+    var feelingId: String = ""
+
     fun bind(position: Int, feelingMonth: FeelingMonth) {
         val imageEmoji = binding.imageEmoji
         if (position < feelingMonth.dayOffset) {
@@ -32,6 +34,7 @@ class CalendarDayHolder(private val context: Context, val binding: CalendarDayBi
                 if (this == null) {
                     background.setColorFilter(getColour(R.color.emotionNone))
                 } else {
+                    feelingId = id
                     with(emotion) {
                         imageEmoji.setImageResource(getEmoji())
                         background.setColorFilter(getColour(getColour()))

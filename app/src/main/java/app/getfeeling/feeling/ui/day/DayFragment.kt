@@ -41,7 +41,7 @@ class DayFragment : DaggerFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        dayViewModel.feelingId.value = args.feelingId
+        dayViewModel.setFeelingId(args.feelingId)
         binding.viewModel = dayViewModel
         binding.toolbar.setNavigationOnClickListener { mainNavController?.navigateUp() }
 

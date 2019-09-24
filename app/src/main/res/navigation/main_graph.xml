@@ -37,7 +37,6 @@
             tools:layout="@layout/day_fragment">
         <argument
                 android:name="feelingId"
-                android:defaultValue="-1"
-                app:argType="integer" />
+                app:argType="string" />
     </fragment>
 </navigation>

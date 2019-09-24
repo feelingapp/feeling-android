@@ -11,7 +11,7 @@ import app.getfeeling.feeling.valueobjects.Feeling
 interface FeelingDao {
 
     @Query("SELECT * FROM feelings WHERE id = :id")
-    fun get(id: Int): LiveData<Feeling>
+    fun get(id: String): LiveData<Feeling>
 
     @Insert
     suspend fun insert(feeling: Feeling)

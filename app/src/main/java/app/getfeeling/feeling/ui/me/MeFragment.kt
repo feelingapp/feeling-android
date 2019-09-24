@@ -13,6 +13,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import app.getfeeling.feeling.R
 import app.getfeeling.feeling.databinding.MeFragmentBinding
+import app.getfeeling.feeling.ui.me.calendarDay.CalendarDayHolder
 import app.getfeeling.feeling.ui.me.calendarMonth.AbstractCalendarMonthAdapter
 import app.getfeeling.feeling.ui.signin.SignInViewModel
 import dagger.android.support.DaggerFragment
@@ -65,13 +66,13 @@ class MeFragment : DaggerFragment() {
             with(recyclerView) {
                 layoutManager = calendarLayoutManager.get()
                 adapter = calendarMonthAdapter.apply {
-                    setOnItemClickListener(AdapterView.OnItemClickListener { _, _, _, id ->
+                    listener = AdapterView.OnItemClickListener { _, view, _, _ ->
                         mainNavController?.navigate(
                             MeFragmentDirections.actionMeFragmentToDayFragment(
-                                id.toInt()
+                                (view.tag as CalendarDayHolder).feelingId
                             )
                         )
-                    })
+                    }
                 }
             }
         }
