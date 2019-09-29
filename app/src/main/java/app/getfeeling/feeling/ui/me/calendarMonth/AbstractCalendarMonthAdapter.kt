@@ -1,17 +1,37 @@
 package app.getfeeling.feeling.ui.me.calendarMonth
 
 import android.widget.AdapterView
-import androidx.recyclerview.widget.RecyclerView
-import app.getfeeling.feeling.ui.me.FeelingCalendar
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
+import app.getfeeling.feeling.ui.me.FeelingMonth
 
-abstract class AbstractCalendarMonthAdapter : RecyclerView.Adapter<CalendarMonthHolder>() {
-
-    internal var feelingCalendar: FeelingCalendar? = null
+abstract class AbstractCalendarMonthAdapter :
+    PagedListAdapter<FeelingMonth, CalendarMonthHolder>(DIFF_CALLBACK) {
 
     lateinit var listener: AdapterView.OnItemClickListener
 
-    fun setFeelingCalendar(feelingCalendar: FeelingCalendar) {
-        this.feelingCalendar = feelingCalendar
-        notifyDataSetChanged()
+    companion object {
+        val DIFF_CALLBACK: DiffUtil.ItemCallback<FeelingMonth> =
+            object : DiffUtil.ItemCallback<FeelingMonth>() {
+                override fun areItemsTheSame(
+                    oldItem: FeelingMonth,
+                    newItem: FeelingMonth
+                ): Boolean {
+                    return oldItem.yearMonth === newItem.yearMonth
+                }
+
+                override fun areContentsTheSame(
+                    oldItem: FeelingMonth,
+                    newItem: FeelingMonth
+                ): Boolean {
+                    if (oldItem.feelings.size != newItem.feelings.size) return false
+
+                    for (i in 0..oldItem.feelings.size) {
+                        if (oldItem.feelings[i] != newItem.feelings[i]) return false
+                    }
+
+                    return true
+                }
+            }
     }
 }

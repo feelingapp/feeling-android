@@ -6,7 +6,7 @@ import org.threeten.bp.YearMonth
 
 interface IFeelingRepository {
 
-    fun getAllFeelings(): LiveData<List<Feeling>>
+    fun getFeelings(yearMonth: YearMonth): List<Feeling>
 
     fun getFeeling(id: String): LiveData<Feeling>
 

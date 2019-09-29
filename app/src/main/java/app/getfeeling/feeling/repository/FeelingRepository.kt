@@ -7,6 +7,7 @@ import app.getfeeling.feeling.room.dao.FeelingDao
 import app.getfeeling.feeling.valueobjects.Feeling
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.threeten.bp.YearMonth
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -15,7 +16,8 @@ import javax.inject.Singleton
 class FeelingRepository @Inject constructor(private val feelingDao: FeelingDao) :
     IFeelingRepository {
 
-    override fun getAllFeelings(): LiveData<List<Feeling>> = feelingDao.getAllFeelings()
+    override fun getFeelings(yearMonth: YearMonth): List<Feeling> =
+        feelingDao.get(((yearMonth.monthValue).toString().padStart(2, '0')), yearMonth.year.toString())
 
     override fun getFeeling(id: String): LiveData<Feeling> = feelingDao.get(id)
 

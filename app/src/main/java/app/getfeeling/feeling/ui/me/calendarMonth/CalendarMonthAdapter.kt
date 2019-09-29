@@ -27,14 +27,10 @@ class CalendarMonthAdapter @Inject constructor(
     }
 
     override fun onBindViewHolder(holder: CalendarMonthHolder, monthsBeforeCurrent: Int) {
-        feelingCalendar?.let { feelingCalendar ->
-            val feelingMonth = feelingCalendar[monthsBeforeCurrent]
-            val calendarDayAdapter = calendarDayAdapterProvider.get().apply {
-                setFeelingMonth(feelingMonth)
-            }
-            holder.bind(calendarDayAdapter, months[feelingMonth.monthArrayValue], listener)
+        val feelingMonth = getItem(monthsBeforeCurrent)!!
+        val calendarDayAdapter = calendarDayAdapterProvider.get().apply {
+            setFeelingMonth(feelingMonth)
         }
+        holder.bind(calendarDayAdapter, months[feelingMonth.monthArrayValue], listener)
     }
-
-    override fun getItemCount(): Int = feelingCalendar?.numOfMonths() ?: 0
 }
