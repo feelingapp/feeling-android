@@ -21,7 +21,10 @@
                 app:destination="@id/sign_in_fragment" />
         <action
                 android:id="@+id/action_me_fragment_to_day_fragment"
-                app:destination="@id/day_fragment" />
+                app:destination="@id/day_fragment"
+                app:enterAnim="@anim/slide_in_bottom"
+                app:exitAnim="@anim/fixed"
+                app:popExitAnim="@anim/fade_out" />
     </fragment>
 
     <fragment
