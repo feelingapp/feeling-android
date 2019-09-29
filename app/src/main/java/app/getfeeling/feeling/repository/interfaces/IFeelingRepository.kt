@@ -2,10 +2,9 @@ package app.getfeeling.feeling.repository.interfaces
 
 import androidx.lifecycle.LiveData
 import app.getfeeling.feeling.valueobjects.Feeling
+import org.threeten.bp.YearMonth
 
 interface IFeelingRepository {
-
-    fun getStatus(): LiveData<String>
 
     fun getAllFeelings(): LiveData<List<Feeling>>
 
