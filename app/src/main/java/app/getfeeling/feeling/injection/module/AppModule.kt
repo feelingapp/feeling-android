@@ -3,7 +3,6 @@ package app.getfeeling.feeling.injection.module
 import android.app.Application
 import android.content.Context
 import androidx.paging.Config
-import androidx.paging.DataSource
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +19,6 @@ import app.getfeeling.feeling.repository.interfaces.IUserRepository
 import app.getfeeling.feeling.room.FeelingDatabase
 import app.getfeeling.feeling.room.dao.FeelingDao
 import app.getfeeling.feeling.room.dao.UserDao
-import app.getfeeling.feeling.ui.me.FeelingMonth
 import app.getfeeling.feeling.ui.me.FeelingMonthDataSourceFactory
 import app.getfeeling.feeling.ui.me.calendarDay.AbstractCalendarDayAdapter
 import app.getfeeling.feeling.ui.me.calendarDay.CalendarDayAdapter
@@ -33,7 +31,6 @@ import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
-import org.threeten.bp.YearMonth
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -153,8 +150,7 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideFeelingMonthDataSourceFactory(feelingRepository: FeelingRepository):
-            DataSource.Factory<YearMonth, FeelingMonth> =
+    fun provideFeelingMonthDataSourceFactory(feelingRepository: FeelingRepository): FeelingMonthDataSourceFactory =
         FeelingMonthDataSourceFactory(feelingRepository)
 
     @Singleton
