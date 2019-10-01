@@ -1,8 +1,8 @@
 package app.getfeeling.feeling.api
 
 import android.content.Context
-import app.getfeeling.feeling.valueobjects.Token
 import app.getfeeling.feeling.util.SecurePreferencesHelper
+import app.getfeeling.feeling.valueobjects.Token
 import com.squareup.moshi.Moshi
 import okhttp3.Interceptor
 import okhttp3.Response
