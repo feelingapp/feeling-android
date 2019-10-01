@@ -1,11 +1,11 @@
 package app.getfeeling.feeling.repository
 
 import app.getfeeling.feeling.api.FeelingService
-import app.getfeeling.feeling.valueobjects.User
 import app.getfeeling.feeling.repository.helpers.LiveResource
 import app.getfeeling.feeling.repository.helpers.NetworkBoundResource
 import app.getfeeling.feeling.repository.interfaces.IUserRepository
 import app.getfeeling.feeling.room.dao.UserDao
+import app.getfeeling.feeling.valueobjects.User
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(

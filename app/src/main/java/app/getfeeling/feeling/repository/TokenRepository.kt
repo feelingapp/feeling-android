@@ -6,11 +6,11 @@ import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import app.getfeeling.feeling.api.FeelingService
-import app.getfeeling.feeling.valueobjects.Errors
-import app.getfeeling.feeling.valueobjects.TokenRequest
-import app.getfeeling.feeling.valueobjects.Token
 import app.getfeeling.feeling.repository.interfaces.ITokenRepository
 import app.getfeeling.feeling.util.SecurePreferencesHelper
+import app.getfeeling.feeling.valueobjects.Errors
+import app.getfeeling.feeling.valueobjects.Token
+import app.getfeeling.feeling.valueobjects.TokenRequest
 import com.auth0.android.jwt.JWT
 import com.squareup.moshi.Moshi
 import de.adorsys.android.securestoragelibrary.SecurePreferences

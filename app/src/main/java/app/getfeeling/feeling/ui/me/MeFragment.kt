@@ -56,9 +56,9 @@ class MeFragment : DaggerFragment() {
         super.onActivityCreated(savedInstanceState)
 
         meViewModel.getUser()
-
-        meViewModel.feelingCalendar.observe(this) { feelingCalendar ->
-            calendarMonthAdapter.setFeelingCalendar(feelingCalendar)
+        meViewModel.feelingMonths.observe(this, calendarMonthAdapter::submitList)
+        meViewModel.allFeelings.observe(this) {
+            meViewModel.invalidateDataSource()
         }
 
         with(binding) {

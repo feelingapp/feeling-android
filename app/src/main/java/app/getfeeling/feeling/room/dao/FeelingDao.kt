@@ -13,12 +13,15 @@ interface FeelingDao {
     @Query("SELECT * FROM feelings WHERE id = :id")
     fun get(id: String): LiveData<Feeling>
 
+    @Query("SELECT * FROM feelings WHERE strftime('%m', createdAt) = :month AND strftime('%Y', createdAt) = :year")
+    fun get(month: String, year: String): List<Feeling>
+
+    @Query("SELECT * FROM feelings")
+    fun getAll(): LiveData<List<Feeling>>
+
     @Insert
     suspend fun insert(feeling: Feeling)
 
     @Delete
     suspend fun delete(feeling: Feeling)
-
-    @Query("SELECT * FROM feelings")
-    fun getAllFeelings(): LiveData<List<Feeling>>
 }

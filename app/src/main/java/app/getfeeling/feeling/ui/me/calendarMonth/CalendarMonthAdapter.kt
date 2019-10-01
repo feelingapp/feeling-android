@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import app.getfeeling.feeling.R
 import app.getfeeling.feeling.databinding.CalendarMonthBinding
 import app.getfeeling.feeling.ui.me.calendarDay.AbstractCalendarDayAdapter
+import org.threeten.bp.Year
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -15,6 +16,8 @@ class CalendarMonthAdapter @Inject constructor(
 ) : AbstractCalendarMonthAdapter() {
 
     private val months: Array<String> = context.resources.getStringArray(R.array.months)
+
+    private val currentYear = Year.now().value
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarMonthHolder {
         val calendarMonthBinding = CalendarMonthBinding.inflate(
@@ -27,14 +30,18 @@ class CalendarMonthAdapter @Inject constructor(
     }
 
     override fun onBindViewHolder(holder: CalendarMonthHolder, monthsBeforeCurrent: Int) {
-        feelingCalendar?.let { feelingCalendar ->
-            val feelingMonth = feelingCalendar[monthsBeforeCurrent]
-            val calendarDayAdapter = calendarDayAdapterProvider.get().apply {
-                setFeelingMonth(feelingMonth)
-            }
-            holder.bind(calendarDayAdapter, months[feelingMonth.monthArrayValue], listener)
+        val feelingMonth = getItem(monthsBeforeCurrent)!!
+        val calendarDayAdapter = calendarDayAdapterProvider.get().apply {
+            setFeelingMonth(feelingMonth)
         }
-    }
 
-    override fun getItemCount(): Int = feelingCalendar?.numOfMonths() ?: 0
+        val month = months[feelingMonth.monthArrayValue]
+        val headerText =
+            if (currentYear == feelingMonth.year) month else "$month ${feelingMonth.year}"
+        holder.bind(
+            calendarDayAdapter,
+            headerText,
+            listener
+        )
+    }
 }
