@@ -10,11 +10,11 @@ class CalendarMonthHolder(private val binding: CalendarMonthBinding) :
 
     fun bind(
         calendarDayAdapter: AbstractCalendarDayAdapter,
-        monthText: String,
+        headerText: String,
         listener: AdapterView.OnItemClickListener
     ) {
         with(binding) {
-            month.text = monthText
+            header.text = headerText
             feelingGrid.adapter = calendarDayAdapter
             feelingGrid.onItemClickListener = listener
         }
