@@ -8,9 +8,11 @@ jobs:
 
     steps:
       - uses: Raul6469/android-gradle-action@master
-      - name: Run Unit Tests
+        name: Run Unit Tests
+        with:
+          args: test -PpreDexEnable=false
         env:
           ANDROID_LICENCE: ${{ secrets.ANDROID_LICENCE }}
 
       - uses: vgaidarji/android-github-actions/emulator@v1.0.0
-      - name: Run UI Tests
+        name: Run UI Tests
