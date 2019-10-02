@@ -60,9 +60,7 @@ class SignInFragment : DaggerFragment() {
         val codeChallenge = viewModel.generateCodeChallenge()
         val state = viewModel.generateState()
 
-        val uri = Uri.Builder()
-            .scheme("http")
-            .authority(BuildConfig.FEELING_WEBSITE_URL)
+        val uri = Uri.parse(BuildConfig.FEELING_WEBSITE_URL).buildUpon()
             .appendPath("authorize")
             .appendQueryParameter("client_id", BuildConfig.FEELING_API_CLIENT_ID)
             .appendQueryParameter("response_type", "code")
