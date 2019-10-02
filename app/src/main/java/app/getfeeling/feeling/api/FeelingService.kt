@@ -15,7 +15,7 @@ interface FeelingService {
 
     // User endpoints
     @GET("user/exists")
-    suspend fun checkIfAccountExists(@Query("email") email: String): Response<UserExists>
+    suspend fun checkIfUserExists(@Query("email") email: String): Response<UserExists>
 
     @GET("user/me")
     suspend fun getMe(): Response<User>
@@ -25,16 +25,16 @@ interface FeelingService {
     suspend fun getFeelings(): Response<Feelings>
 
     @GET("feeling/:{id}")
-    suspend fun getFeeling(@Path("id") id: Int): Response<Feeling>
+    suspend fun getFeeling(@Path("id") id: String): Response<Feeling>
 
     @POST("feeling")
     suspend fun createFeeling(@Body feeling: Feeling): Response<Unit>
 
     @PUT("feeling/:{id}")
-    suspend fun updateFeeling(@Path("id") id: Int, @Body feeling: Feeling): Response<Unit>
+    suspend fun updateFeeling(@Path("id") id: String, @Body feeling: Feeling): Response<Unit>
 
     @DELETE("feeling/:{id}")
-    suspend fun deleteFeeling(@Path("id") id: Int): Response<Unit>
+    suspend fun deleteFeeling(@Path("id") id: String): Response<Unit>
 
     // Quote endpoints
     @GET("quote/:{emotion}")
