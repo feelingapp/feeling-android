@@ -1,0 +1,16 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: Raul6469/android-gradle-action@master
+      - name: Run Unit Tests
+        env:
+          ANDROID_LICENCE: ${{ secrets.ANDROID_LICENCE }}
+
+      - uses: vgaidarji/android-github-actions/emulator@v1.0.0
+      - name: Run UI Tests
