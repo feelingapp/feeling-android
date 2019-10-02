@@ -1,4 +1,6 @@
 {
+  "id": "id",
   "quote": "Somewhere, something incredible is waiting to be known.",
-  "author": "Carl Sagan"
+  "author": "Carl Sagan",
+  "emotion": "UNSURE"
 }

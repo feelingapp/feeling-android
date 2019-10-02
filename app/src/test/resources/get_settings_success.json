@@ -1,4 +1,5 @@
 {
+  "user_id": "user_id",
   "daily_reminder": {
     "enabled": true,
     "hour": 20,
