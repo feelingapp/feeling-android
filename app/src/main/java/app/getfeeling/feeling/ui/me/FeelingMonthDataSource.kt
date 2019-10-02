@@ -39,6 +39,7 @@ class FeelingMonthDataSource(private val feelingRepository: FeelingRepository) :
         requestedLoadSize: Int
     ): Pair<List<FeelingMonth>, YearMonth> {
         val feelingMonths: MutableList<FeelingMonth> = mutableListOf()
+        @Suppress("NAME_SHADOWING")
         var yearMonth = yearMonth
 
         for (i in 0..requestedLoadSize) {
