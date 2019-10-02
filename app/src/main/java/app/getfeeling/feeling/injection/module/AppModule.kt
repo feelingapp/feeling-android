@@ -10,6 +10,7 @@ import androidx.room.Room
 import app.getfeeling.feeling.BuildConfig
 import app.getfeeling.feeling.api.AuthorizationInterceptor
 import app.getfeeling.feeling.api.FeelingService
+import app.getfeeling.feeling.api.adapters.OffsetDateTimeJsonAdapter
 import app.getfeeling.feeling.repository.FeelingRepository
 import app.getfeeling.feeling.repository.TokenRepository
 import app.getfeeling.feeling.repository.UserRepository
@@ -58,11 +59,11 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideMoshi(): Moshi = Moshi.Builder().build()
+    fun provideMoshi(): Moshi = Moshi.Builder().add(OffsetDateTimeJsonAdapter()).build()
 
     @Singleton
     @Provides
-    fun provideConverterFactory(): Converter.Factory = MoshiConverterFactory.create()
+    fun provideConverterFactory(moshi: Moshi): Converter.Factory = MoshiConverterFactory.create(moshi)
 
     @Singleton
     @Provides
