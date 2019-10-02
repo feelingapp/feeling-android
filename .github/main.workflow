@@ -19,8 +19,8 @@ action "Run UI Tests" {
   uses = "vgaidarji/android-github-actions/emulator@v1.0.0"
 }
 
-action "Check", "Run UI Tests" {
-  needs = ["Distribute"]
+action "Publish Code Coverage" {
+  needs = ["Check", "Run UI Tests"]
   uses = "vgaidarji/android-github-actions/build@v1.0.0"
   secrets = ["TOKEN"]
   args = "./gradlew coveralls -PpreDexEnable=false"
