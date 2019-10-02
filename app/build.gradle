@@ -113,6 +113,7 @@ dependencies {
 
     // ThreeTenABP Backport for JSR-310
     implementation "com.jakewharton.threetenabp:threetenabp:1.2.1"
+    testImplementation 'org.threeten:threetenbp:1.4.0'
 
     // Retrofit
     def retrofit2_version = "2.6.1"
