@@ -14,8 +14,8 @@
             android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.me.MeFragment"
-            tools:background="@color/colorLight">
+            tools:background="@color/colorLight"
+            tools:context=".ui.me.MeFragment">
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -89,7 +89,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/days_of_the_week"
-                tools:listitem="@layout/calendar_month"
-                tools:itemCount="30"/>
+                tools:itemCount="30"
+                tools:listitem="@layout/calendar_month" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
