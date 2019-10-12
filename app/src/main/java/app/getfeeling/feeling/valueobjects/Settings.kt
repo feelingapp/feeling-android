@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @Entity(
@@ -16,8 +17,10 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Settings(
     @PrimaryKey
+    @Json(name = "user_id")
     var userId: String,
 
+    @Json(name = "daily_reminder")
     var dailyReminder: DailyReminder
 ) {
     @JsonClass(generateAdapter = true)

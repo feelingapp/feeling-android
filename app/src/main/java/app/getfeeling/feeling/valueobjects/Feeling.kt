@@ -5,6 +5,7 @@ import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import app.getfeeling.feeling.util.Emotion
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import org.threeten.bp.OffsetDateTime
 import org.threeten.bp.YearMonth
@@ -24,6 +25,7 @@ data class Feeling(
     @PrimaryKey
     var id: String,
 
+    @Json(name = "user_id")
     var userId: String,
 
     var emotion: Emotion,
@@ -32,8 +34,10 @@ data class Feeling(
 
     var hashtags: List<String>,
 
+    @Json(name = "created_at")
     var createdAt: OffsetDateTime,
 
+    @Json(name = "updated_at")
     var updatedAt: OffsetDateTime
 ) {
     constructor(

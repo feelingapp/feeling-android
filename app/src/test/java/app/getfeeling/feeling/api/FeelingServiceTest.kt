@@ -1,15 +1,9 @@
 package app.getfeeling.feeling.api
 
 import app.getfeeling.feeling.TestHelper
-import app.getfeeling.feeling.api.models.AccountModelJsonAdapter
-import app.getfeeling.feeling.api.models.FeelingModelJsonAdapter
-import app.getfeeling.feeling.api.models.FeelingsModelJsonAdapter
-import app.getfeeling.feeling.api.models.QuoteModelJsonAdapter
-import app.getfeeling.feeling.valueobjects.Feeling
-import app.getfeeling.feeling.valueobjects.FeelingJsonAdapter
-import app.getfeeling.feeling.valueobjects.FeelingsJsonAdapter
-import app.getfeeling.feeling.valueobjects.Settings
+import app.getfeeling.feeling.api.adapters.OffsetDateTimeJsonAdapter
 import app.getfeeling.feeling.util.Emotion
+import app.getfeeling.feeling.valueobjects.*
 import com.google.common.truth.Truth.assertThat
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.runBlocking
@@ -39,14 +33,14 @@ class FeelingServiceTest {
         mockWebServer = MockWebServer()
         mockWebServer.start()
 
+        moshi = Moshi.Builder().add(OffsetDateTimeJsonAdapter()).build()
+
         feelingService = Retrofit.Builder()
             .baseUrl(mockWebServer.url("/").toString())
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(OkHttpClient().newBuilder().build())
             .build()
             .create(FeelingService::class.java)
-
-        moshi = Moshi.Builder().build()
     }
 
     @After
@@ -83,10 +77,10 @@ class FeelingServiceTest {
     }
 
     @Test
-    fun checkIfAccountExists_success() {
+    fun checkIfUserExists_doesExist() {
         // arrange
-        val expectedResponseBody = TestHelper.getJson("get_accountExists_success.json")
-        val expectedAccountModel = AccountModelJsonAdapter(moshi).fromJson(expectedResponseBody)!!
+        val expectedResponseBody = TestHelper.getJson("get_userExists_doesExist.json")
+        val expectedUserExists = UserExistsJsonAdapter(moshi).fromJson(expectedResponseBody)!!
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
@@ -95,19 +89,19 @@ class FeelingServiceTest {
 
         // act
         val response = runBlocking {
-            feelingService.checkIfAccountExists("someone@gmail.com")
+            feelingService.checkIfUserExists("someone@gmail.com")
         }
 
         // assert
         assertThat(response.isSuccessful).isTrue()
-        assertThat(response.body()!!).isEqualTo(expectedAccountModel)
+        assertThat(response.body()!!).isEqualTo(expectedUserExists)
     }
 
     @Test
-    fun checkIfAccountExists_failure() {
+    fun checkIfUserExists_doesNotExist() {
         // arrange
-        val expectedResponse = TestHelper.getJson("get_accountExists_failure.json")
-        val expectedAccountModel = AccountModelJsonAdapter(moshi).fromJson(expectedResponse)!!
+        val expectedResponse = TestHelper.getJson("get_userExists_doesNotExist.json")
+        val expectedUserExists = UserExistsJsonAdapter(moshi).fromJson(expectedResponse)!!
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
@@ -116,19 +110,38 @@ class FeelingServiceTest {
 
         // act
         val response = runBlocking {
-            feelingService.checkIfAccountExists("someone@gmail.com")
+            feelingService.checkIfUserExists("someone@gmail.com")
         }
 
         // assert
         assertThat(response.isSuccessful).isTrue()
-        assertThat(response.body()!!).isEqualTo(expectedAccountModel)
+        assertThat(response.body()!!).isEqualTo(expectedUserExists)
+    }
+
+    @Test
+    fun getFeeling_success() {
+        // arrange
+        val expectedResponseBody = TestHelper.getJson("get_feeling_success.json")
+        val expectedFeeling = FeelingJsonAdapter(moshi).fromJson(expectedResponseBody)!!
+        mockWebServer.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(expectedResponseBody)
+        )
+
+        // act
+        val response = runBlocking { feelingService.getFeeling("1") }
+
+        // assert
+        assertThat(response.isSuccessful).isTrue()
+        assertThat(response.body()!!).isEqualTo(expectedFeeling)
     }
 
     @Test
     fun getFeelings_success() {
         // arrange
         val expectedResponseBody = TestHelper.getJson("get_feelings_success.json")
-        val expectedFeelingsModel = FeelingsJsonAdapter(moshi).fromJson(expectedResponseBody)!!
+        val expectedFeelings = FeelingsJsonAdapter(moshi).fromJson(expectedResponseBody)!!
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
@@ -140,26 +153,7 @@ class FeelingServiceTest {
 
         // assert
         assertThat(response.isSuccessful).isTrue()
-        assertThat(response.body()!!).isEqualTo(expectedFeelingsModel)
-    }
-
-    @Test
-    fun getFeeling_success() {
-        // arrange
-        val expectedResponseBody = TestHelper.getJson("get_feeling_success.json")
-        val expectedFeelingModel = FeelingJsonAdapter(moshi).fromJson(expectedResponseBody)!!
-        mockWebServer.enqueue(
-            MockResponse()
-                .setResponseCode(200)
-                .setBody(expectedResponseBody)
-        )
-
-        // act
-        val response = runBlocking { feelingService.getFeeling(1) }
-
-        // assert
-        assertThat(response.isSuccessful).isTrue()
-        assertThat(response.body()!!).isEqualTo(expectedFeelingModel)
+        assertThat(response.body()!!).isEqualTo(expectedFeelings)
     }
 
     @Test
@@ -168,7 +162,7 @@ class FeelingServiceTest {
         mockWebServer.enqueue(MockResponse().setResponseCode(404))
 
         // act
-        val response = runBlocking { feelingService.getFeeling(1) }
+        val response = runBlocking { feelingService.getFeeling("1") }
 
         // assert
         assertThat(response.isSuccessful).isFalse()
@@ -195,7 +189,7 @@ class FeelingServiceTest {
 
         // act
         val response = runBlocking {
-            feelingService.updateFeeling(1, Feeling("", Emotion.AMAZING, "", listOf()))
+            feelingService.updateFeeling("1", Feeling("", Emotion.AMAZING, "", listOf()))
         }
 
         // assert
@@ -209,7 +203,7 @@ class FeelingServiceTest {
 
         // act
         val response = runBlocking {
-            feelingService.updateFeeling(1, Feeling("", Emotion.AMAZING, "", listOf()))
+            feelingService.updateFeeling("1", Feeling("", Emotion.AMAZING, "", listOf()))
         }
 
         // assert
@@ -222,7 +216,7 @@ class FeelingServiceTest {
         mockWebServer.enqueue(MockResponse().setResponseCode(200))
 
         // act
-        val response = runBlocking { feelingService.deleteFeeling(1) }
+        val response = runBlocking { feelingService.deleteFeeling("1") }
 
         // assert
         assertThat(response.isSuccessful).isTrue()
@@ -232,7 +226,7 @@ class FeelingServiceTest {
     fun getQuote_success() {
         // arrange
         val expectedResponseBody = TestHelper.getJson("get_quote_success.json")
-        val expectedQuoteModel = QuoteModelJsonAdapter(moshi).fromJson(expectedResponseBody)!!
+        val expectedQuote = QuoteJsonAdapter(moshi).fromJson(expectedResponseBody)!!
         mockWebServer.enqueue(
             MockResponse()
                 .setResponseCode(200)
@@ -244,7 +238,7 @@ class FeelingServiceTest {
 
         // assert
         assertThat(response.isSuccessful).isTrue()
-        assertThat(response.body()!!).isEqualTo(expectedQuoteModel)
+        assertThat(response.body()!!).isEqualTo(expectedQuote)
     }
 
     @Test
