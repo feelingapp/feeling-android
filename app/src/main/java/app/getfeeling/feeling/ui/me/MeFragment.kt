@@ -15,7 +15,6 @@ import app.getfeeling.feeling.R
 import app.getfeeling.feeling.databinding.MeFragmentBinding
 import app.getfeeling.feeling.ui.me.calendarDay.CalendarDayHolder
 import app.getfeeling.feeling.ui.me.calendarMonth.AbstractCalendarMonthAdapter
-import app.getfeeling.feeling.ui.signin.SignInViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 import javax.inject.Provider
@@ -35,18 +34,12 @@ class MeFragment : DaggerFragment() {
 
     private val meViewModel: MeViewModel by activityViewModels { viewModelFactory }
 
-    private val signInViewModel: SignInViewModel by activityViewModels { viewModelFactory }
-
     private lateinit var binding: MeFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        if (!signInViewModel.isSignedIn()) {
-            mainNavController?.navigate(R.id.action_me_fragment_to_sign_in_fragment)
-        }
-
         binding = MeFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         return binding.root

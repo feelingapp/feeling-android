@@ -36,6 +36,10 @@ class MainActivity : DaggerAppCompatActivity() {
         mainNavController = findNavController(R.id.nav_host_fragment)
 
         setupBottomNavigationView()
+
+        if (!signInViewModel.isSignedIn()) {
+            mainNavController.navigate(R.id.action_me_fragment_to_sign_in_fragment)
+        }
     }
 
     override fun onNewIntent(intent: Intent) {
