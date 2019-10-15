@@ -6,10 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import app.getfeeling.feeling.repository.interfaces.IFeelingRepository
 import app.getfeeling.feeling.repository.interfaces.ITokenRepository
 import app.getfeeling.feeling.repository.interfaces.IUserRepository
-import app.getfeeling.feeling.valueobjects.Feeling
 import app.getfeeling.feeling.valueobjects.User
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -18,8 +16,7 @@ import javax.inject.Inject
 class MeViewModel @Inject constructor(
     private val userRepository: IUserRepository,
     tokenRepository: ITokenRepository,
-    feelingRepository: IFeelingRepository,
-    private val feelingMonthDataSourceFactory: FeelingMonthDataSourceFactory,
+    feelingMonthDataSourceFactory: FeelingMonthDataSourceFactory,
     pagedListConfig: PagedList.Config
 ) : ViewModel() {
 
@@ -27,8 +24,6 @@ class MeViewModel @Inject constructor(
 
     private val _user: MediatorLiveData<User?> = MediatorLiveData()
     val user: LiveData<User?> = _user
-
-    val allFeelings: LiveData<List<Feeling>> = feelingRepository.getAllFeelings()
 
     val feelingMonths: LiveData<PagedList<FeelingMonth>> =
         LivePagedListBuilder(feelingMonthDataSourceFactory, pagedListConfig).build()
@@ -40,6 +35,4 @@ class MeViewModel @Inject constructor(
             }
         }
     }
-
-    fun invalidateDataSource() = feelingMonthDataSourceFactory.sourceLiveData.value?.invalidate()
 }
