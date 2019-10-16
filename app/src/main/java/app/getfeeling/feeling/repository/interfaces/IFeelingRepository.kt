@@ -10,7 +10,5 @@ interface IFeelingRepository {
 
     fun getFeelings(yearMonth: YearMonth): List<Feeling>
 
-    fun getAllFeelings(): LiveData<List<Feeling>>
-
     suspend fun addFeeling(feeling: Feeling)
 }

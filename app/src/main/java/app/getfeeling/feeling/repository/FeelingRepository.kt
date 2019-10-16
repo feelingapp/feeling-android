@@ -24,8 +24,6 @@ class FeelingRepository @Inject constructor(private val feelingDao: FeelingDao) 
             yearMonth.year.toString()
         )
 
-    override fun getAllFeelings(): LiveData<List<Feeling>> = feelingDao.getAll()
-
     override suspend fun addFeeling(feeling: Feeling) = withContext(Dispatchers.IO) {
         feelingDao.insert(feeling)
     }
