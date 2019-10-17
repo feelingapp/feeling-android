@@ -2,12 +2,12 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <SwitchPreference
-            android:key="enable_daily_reminder"
+            android:key="daily_reminder_enable"
             android:title="Send me reminders everyday"
             app:iconSpaceReserved="false" />
 
     <Preference
-            android:dependency="enable_daily_reminder"
+            android:dependency="daily_reminder_enable"
             android:key="daily_reminder_time_picker"
             android:title="Time for notification"
             app:iconSpaceReserved="false" />
