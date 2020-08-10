@@ -1,3 +1,7 @@
+# NOTE: This repo is for the old native android version of Feeling
+
+Please refer to the organisation page to find the newest version
+
 # Feeling App
 
 > ❤️ Smart mood tracking app for Android
